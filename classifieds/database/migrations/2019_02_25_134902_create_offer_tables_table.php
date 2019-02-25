@@ -16,7 +16,8 @@ class CreateOfferTablesTable extends Migration
         Schema::create('offer_tables', function (Blueprint $table) {
             $table->increments('id');
             $table->boolean('expired')->default(false);
-            $table->integer('product_id')->default(1);
+            $table->integer('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('category_id')->default(1);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
