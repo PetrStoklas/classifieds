@@ -13,6 +13,6 @@ class ProductsController extends Controller
     {
         $product = Product::find(1);
         $offerTable = OfferTable::find(1);
-        dd($offerTable->user);
+        // dd($offerTable);
     }
 }
