@@ -49,13 +49,9 @@ class ProductsController extends Controller
     {
         
         //creating and inserting product into DB('products')
-        $new_product = new Product;
-        $new_product->title = $request->title;
-        $new_product->description = $request->description;
-        $new_product->category_id = $request->category_id;
-        $new_product->price = $request->price;
-        $new_product->seller_id = \Auth::user()->id;
-        $new_product->save();
+        $product_data = $request->all();
+        $product_data['seller_id'] = \Auth::user()->id;
+        $new_product = Product::create($product_data);
 
         //preparing data of the image
         $image = $request->file('image');
