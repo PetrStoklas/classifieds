@@ -1,6 +1,8 @@
 /node_modules
 /public/hot
 /public/storage
+# to not push images to github
+/public/uploads
 /storage/*.key
 /vendor
 .env

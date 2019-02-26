@@ -34,11 +34,7 @@ class HomeController extends Controller
     // shows the home landing page with a search bar
     public function home()
     {
-        $categories = Category::all();
-        $users = User::all();
         
-
-        return view('home.homepage', compact('categories'));
     }
 
     public function store(Request $request)

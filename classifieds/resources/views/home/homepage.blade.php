@@ -4,10 +4,10 @@
 <div class="input-group input-group-lg">
     <h1> Insert new product </h1>
     
-    <form method="POST" action="/home">
+    <form method="POST" action="/home" enctype="multipart/form-data">{{--IMPORTANT TO HAVE THE enctype attr IF SUBMITING IMG--}}
         {{ csrf_field() }}
         <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-lg">title</span>
+        <span class="input-group-text" id="inputGroup-sizing-lg">title</span>  
         </div>
         <input type="text" class="form-control" name="title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
 
@@ -24,11 +24,19 @@
         <div class="form-group">
             <label for="exampleFormControlSelect1">Select category</label>
             <select class="form-control" id="exampleFormControlSelect1" name="category_id">
+
             @foreach($categories as $category)
                    <option value="{{ $category->id }}">{{ $category->name }} </option>
             @endforeach 
+
             </select>
         </div>
+
+        <div class="input-group-prepend">   
+            <span class="input-group-text" id="inputGroup-sizing-lg">Import images</span>
+        </div>
+        <input type="file" class="form-control" name="image" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+
         <input type="submit" class="btn btn-dark" value="submit" name="submit">
     </form>
 
