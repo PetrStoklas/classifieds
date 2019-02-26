@@ -118,6 +118,8 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Only admin should be able to do this
+        Product::find($id)->delete(); 
+        return redirect('/products');
     }
 }

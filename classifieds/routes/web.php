@@ -16,6 +16,9 @@ Route::get('/', function () {
 });
 
 Route::get('/products', 'ProductsController@index');
+Route::get('/products/edit/{id}', 'ProductsController@edit');
+Route::get('/products/delete/{id}', 'ProductsController@destroy');
+
 
 Route::get('/home', 'ProductsController@create');
 Route::post('/home', 'ProductsController@store');
