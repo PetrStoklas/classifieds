@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 Route::get('/products', 'ProductsController@index');
 
+Route::get('/home', 'HomeController@home');
+Route::post('/home', 'BookController@store');
+
 Auth::routes();
 
 // Route::get('/admin', )
