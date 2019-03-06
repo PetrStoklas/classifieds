@@ -18,6 +18,15 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+
+
+
+    {{-- TADY EXPERIMENT --}}
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script> 
+
+
 </head>
 <body>
     <div id="app">
@@ -73,8 +82,16 @@
         </nav>
 
         <main class="py-4">
+                <input type="file" class="filepond">
+                <input type="file" class="filepond">
+
             @yield('content')
         </main>
     </div>
+    {{-- TADY EXPERIMENT DRUHA CAST --}}
+    
+    <script>
+            FilePond.parse(document.body);
+    </script> 
 </body>
 </html>

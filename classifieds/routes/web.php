@@ -15,10 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/products', 'ProductsController@index');
-Route::get('/products/edit/{id}', 'ProductsController@edit');
-Route::get('/products/delete/{id}', 'ProductsController@destroy');
+// Route::get('/products', 'ProductsController@index');
+// Route::get('/products/edit/{id}', 'ProductsController@edit');
+// Route::get('/products/delete/{id}', 'ProductsController@destroy');
 
+Route::resource('/products','ProductsController');
 
 Route::get('/home', 'ProductsController@create');
 Route::post('/home', 'ProductsController@store');

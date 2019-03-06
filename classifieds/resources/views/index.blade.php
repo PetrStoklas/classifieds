@@ -30,9 +30,34 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/themify-icons.css" rel="stylesheet">
+    {{-- FILEPOND STYLING --}}
+    {{-- <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet"> --}}
+
+    <link href="/css/dist/dropzone.css" type="text/css" rel="stylesheet" />
+
+    <script src="/js/dropzone.js"></script>
 </head>
 <body>
+    {{-- FILEPOND --}}
+    {{-- <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <input type="file">
+    <script>
+    console.log('started');
+    const inputElement = document.querySelector('input[type="file"]');
+    const pond = FilePond.create( inputElement );
     
+    FilePond.setOptions({
+        server: 'api/'
+    });
+
+    document.addEventListener('FilePond:loaded', e => {
+        console.log('FilePond ready for use', e.detail);
+    });
+    </script> --}}
+    {{-- KONEC FILEPONDU --}}
+    
+
+
     @include('common/errors')
     @include('common/alerts')
     @include('common.nav')

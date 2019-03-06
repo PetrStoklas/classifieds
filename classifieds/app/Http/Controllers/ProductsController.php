@@ -21,9 +21,10 @@ class ProductsController extends Controller
     {
         //
         $products = Product::all();
+        // $the = Product::find(20);
+        $categories = Category::all();     
         
-        
-        return view('products_show', compact('products'));
+        return view('products_show', compact('products', 'categories'));
     }
 
     /**
@@ -46,29 +47,38 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        
-        //creating and inserting product into DB('products')
-        $product_data = $request->all();
-        $product_data['seller_id'] = \Auth::user()->id;
-        $new_product = Product::create($product_data);
-
+    {   
         //preparing data of the image
+        dd($request);
         $image = $request->file('image');
-        $extension = $image->getClientOriginalExtension(); // NEEDS PARAMETERS???
-        Storage::disk('public')->put($image->getFilename().'.'.$extension,  File::get($image));
+        $extension = $image->getClientOriginalExtension(); 
+        $allowed_extensions = ['jpg', 'jpeg', 'png'];
 
-        //creating and inserting image into DB('images')
-        $new_image = new Image;
-        $new_image->product_id = $new_product->id;
-        $new_image->filename = $image->getFilename().'.'.$extension;
-        $new_image->original_filename = $image->getClientOriginalName();
-        $new_image->mime = $image->getClientMimeType();
-        $new_image->save();
+        if(in_array($extension, $allowed_extensions)) {
+            
+            //saves image into public folder in this project
+            Storage::disk('public')->put($image->getFilename().'.'.$extension,  File::get($image));
+             
+            //stores product info into database
+            // $product_data = $request->all();
+            // $product_data['seller_id'] = \Auth::user()->id;
+            // $new_product = Product::create($product_data);
+            
+            
+            //stores image info into database
+            // $new_image = new Image;
+            // $new_image->product_id = $new_product->id;
+            // $new_image->filename = $image->getFilename().'.'.$extension;
+            // $new_image->original_filename = $image->getClientOriginalName();
+            // $new_image->mime = $image->getClientMimeType();
+            // $new_image->save();
+    
+            session()->flash('success_message', 'Success!');
 
-        session()->flash('success_message', 'Success!');
+        }
 
         return redirect('/products');
+
     }
 
     /**
@@ -89,9 +99,11 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        return view('home.homepage', compact('product', 'categories'));
+        // view('home.homepage', compact('id'))
     }
 
     /**
@@ -114,8 +126,8 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //Only admin should be able to do this
-        Product::find($id)->delete(); 
-        return redirect('/products');
+        //Only admin should be able to do this 
+        Product::find($id)->delete();
+        return redirect()->action('ProductsController@index');
     }
 }
