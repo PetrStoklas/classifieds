@@ -24,7 +24,8 @@ class ProductsController extends Controller
         // $the = Product::find(20);
         $categories = Category::all();     
         
-        return view('products_show', compact('products', 'categories'));
+        // return view('products_show', compact('products', 'categories'));
+        return $products;
     }
 
     /**
