@@ -49,36 +49,14 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {   
-        //preparing data of the image
-        dd($request);
-        $image = $request->file('image');
-        $extension = $image->getClientOriginalExtension(); 
-        $allowed_extensions = ['jpg', 'jpeg', 'png'];
-
-        if(in_array($extension, $allowed_extensions)) {
-            
-            //saves image into public folder in this project
-            Storage::disk('public')->put($image->getFilename().'.'.$extension,  File::get($image));
-             
-            //stores product info into database
-            // $product_data = $request->all();
-            // $product_data['seller_id'] = \Auth::user()->id;
-            // $new_product = Product::create($product_data);
-            
-            
-            //stores image info into database
-            // $new_image = new Image;
-            // $new_image->product_id = $new_product->id;
-            // $new_image->filename = $image->getFilename().'.'.$extension;
-            // $new_image->original_filename = $image->getClientOriginalName();
-            // $new_image->mime = $image->getClientMimeType();
-            // $new_image->save();
-    
-            session()->flash('success_message', 'Success!');
-
-        }
-
-        return redirect('/products');
+        $product = new Product;
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->category_id = $request->category_id;
+        $product->seller_id = $request->seller_id;
+        // dd($product);
+        $product->save();
 
     }
 
@@ -90,7 +68,7 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+        return Product::findOrFail($id);
 
     }
 
