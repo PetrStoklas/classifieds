@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Category;
-use App\Product;
-use App\User;
-use App\Image;
 
-class ProductsController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,13 +14,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
-        $products = Product::all();
-        // $the = Product::find(20);
-        $categories = Category::all();     
-        
-        // return view('products_show', compact('products', 'categories'));
-        return $products;
+        return Category::all();
     }
 
     /**
@@ -36,9 +25,6 @@ class ProductsController extends Controller
     public function create()
     {
         //
-        $categories = Category::all();        
-
-        return view('home.homepage', compact('categories'));
     }
 
     /**
@@ -48,16 +34,8 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        $product = new Product;
-        $product->title = $request->title;
-        $product->description = $request->description;
-        $product->price = $request->price;
-        $product->category_id = $request->category_id;
-        $product->seller_id = $request->seller_id;
-        // dd($product);
-        $product->save();
-
+    {
+        //
     }
 
     /**
@@ -68,8 +46,7 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        return Product::findOrFail($id);
-
+        //
     }
 
     /**
@@ -78,11 +55,9 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        $categories = Category::all();
-        return view('home.homepage', compact('product', 'categories'));
-        // view('home.homepage', compact('id'))
+        //
     }
 
     /**
@@ -105,8 +80,6 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //Only admin should be able to do this 
-        Product::find($id)->delete();
-        return redirect()->action('ProductsController@index');
+        //
     }
 }
