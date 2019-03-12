@@ -9,7 +9,9 @@ class Home extends Component {
 
     state = {
         categories: [],
-        color: true
+        subCategories: [],
+        color: true,
+        active_category: null,
     }
 
     componentDidMount() {
@@ -21,10 +23,23 @@ class Home extends Component {
                         )
                     }
                 });
-                // categories.data.map(res => console.log(res.parent_id));
-                // console.log(this.state);
             })
             .catch(err => console.log(err));
+    }
+
+    getChildren = e => {
+        this.setState({active_category: e.target.id, subCategories: []})
+        console.log(this.state);
+        categories.get('/' + e.target.id)
+            .then(subCategories => {
+                subCategories.data.map(res => {
+
+                    this.setState({subCategories: [...this.state.subCategories, res]})
+                    // console.log(res)
+                })
+            })
+            .catch(err => console.log(err));
+        // console.log(this.state);
     }
 
     render() {
@@ -37,8 +52,10 @@ class Home extends Component {
                         <Col md="6">
                             <Route 
                                 path="/" exact 
-                                component={ () => <CategoriesNav categories={this.state.categories} /> }/>
-                            <Route path="/?" component= {() => <h1>Else</h1>}/>
+                                component={ () => <CategoriesNav 
+                                                    categories={this.state.categories}
+                                                    getSubcategories={this.getChildren} /> }/>
+                            <Route path={'/'+this.state.active_category} component= {() => <CategoriesNav subCats={this.state.subCategories} /> }/>
                         </Col>
                         <Col md="6">
                         <p className={ this.state.color ? classes.Red : ''}>hello</p>

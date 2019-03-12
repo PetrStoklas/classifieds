@@ -1,25 +1,32 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { Link } from "react-router-dom";
-import { Spinner } from 'reactstrap';
+// import { Spinner } from 'reactstrap';
 
 const Categories_nav = props => {
-    console.log(props);
     let categories = '';
+
+
         if(props.categories) {
             categories = props.categories.map(res => 
-                categories = 
-                <ListGroupItem>
-                    <Link to={"/" + res.name} >{res.name}
+                <ListGroupItem key={res.id} onClick={props.getSubcategories}>
+                    <Link 
+                          to={"/" + res.id} id={res.id}>{res.name}
                     </Link>
                 </ListGroupItem>)
-        } else {
-            categories = <Spinner />
+        }  
+        if(props.subCats) {
+            categories = props.subCats.map(res => 
+                
+                <ListGroupItem key={res.id}>
+                    <Link 
+                          to={"/" + res.id} id={res.id}>{res.name}
+                    </Link>
+                </ListGroupItem>)
         }
     return (
       <ListGroup>
         {categories}
-        {/* <ListGroupItem><Link to="/else" >Else</Link></ListGroupItem> */}
       </ListGroup>
     );
   
