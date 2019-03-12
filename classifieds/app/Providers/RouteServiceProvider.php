@@ -72,7 +72,7 @@ class RouteServiceProvider extends ServiceProvider
         ], function ($router) {
              //Add you routes here, for example:
              Route::apiResource('/products','ProductsController');
-             Route::post('/products/new','ProductsController@store');
+             Route::apiResource('/categories','CategoriesController');
         });
     }
 }
