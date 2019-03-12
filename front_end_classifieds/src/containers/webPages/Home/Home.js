@@ -3,7 +3,7 @@ import classes from './Home.module.css';
 import categories from '../../../axios_routes/categories_axios';
 import { Container, Row, Col, Button } from 'reactstrap';
 import CategoriesNav from '../../../components/categories_nav/categories_nav';
-import { Spinner } from 'reactstrap';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class Home extends Component {
 
@@ -22,30 +22,30 @@ class Home extends Component {
                     }
                 });
                 // categories.data.map(res => console.log(res.parent_id));
-                console.log(this.state);
+                // console.log(this.state);
             })
             .catch(err => console.log(err));
     }
 
     render() {
 
-        let categories = '';
-        if(this.state.categories) {
-            categories = this.state.categories.map(res => categories = <CategoriesNav key={res.id} name={res.name}/>)
-        } else {
-            categories = <Spinner />
-        }
+        
         return (
             <Container>
-                <Row>
-                <Col md="6">
-                    {categories}
-                </Col>
-                <Col md="6">
-                <p className={ this.state.color ? classes.Red : ''}>hello</p>
-                    <Button className={classes.Red}>Click Me</Button>
-                </Col>
-                </Row>
+                <Router>
+                    <Row>
+                        <Col md="6">
+                            <Route 
+                                path="/" exact 
+                                component={ () => <CategoriesNav categories={this.state.categories} /> }/>
+                            <Route path="/?" component= {() => <h1>Else</h1>}/>
+                        </Col>
+                        <Col md="6">
+                        <p className={ this.state.color ? classes.Red : ''}>hello</p>
+                            <Button className={classes.Red}>Click Me</Button>
+                        </Col>
+                    </Row>
+                </Router>
             </Container>
         );
     }
