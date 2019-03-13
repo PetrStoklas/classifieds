@@ -18,9 +18,9 @@ const Categories_nav = props => {
             
         }
 
-        const test = e => {
-            e.preventDefault();
+        const test = () => {
             console.log('hello');
+            props.getAllProducts();
         }
 
         
@@ -32,7 +32,7 @@ const Categories_nav = props => {
                     </Link>
                 </ListGroupItem>)
             } else {
-                categories = <Form> <SearchForm onSubmit={test} options={props.categories}/></Form>
+                categories =  <SearchForm getProducts={test} options={props.categories}/>
             }
         
     return (

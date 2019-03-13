@@ -28,6 +28,8 @@ class SearchForm extends Component {
 
         getProducts = e => {
           e.preventDefault();
+          console.log(this.props);
+          this.props.getProducts()
           console.log('click');
         }
         
@@ -47,7 +49,7 @@ class SearchForm extends Component {
     
 
     return (
-          // <Form onSubmit={this.getProducts}>
+          <Form onSubmit={this.getProducts}>
             <Row>
                 <Col md="6">
                 <FormGroup>
@@ -65,9 +67,9 @@ class SearchForm extends Component {
                         </Input>
                 </FormGroup>
                 </Col>
-                <Button onClick={this.getProducts}>Get Cars</Button>
+                <Button>Get Cars</Button>
             </Row>
-        // </Form>
+        </Form>
     );
   }
 }

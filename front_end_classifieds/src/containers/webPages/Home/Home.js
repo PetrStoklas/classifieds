@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import classes from './Home.module.css';
 import categories from '../../../axios_routes/categories_axios';
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import CategoriesNav from '../../../components/categories_nav/categories_nav';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Jumbotron from '../../../components/header/header';
@@ -42,6 +42,10 @@ class Home extends Component {
             .catch(err => console.log(err));
     }
 
+    getProductsAll() {
+        console.log('products');
+    }
+
     render() {
 
         
@@ -60,7 +64,8 @@ class Home extends Component {
                                 path="/" exact 
                                 component={ () => <CategoriesNav 
                                                     categories={this.state.categories}
-                                                    getSubcategories={this.getChildren} /> }/>
+                                                    getSubcategories={this.getChildren}
+                                                    getAllProducts={this.getProductsAll} /> }/>
                             <Route path={'/'+this.state.active_category} component= {() => <CategoriesNav subCats={this.state.subCategories} /> }/>
                         </Col>
 
