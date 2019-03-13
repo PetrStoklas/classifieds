@@ -1,12 +1,10 @@
 import React from 'react';
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { ListGroup, ListGroupItem, Form } from 'reactstrap';
 import { Link } from "react-router-dom";
 import SearchForm from '../UI/SearchForm/SearchForm';
-// import { Spinner } from 'reactstrap';
 
 
 const Categories_nav = props => {
-    // console.log(props);
     let categories = '';
 
         let categoriesType = '';
@@ -15,12 +13,14 @@ const Categories_nav = props => {
         
         if(props.categories) {
             categoriesType = props.categories;
-            // console.log(props);
         } else if(props.subCats) {
             categoriesType = props.subCats
-            // subs = props.subCats;
-            // console.log(subs);
             
+        }
+
+        const test = e => {
+            e.preventDefault();
+            console.log('hello');
         }
 
         
@@ -31,12 +31,13 @@ const Categories_nav = props => {
                           to={"/" + res.name} id={res.id}>{res.name}
                     </Link>
                 </ListGroupItem>)
-            } 
+            } else {
+                categories = <Form> <SearchForm onSubmit={test} options={props.categories}/></Form>
+            }
         
     return (
       <ListGroup flush>
         {categories}
-        <SearchForm options={props.categories}/>
       </ListGroup>
     );
   

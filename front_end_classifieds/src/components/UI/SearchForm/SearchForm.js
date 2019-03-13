@@ -20,10 +20,15 @@ class SearchForm extends Component {
       }
 
       getSubCategoriesHandler = (e) => {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         categories.get('/' + e.target.value)
           .then(res => this.setState({subSubcategories: res.data}))
           .catch(err => console.log(err));
+        }
+
+        getProducts = e => {
+          e.preventDefault();
+          console.log('click');
         }
         
         render() {
@@ -42,14 +47,12 @@ class SearchForm extends Component {
     
 
     return (
-        <>
-          <Form>
+          // <Form onSubmit={this.getProducts}>
             <Row>
                 <Col md="6">
                 <FormGroup>
                     <Label for="exampleSelect">Select</Label>
                         <Input onChange={this.getSubCategoriesHandler} type="select" name="select" id="exampleSelect">
-                        
                         {categories}
                         </Input>
                 </FormGroup>
@@ -62,9 +65,9 @@ class SearchForm extends Component {
                         </Input>
                 </FormGroup>
                 </Col>
+                <Button onClick={this.getProducts}>Get Cars</Button>
             </Row>
-        </Form>
-        </>
+        // </Form>
     );
   }
 }
