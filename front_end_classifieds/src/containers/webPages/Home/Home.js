@@ -4,6 +4,7 @@ import categories from '../../../axios_routes/categories_axios';
 import { Container, Row, Col, Button } from 'reactstrap';
 import CategoriesNav from '../../../components/categories_nav/categories_nav';
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import Jumbotron from '../../../components/header/header';
 
 class Home extends Component {
 
@@ -35,21 +36,21 @@ class Home extends Component {
                 subCategories.data.map(res => {
 
                     this.setState({subCategories: [...this.state.subCategories, res]})
-                    // console.log(res)
                 })
             })
             .catch(err => console.log(err));
-        // console.log(this.state);
     }
 
     render() {
 
         
         return (
-            <Container>
                 <Router>
-                    <Row>
-                        <Col md="6">
+                <>
+                <Jumbotron/>
+                    <Container>
+                        <Row>
+                            <Col md="6">
                             <Route 
                                 path="/" exact 
                                 component={ () => <CategoriesNav 
@@ -57,13 +58,14 @@ class Home extends Component {
                                                     getSubcategories={this.getChildren} /> }/>
                             <Route path={'/'+this.state.active_category} component= {() => <CategoriesNav subCats={this.state.subCategories} /> }/>
                         </Col>
-                        <Col md="6">
+                            <Col md="6">
                         <p className={ this.state.color ? classes.Red : ''}>hello</p>
                             <Button className={classes.Red}>Click Me</Button>
                         </Col>
                     </Row>
-                </Router>
             </Container>
+            </>
+                </Router>
         );
     }
 }
