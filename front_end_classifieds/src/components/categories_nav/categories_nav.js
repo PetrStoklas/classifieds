@@ -11,13 +11,12 @@ const Categories_nav = props => {
             categories = props.categories.map(res => 
                 <ListGroupItem key={res.id} onClick={props.getSubcategories}>
                     <Link 
-                          to={"/" + res.id} id={res.id}>{res.name}
+                          to={"/" + res.name} id={res.id}>{res.name}
                     </Link>
                 </ListGroupItem>)
         }  
         if(props.subCats) {
             categories = props.subCats.map(res => 
-                
                 <ListGroupItem key={res.id}>
                     <Link 
                           to={"/" + res.id} id={res.id}>{res.name}
