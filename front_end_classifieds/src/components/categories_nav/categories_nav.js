@@ -15,11 +15,11 @@ const Categories_nav = props => {
         
         if(props.categories) {
             categoriesType = props.categories;
-            console.log(props);
+            // console.log(props);
         } else if(props.subCats) {
             // categoriesType = props.subCats
             subs = props.subCats;
-            console.log(subs);
+            // console.log(subs);
             
         }
 

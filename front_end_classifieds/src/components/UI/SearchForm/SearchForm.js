@@ -6,27 +6,35 @@ import { Row, Col } from 'reactstrap';
 
 class SearchForm extends Component {
 
-  
-      state = {
-    
+      constructor(props) {
+        super(props);
+
+        
+        this.state = {
+          optionsList: null,
+        }
       }
 
+      componentDidMount() {
+        console.log(this.props.options)
+        
+            this.setState({optionsList: this.props.options})
+            console.log(this.state.optionsList);
+        
+        
+        
+      }
   render() {
-    if(this.props.options){
+        
+    
+    
+    
+    // let optionsList = '';
+    // optionsList = this.props.options.map(res => (
+    //     <option key={res.id} value={res.id}>{res.name}</option>
+    // ))
 
-    }    
-            let optionsList = '';
-            optionsList = this.props.options.map(res => (
-                <option key={res.id} value={res.id}>{res.name}</option>
-            ))
-
-        // let subSubcategories = ''
-        // if(subs){
-
-        //     subSubcategories = subs.map(res => (
-        //         <option key={res.id} value={res.id}>{res.name}</option>
-        //         ))
-        //     }
+        
 
 
 
@@ -39,7 +47,7 @@ class SearchForm extends Component {
                 <FormGroup>
                     <Label for="exampleSelect">Select</Label>
                         <Input type="select" name="select" id="exampleSelect">
-                            {optionsList}
+                            {/* {optionsList} */}
                         </Input>
                 </FormGroup>
                 </Col>
