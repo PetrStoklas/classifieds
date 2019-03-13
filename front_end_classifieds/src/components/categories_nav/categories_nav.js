@@ -24,7 +24,7 @@ const Categories_nav = props => {
                 </ListGroupItem>)
         }
     return (
-      <ListGroup>
+      <ListGroup flush>
         {categories}
       </ListGroup>
     );
