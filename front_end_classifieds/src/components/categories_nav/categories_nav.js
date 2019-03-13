@@ -17,8 +17,8 @@ const Categories_nav = props => {
             categoriesType = props.categories;
             // console.log(props);
         } else if(props.subCats) {
-            // categoriesType = props.subCats
-            subs = props.subCats;
+            categoriesType = props.subCats
+            // subs = props.subCats;
             // console.log(subs);
             
         }
