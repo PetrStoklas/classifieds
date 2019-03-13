@@ -28,7 +28,7 @@ class Home extends Component {
     }
 
     getChildren = e => {
-        this.setState({active_category: e.target.id, subCategories: []})
+        this.setState({active_category: e.target.textContent, subCategories: []})
         console.log(this.state);
         categories.get('/' + e.target.id)
             .then(subCategories => {
