@@ -55,7 +55,7 @@ class Home extends Component {
                             <p className={ this.state.color ? classes.Red : ''}>hello</p>
                                 
                             </Col>
-                            <Col md="">
+                            <Col md="6">
                             <Route 
                                 path="/" exact 
                                 component={ () => <CategoriesNav 
@@ -64,7 +64,7 @@ class Home extends Component {
                             <Route path={'/'+this.state.active_category} component= {() => <CategoriesNav subCats={this.state.subCategories} /> }/>
                         </Col>
 
-                        <Col md="9">
+                        <Col md="5">
                         <p className={ this.state.color ? classes.Red : ''}>hello</p>
                             
                         </Col>

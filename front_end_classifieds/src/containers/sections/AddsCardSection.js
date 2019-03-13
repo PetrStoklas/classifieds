@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import Cards from '../../components/UI/card/card';
 
 class CardsContainer extends Component {
 
@@ -9,6 +9,7 @@ class CardsContainer extends Component {
     return (
         <div>
             Cards Will come here
+            <Cards />
         </div>
     );
   }
