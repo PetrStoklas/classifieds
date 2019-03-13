@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // import { Spinner } from 'reactstrap';
 
 const Categories_nav = props => {
-    console.log(props);
+    // console.log(props);
     let categories = '';
 
 
