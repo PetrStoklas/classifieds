@@ -46,7 +46,9 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = new Category;
+        // return $category->where('parent_id', '=', $id)->get();
+        return $category->where('parent_id', $id)->get();
     }
 
     /**
