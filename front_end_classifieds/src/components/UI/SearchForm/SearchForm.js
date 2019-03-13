@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { Row, Col } from 'reactstrap';
+import categories from '../../../axios_routes/categories_axios'
 
 
 class SearchForm extends Component {
@@ -10,7 +11,7 @@ class SearchForm extends Component {
         
         state = {
           optionsList: [],
-          changed: false
+          subSubcategories: []
         }
       
 
@@ -18,19 +19,26 @@ class SearchForm extends Component {
         this.setState({optionsList: this.props.options});
       }
 
-      getSubCategoriesHandler (e) {
+      getSubCategoriesHandler = (e) => {
         console.log(e.target.value)
-      }
-
-  
-      render() {
+        categories.get('/' + e.target.value)
+          .then(res => this.setState({subSubcategories: res.data}))
+          .catch(err => console.log(err));
+        }
+        
+        render() {
+         
     
-      console.log(this.state.optionsList);
     
-    let categories = <option>1</option>;
-    // console.log(optionsList);
+    let categories = '';
+    let subCategories = ''
+    if(this.state.subSubcategories) {
+      subCategories = this.categories;
+    }
     categories  = this.state.optionsList.map(res => 
                             <option key={res.id} value={res.id}>{res.name}</option>)
+    subCategories = this.state.subSubcategories.map(res => 
+        <option key={res.id} value={res.id}>{res.name}</option>)
     
 
     return (
@@ -50,7 +58,7 @@ class SearchForm extends Component {
                 <FormGroup>
                     <Label for="exampleSelect">Select</Label>
                         <Input type="select" name="select" id="exampleSelect">
-                            {/* {subSubcategories} */}
+                            {subCategories}
                         </Input>
                 </FormGroup>
                 </Col>
