@@ -14,6 +14,7 @@ class Home extends Component {
         subCategories: [],
         color: true,
         active_category: null,
+        productsId: null,
     }
 
     componentDidMount() {
@@ -42,11 +43,14 @@ class Home extends Component {
             .catch(err => console.log(err));
     }
 
-    getProductsAll() {
-        console.log('products');
+    getProductsAll = (id) => {
+        console.log(id);
+        this.setState({productsId: id});
+        
     }
-
+    
     render() {
+        console.log(this.state.productsId);
 
         
         return (
@@ -66,7 +70,7 @@ class Home extends Component {
                                                     categories={this.state.categories}
                                                     getSubcategories={this.getChildren}
                                                     getAllProducts={this.getProductsAll} /> }/>
-                            <Route path={'/'+this.state.active_category} component= {() => <CategoriesNav subCats={this.state.subCategories} /> }/>
+                            <Route path={'/'+this.state.active_category} component= {() => <CategoriesNav subCats={this.state.subCategories} productsId={this.state.productsId} /> }/>
                         </Col>
 
                         <Col md="5">

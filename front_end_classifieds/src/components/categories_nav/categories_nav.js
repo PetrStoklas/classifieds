@@ -18,9 +18,10 @@ const Categories_nav = props => {
             
         }
 
-        const test = () => {
+        const test = (value) => {
             console.log('hello');
-            props.getAllProducts();
+            
+            props.getAllProducts(value);
         }
 
         
@@ -32,7 +33,7 @@ const Categories_nav = props => {
                     </Link>
                 </ListGroupItem>)
             } else {
-                categories =  <SearchForm getProducts={test} options={props.categories}/>
+                categories =  <SearchForm getProducts={test} options={props.categories} productsId={props.productsId}/>
             }
         
     return (

@@ -11,7 +11,8 @@ class SearchForm extends Component {
         
         state = {
           optionsList: [],
-          subSubcategories: []
+          subSubcategories: [],
+          productId: null
         }
       
 
@@ -24,54 +25,57 @@ class SearchForm extends Component {
         categories.get('/' + e.target.value)
           .then(res => this.setState({subSubcategories: res.data}))
           .catch(err => console.log(err));
+
+          this.setState({productId: e.target.value});
         }
 
         getProducts = e => {
           e.preventDefault();
-          console.log(this.props);
-          this.props.getProducts()
-          console.log('click');
+          const id = this.state.productId;
+          this.props.getProducts(id)
         }
         
         render() {
-         
+          if(this.state.productId) {
+            console.log(this.state.productId);
+          }
     
     
-    let categories = '';
-    let subCategories = ''
-    if(this.state.subSubcategories) {
-      subCategories = this.categories;
-    }
-    categories  = this.state.optionsList.map(res => 
-                            <option key={res.id} value={res.id}>{res.name}</option>)
-    subCategories = this.state.subSubcategories.map(res => 
-        <option key={res.id} value={res.id}>{res.name}</option>)
-    
+      let categories = '';
+      let subCategories = ''
+      if(this.state.subSubcategories) {
+        subCategories = this.categories;
+      }
+      categories  = this.state.optionsList.map(res => 
+                              <option key={res.id} value={res.id}>{res.name}</option>)
+      subCategories = this.state.subSubcategories.map(res => 
+          <option key={res.id} value={res.id}>{res.name}</option>)
+      
 
-    return (
-          <Form onSubmit={this.getProducts}>
-            <Row>
-                <Col md="6">
-                <FormGroup>
-                    <Label for="exampleSelect">Select</Label>
-                        <Input onChange={this.getSubCategoriesHandler} type="select" name="select" id="exampleSelect">
-                        {categories}
-                        </Input>
-                </FormGroup>
-                </Col>
-                <Col md="6">
-                <FormGroup>
-                    <Label for="exampleSelect">Select</Label>
-                        <Input type="select" name="select" id="exampleSelect">
-                            {subCategories}
-                        </Input>
-                </FormGroup>
-                </Col>
-                <Button>Get Cars</Button>
-            </Row>
-        </Form>
-    );
-  }
+      return (
+            <Form onSubmit={this.getProducts}>
+              <Row>
+                  <Col md="6">
+                  <FormGroup>
+                      <Label for="exampleSelect">Select</Label>
+                          <Input onChange={this.getSubCategoriesHandler} type="select" name="select" id="exampleSelect">
+                          {categories}
+                          </Input>
+                  </FormGroup>
+                  </Col>
+                  <Col md="6">
+                  <FormGroup>
+                      <Label for="exampleSelect">Select</Label>
+                          <Input type="select" name="select" id="exampleSelect">
+                              {subCategories}
+                          </Input>
+                  </FormGroup>
+                  </Col>
+                  <Button>Get Cars</Button>
+              </Row>
+          </Form>
+      );
+    }
 }
 
 export default SearchForm;
