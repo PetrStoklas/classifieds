@@ -28,13 +28,16 @@ class Home extends Component {
           .data
           .map(res => {
             if (!res.parent_id) {
-              this.setState({
-                categories: [
-                  ...this.state.categories,
-                  res
-                ]
-              })
+              return (
+                this.setState({
+                  categories: [
+                    ...this.state.categories,
+                    res
+                  ]
+                })
+              )
             }
+            return null;
           });
       })
       .catch(err => console.log(err));
@@ -52,30 +55,34 @@ class Home extends Component {
         subCategories
           .data
           .map(res => {
-            this.setState({
-              subCategories: [
-                ...this.state.subCategories,
-                res
-              ]
-            })
+            return (
+              this.setState({
+                subCategories: [
+                  ...this.state.subCategories,
+                  res
+                ]
+              })
+            )
           })
       })
       .catch(err => console.log(err));
   }
 
   getProductsWithCategory = (id) => {
-    this.setState({productsId: id});
+    this.setState({productsId: id, productsWithCategory: []});
     fetchProducts
       .get('/' + id)
       .then(res => {
-        this.setState({productsWithCategory: res.data})
+        this.setState({productsWithCategory: [...this.state.productsWithCategory, res.data]})
       })
       .catch(err => console.log(err))
 
   }
 
+
   render() {
 
+    console.log(this.state);
     return (
       <Router>
         <> <Jumbotron/>
@@ -111,7 +118,7 @@ class Home extends Component {
             </Col>
           </Row>
           <Row>
-            <CardsContainer cardsData={this.state.productsAll}/>
+            <CardsContainer cardsData={this.state.productsWithCategory}/>
           </Row>
         </Container>
       </>
