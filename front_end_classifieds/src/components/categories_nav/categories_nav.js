@@ -19,8 +19,6 @@ const Categories_nav = props => {
         }
 
         const test = (value) => {
-            console.log('hello');
-            
             props.getAllProducts(value);
         }
 

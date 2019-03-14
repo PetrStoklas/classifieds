@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, ButtonGroup, ButtonToolbar } from 'reactstrap';
 import { Row, Col } from 'reactstrap';
 import categories from '../../../axios_routes/categories_axios'
 
@@ -54,10 +54,15 @@ class SearchForm extends Component {
 
       return (
             <Form onSubmit={this.getProducts}>
+              <ButtonGroup size="lg">
+              <Button>Left</Button>
+              <Button>Middle</Button>
+              <Button>Right</Button>
+            </ButtonGroup>
               <Row>
                   <Col md="6">
                   <FormGroup>
-                      <Label for="exampleSelect">Select</Label>
+                      <Label for="exampleSelect">Select Brand</Label>
                           <Input onChange={this.getSubCategoriesHandler} type="select" name="select" id="exampleSelect">
                           {categories}
                           </Input>
@@ -65,7 +70,7 @@ class SearchForm extends Component {
                   </Col>
                   <Col md="6">
                   <FormGroup>
-                      <Label for="exampleSelect">Select</Label>
+                      <Label for="exampleSelect">Select Model</Label>
                           <Input type="select" name="select" id="exampleSelect">
                               {subCategories}
                           </Input>

@@ -60,7 +60,7 @@ class Home extends Component {
                     <Container>
                         <Row>
                             <Col md="1">
-                            <p className={ this.state.color ? classes.Red : ''}>hello</p>
+                            <p className={ this.state.color ? classes.Red : ''}></p>
                                 
                             </Col>
                             <Col md="6">
@@ -74,7 +74,7 @@ class Home extends Component {
                         </Col>
 
                         <Col md="5">
-                        <p className={ this.state.color ? classes.Red : ''}>hello</p>
+                        <p className={ this.state.color ? classes.Red : ''}></p>
                             
                         </Col>
                     </Row>
