@@ -5,7 +5,7 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText,
+  // FormText,
   ButtonGroup,
   ButtonToolbar
 } from 'reactstrap';
@@ -25,7 +25,6 @@ class SearchForm extends Component {
   }
 
   getSubCategoriesHandler = (e) => {
-    // console.log(e.target.value)
     categories
       .get('/' + e.target.value)
       .then(res => this.setState({subSubcategories: res.data}))
@@ -34,6 +33,7 @@ class SearchForm extends Component {
     this.setState({productId: e.target.value});
   }
 
+  // passing the selected category to home view via categories_nav component
   getProducts = e => {
     e.preventDefault();
     const id = this.state.productId;
@@ -63,11 +63,13 @@ class SearchForm extends Component {
 
     return (
       <Form onSubmit={this.getProducts}>
-        <ButtonGroup className="mx-auto" size="lg">
-          <Button>Left</Button>
-          <Button>Middle</Button>
-          <Button>Right</Button>
-        </ButtonGroup>
+        <ButtonToolbar>
+          <ButtonGroup className="mx-auto" size="lg">
+            <Button>Left</Button>
+            <Button>Middle</Button>
+            <Button>Right</Button>
+          </ButtonGroup>
+        </ButtonToolbar>
         <Row>
           <Col md="6">
             <FormGroup>

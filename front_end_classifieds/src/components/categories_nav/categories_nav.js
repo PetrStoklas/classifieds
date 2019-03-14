@@ -1,5 +1,5 @@
 import React from 'react';
-import {ListGroup, ListGroupItem, Form} from 'reactstrap';
+import {ListGroup, ListGroupItem} from 'reactstrap';
 import {Link} from "react-router-dom";
 import SearchForm from '../UI/SearchForm/SearchForm';
 
@@ -17,7 +17,8 @@ const Categories_nav = props => {
 
   }
 
-  const test = (value) => {
+//   passing the id to the Home component
+  const passingIdMiddleware = (value) => {
     props.getAllProducts(value);
   }
 
@@ -28,7 +29,7 @@ const Categories_nav = props => {
     </ListGroupItem>)
   } else {
     categories = <SearchForm
-      getProducts={test}
+      getProducts={passingIdMiddleware}
       options={props.categories}
       productsId={props.productsId}/>
   }

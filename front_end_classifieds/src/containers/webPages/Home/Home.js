@@ -75,9 +75,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.state);
-
-    console.log(this.state.productsWithCategory);
 
     return (
       <Router>
