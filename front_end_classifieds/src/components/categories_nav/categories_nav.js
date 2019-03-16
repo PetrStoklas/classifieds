@@ -17,14 +17,14 @@ const Categories_nav = props => {
 
   }
 
-//   passing the id to the Home component
+  //   passing the id to the Home component
   const passingIdMiddleware = (value) => {
     props.getAllProducts(value);
   }
 
   if (window.innerWidth < 390) {
     categories = categoriesType.map(res => <ListGroupItem key={res.id} onClick={props.getSubcategories}>
-      <Link to={"/" + res.name} id={res.id}>{res.name}
+      <Link exact to={"/" + res.name} id={res.id}>{res.name}
       </Link>
     </ListGroupItem>)
   } else {

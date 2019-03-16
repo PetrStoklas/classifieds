@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import classes from './Home.module.css';
-import categories from '../../../axios_routes/categories_axios';
+import fetchCategories from '../../../axios_routes/categories_axios';
+import fetchProducts from '../../../axios_routes/products_axios';
 import {Container, Row, Col} from 'reactstrap';
 import CategoriesNav from '../../../components/categories_nav/categories_nav';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import Jumbotron from '../../../components/header/header';
 import CardsContainer from '../../sections/AddsCardSection';
-import fetchProducts from '../../../axios_routes/products_axios';
+import Navigation from '../../../components/UI/Navigation/Navigation';
 
 class Home extends Component {
 
@@ -21,21 +22,19 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    categories
+    fetchCategories
       .get()
       .then(categories => {
         categories
           .data
           .map(res => {
             if (!res.parent_id) {
-              return (
-                this.setState({
-                  categories: [
-                    ...this.state.categories,
-                    res
-                  ]
-                })
-              )
+              return (this.setState({
+                categories: [
+                  ...this.state.categories,
+                  res
+                ]
+              }))
             }
             return null;
           });
@@ -45,24 +44,27 @@ class Home extends Component {
       .get()
       .then(res => this.setState({productsAll: res.data}))
       .catch(err => console.log(err));
+    fetchCategories.get()
+    // .then(this.setState({subCategories: [...this.state.subCategories: ]}))
   }
 
   getChildren = e => {
     this.setState({active_category: e.target.textContent, subCategories: []})
-    categories
-      .get('/' + e.target.id)
+
+    let id = e.target.id
+
+    fetchCategories
+      .get('/' + id)
       .then(subCategories => {
         subCategories
           .data
           .map(res => {
-            return (
-              this.setState({
-                subCategories: [
-                  ...this.state.subCategories,
-                  res
-                ]
-              })
-            )
+            return (this.setState({
+              subCategories: [
+                ...this.state.subCategories,
+                res
+              ]
+            }))
           })
       })
       .catch(err => console.log(err));
@@ -73,19 +75,23 @@ class Home extends Component {
     fetchProducts
       .get('/' + id)
       .then(res => {
-        this.setState({productsWithCategory: [...this.state.productsWithCategory, res.data]})
+        this.setState({
+          productsWithCategory: [
+            ...this.state.productsWithCategory,
+            res.data
+          ]
+        })
       })
       .catch(err => console.log(err))
 
   }
 
-
   render() {
 
     console.log(this.state);
     return (
-      <Router>
-        <> <Jumbotron/>
+        <> <Navigation/>
+        <Jumbotron/>
         <Container>
           <Row>
             <Col md="1">
@@ -105,6 +111,7 @@ class Home extends Component {
                 getAllProducts={this.getProductsWithCategory}/>}/>
               <Route
                 path={'/' + this.state.active_category}
+                exact
                 component=
                 {() => <CategoriesNav subCats={this.state.subCategories} productsId={this.state.productsId} /> }/>
             </Col>
@@ -118,11 +125,13 @@ class Home extends Component {
             </Col>
           </Row>
           <Row>
-            <CardsContainer cardsData={this.state.productsWithCategory}/>
+            <CardsContainer
+              cardsData={(this.state.productsWithCategory.length === 0)
+              ? this.state.productsAll
+              : this.state.productsWithCategory}/>
           </Row>
         </Container>
       </>
-    </Router>
     );
   }
 }

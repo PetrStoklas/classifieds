@@ -11,27 +11,25 @@ import {
 } from 'reactstrap';
 
 const Example = (props) => {
-  
+
   console.log(props);
 
 
   return (
-    <CardDeck>
       <Card>
         <CardImg
           top
-          width="100%"
-          src="https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-          alt="Card image cap"/>
+          width="25%"
+          src="https://images.pexels.com/photos/305223/pexels-photo-305223.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+          alt={props.name}/>
         <CardBody>
           <CardTitle>{props.name}</CardTitle>
-          <CardSubtitle>Card subtitle</CardSubtitle>
-          <CardText>This is a wider card with supporting text below as a natural lead-in
-            to additional content. This content is a little bit longer.</CardText>
+          <CardSubtitle> $ {props.price}</CardSubtitle>
+          <CardText>{props.description}</CardText>
+          <CardSubtitle>{props.created}</CardSubtitle>
           <Button>Button</Button>
         </CardBody>
       </Card>
-    </CardDeck>
   );
 };
 
