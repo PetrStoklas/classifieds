@@ -42,6 +42,12 @@ class Navigation extends React.Component {
               <NavItem>
                 <NavLink><Link to="/admin">Admin</Link></NavLink>
               </NavItem>
+              {/* <NavItem>
+                <NavLink><Link to="/admin/register">Admin</Link></NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink><Link to="/admin/login">Login</Link></NavLink>
+              </NavItem> */}
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options

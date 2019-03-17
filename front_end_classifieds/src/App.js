@@ -7,12 +7,15 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div> <div id="root">
-          <Route exact path='/' component={Home}></Route>
-          <Route exact path='/admin' component={Admin}></Route>
+        <div>
+          <div id="root">
+            <Route exact path='/' component={Home}></Route>
+            <Route exact path='/admin' component={Admin}></Route>
+            <Route exact path='/admin/login' component={Admin}></Route>
+            <Route exact path='/admin/register' component={Admin}></Route>
+          </div>
         </div>
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
     );
   }
 }
