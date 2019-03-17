@@ -16,6 +16,15 @@ const loginForm = props => {
     <Container>
       <Form onSubmit={props.sumbitForm}>
         <FormGroup>
+          <Label for="loginName">Your Name</Label>
+          <Input
+            onChange={props.getInputFormValue}
+            type="text"
+            name="name"
+            id="loginName"
+            placeholder="Please input your Name"/>
+        </FormGroup>
+        <FormGroup>
           <Label for="loginEmail">Email</Label>
           <Input
             onChange={props.getInputFormValue}
@@ -25,13 +34,22 @@ const loginForm = props => {
             placeholder="Please input your Email"/>
         </FormGroup>
         <FormGroup>
-          <Label for="examplePassword">Password</Label>
+          <Label for="password">Password</Label>
           <Input
             onChange={props.getInputFormValue}
             type="password"
             name="password"
-            id="examplePassword"
+            id="password"
             placeholder="Please input your password"/>
+        </FormGroup>
+        <FormGroup>
+          <Label for="password_confirmation">Password</Label>
+          <Input
+            onChange={props.getInputFormValue}
+            type="password"
+            name="password_confirmation"
+            id="password_confirmation"
+            placeholder="Please confirm your password"/>
         </FormGroup>
         <Button>Submit</Button>
       </Form>
