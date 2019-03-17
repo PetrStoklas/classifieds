@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import RegisterForm from '../../../components/register_login/register_login';
 import {Spinner} from 'reactstrap';
 import Form from '../../../components/form/form';
+import fetchLogin from '../../../axios_routes/auth_routes';
 
 class Admin extends Component {
 
@@ -15,18 +16,21 @@ class Admin extends Component {
 
   sumbitForm = e => {
     e.preventDefault();
-    console.log(e.target.value);
-    console.log('clicked');
+    fetchLogin.post('/register', {
+      name: 'Code Junkie',
+      email: this.state.userLoginInfo.email,
+      password: this.state.userLoginInfo.password,
+      password_confirmation: this.state.userLoginInfo.password
+    })
   }
 
   getInputFormValue = e => {
     e.preventDefault();
+    console.log(e.target.name)
     this.setState({
       userLoginInfo: {
-        ...this.state,
+        ...this.state.userLoginInfo,
         [e.target.name]: e.target.value
-        // name: e.target.value,
-        // password: e.target.value 
       }
     })
   }
