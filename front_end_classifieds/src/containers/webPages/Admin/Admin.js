@@ -17,7 +17,7 @@ class Admin extends Component {
       password: null,
       password_confirmation: null
     }
-  }
+  } 
 
   componentDidMount() {
     this.checkForLoggUsr();
@@ -26,6 +26,7 @@ class Admin extends Component {
 
   checkForLoggUsr = () => {
     const jwt = getJwt();
+    console.log(jwt);
     !jwt ? this.setState({ userLoggedIn: false}) : this.setState({userLoggedIn: true});
   }
 
@@ -41,7 +42,7 @@ class Admin extends Component {
     this.checkForLoggUsr();
   }
 
-  sumbitForm = e => {
+  submitForm = e => {
     e.preventDefault();
     fetchLogin
       .post('/register', {
@@ -50,17 +51,20 @@ class Admin extends Component {
       password: this.state.userLoginInfo.password,
       password_confirmation: this.state.userLoginInfo.password_confirmation
     })
-      .then(res => localStorage.setItem('login-jwt', res.data))
-      this.checkForLoggUsr();
+      .then(res => { 
+        console.log(res.data)
+        localStorage.setItem('login-jwt', res.data)
+        this.checkForLoggUsr();
+      })
   }
 
   render() {
 
     let form = <Spinner/>
     form = !this.state.userLoggedIn
-      ? <Form sumbitForm={this.sumbitForm} getInputFormValue={this.getInputFormValue}/> : <User_admin_section/>
+      ? <Form sumbitForm={this.submitForm} getInputFormValue={this.getInputFormValue}/> : <User_admin_section/>
 
-      
+
     return (
       <div>
         <Navigation />
