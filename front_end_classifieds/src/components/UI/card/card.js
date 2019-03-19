@@ -13,9 +13,6 @@ import './Card.css';
 
 const Example = (props) => {
 
-  console.log(props);
-
-
   return (
       <Card className="red" >
         <CardImg
