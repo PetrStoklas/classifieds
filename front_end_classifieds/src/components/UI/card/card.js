@@ -9,6 +9,7 @@ import {
   CardSubtitle,
   CardBody
 } from 'reactstrap';
+import './Card.css';
 
 const Example = (props) => {
 
@@ -16,7 +17,7 @@ const Example = (props) => {
 
 
   return (
-      <Card>
+      <Card className="red" >
         <CardImg
           top
           width="25%"

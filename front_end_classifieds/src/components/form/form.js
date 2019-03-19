@@ -11,6 +11,9 @@ import {
 
 const loginForm = props => {
 
+  let form = null;
+
+  
   console.log(props);
   return (
     <Container>

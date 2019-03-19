@@ -6,6 +6,8 @@ import fetchLogin from '../../../axios_routes/auth_routes';
 import getJwt from '../../../utilites/jwt';
 import User_admin_section from '../../../components/user_admin_section/user_admin_section';
 import Navigation from '../../../components/UI/Navigation/Navigation';
+import loginFormSettings from '../../../config_files/loginForm.js';
+import TmpForm from '../../../components/form/tmp_form';
 
 class Admin extends Component {
 
@@ -17,17 +19,17 @@ class Admin extends Component {
       password: null,
       password_confirmation: null
     }
-  } 
+  }
 
   componentDidMount() {
     this.checkForLoggUsr();
-    console.log(this.state.userLoggedIn);
   }
 
   checkForLoggUsr = () => {
     const jwt = getJwt();
-    console.log(jwt);
-    !jwt ? this.setState({ userLoggedIn: false}) : this.setState({userLoggedIn: true});
+    !jwt
+      ? this.setState({userLoggedIn: false})
+      : this.setState({userLoggedIn: true});
   }
 
   getInputFormValue = e => {
@@ -51,7 +53,7 @@ class Admin extends Component {
       password: this.state.userLoginInfo.password,
       password_confirmation: this.state.userLoginInfo.password_confirmation
     })
-      .then(res => { 
+      .then(res => {
         console.log(res.data)
         localStorage.setItem('login-jwt', res.data)
         this.checkForLoggUsr();
@@ -60,14 +62,22 @@ class Admin extends Component {
 
   render() {
 
+    console.log(loginFormSettings);
     let form = <Spinner/>
-    form = !this.state.userLoggedIn
-      ? <Form sumbitForm={this.submitForm} getInputFormValue={this.getInputFormValue}/> : <User_admin_section/>
 
+    // form = !this.state.userLoggedIn   ? <Form sumbitForm={this.submitForm}
+    // getInputFormValue={this.getInputFormValue}/> : <User_admin_section/>
 
+    form = loginFormSettings.map(formElements => 
+    <TmpForm
+      type={formElements.type}
+      label_for={formElements.label_for}
+      title={formElements.label_for}/>);
+
+      
     return (
       <div>
-        <Navigation />
+        <Navigation/>
         <h1>Your Admin Page</h1>
         {form}
       </div>
