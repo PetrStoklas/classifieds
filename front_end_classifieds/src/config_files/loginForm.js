@@ -1,5 +1,13 @@
 // eslint-disable-next-line no-unused-vars
-const email = [
+const registrationForm = [
+    {
+      "generalType": "text_email_passw",
+      "label_for": "Your Name",
+      "type": "text",
+      "input_name": "name",
+      "input_id": "Name",
+      "input_placeholder": "Your Name"
+    }, 
     {
       "generalType": "text_email_passw",
       "label_for": "Email",
@@ -13,18 +21,18 @@ const email = [
       "label_for": "Password",
       "type": "password",
       "input_name": "password",
-      "input_id": "Email",
-      "input_placeholder": "Your Email"
+      "input_id": "password",
+      "input_placeholder": "Your Password"
     },
     {
       "generalType": "text_email_passw",
-      "label_for": "Password",
+      "label_for": "Confirm Password",
       "type": "password",
-      "input_name": "password",
-      "input_id": "Email",
-      "input_placeholder": "Your Email"
+      "input_name": "password_confirmation",
+      "input_id": "Password",
+      "input_placeholder": "Confirm Your Email"
     }
   ]
 
 
-export default email;
+export default registrationForm;

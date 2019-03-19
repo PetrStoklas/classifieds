@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import RegisterForm from '../../../components/register_login/register_login';
 import {Spinner} from 'reactstrap';
-import Form from '../../../components/form/form';
 import fetchLogin from '../../../axios_routes/auth_routes';
 import getJwt from '../../../utilites/jwt';
 import User_admin_section from '../../../components/user_admin_section/user_admin_section';
 import Navigation from '../../../components/UI/Navigation/Navigation';
-import loginFormSettings from '../../../config_files/loginForm.js';
-import TmpForm from '../../../components/form/tmp_form';
+import registrationFormSettings from '../../../config_files/loginForm.js';
+import From from '../../../components/form/form';
+import {Form, Button, Container} from 'reactstrap';
 
 class Admin extends Component {
 
@@ -63,25 +63,34 @@ class Admin extends Component {
   render() {
 
     console.log(this.state.userLoginInfo);
-    let form = <Spinner/>
+    let registrationForm = <Spinner/>
 
-    // form = !this.state.userLoggedIn   ? <Form sumbitForm={this.submitForm}
-    // getInputFormValue={this.getInputFormValue}/> : <User_admin_section/>
-
-    form = loginFormSettings.map(formElements => <TmpForm
+    registrationForm = registrationFormSettings.map(formElements => <From
       key={formElements.label_for}
       generalType={formElements.generalType}
+      input_name={formElements.input_name}
       type={formElements.type}
       label_for={formElements.label_for}
       title={formElements.label_for}
       formdata={this.getInputFormValue}
       submitform={this.submitForm}/>);
 
+    let content = !this.state.userLoggedIn
+      ? (
+        <Form onSubmit={this.submitForm}>
+          {registrationForm}
+          <Button>Submit</Button>
+        </Form>
+      )
+      : <User_admin_section/>
+
     return (
       <div>
         <Navigation/>
         <h1>Your Admin Page</h1>
-        {form}
+        <Container>
+          {content}
+        </Container>
       </div>
     );
   }
