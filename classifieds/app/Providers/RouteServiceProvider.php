@@ -71,16 +71,16 @@ class RouteServiceProvider extends ServiceProvider
             'prefix' => 'api',
         ], function ($router) {
              //Add you routes here, for example:
-             Route::apiResource('/products','ProductsController');
-             Route::apiResource('/categories','CategoriesController');
-             Route::post('register', 'UserController@register');
-Route::post('login', 'UserController@authenticate');
-Route::get('open', 'DataController@open');
+            Route::apiResource('/products','ProductsController');
+            Route::apiResource('/categories','CategoriesController');
+            Route::post('register', 'UserController@register');
+            Route::post('login', 'UserController@authenticate');
+            Route::get('open', 'DataController@open');
 
-Route::group(['middleware' => ['jwt.verify']], function() {
-    Route::get('user', 'UserController@getAuthenticatedUser');
-    Route::get('closed', 'DataController@closed');
-});
+            Route::group(['middleware' => ['jwt.verify']], function() {
+            Route::get('user', 'UserController@getAuthenticatedUser');
+            Route::get('closed', 'DataController@closed');
+            });
         });
         
     }
