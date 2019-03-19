@@ -4,9 +4,9 @@ import fetchLogin from '../../../axios_routes/auth_routes';
 import getJwt from '../../../utilites/jwt';
 import User_admin_section from '../../../components/user_admin_section/user_admin_section';
 import Navigation from '../../../components/UI/Navigation/Navigation';
-import registrationFormSettings from '../../../config_files/loginForm.js';
 import FormComponent from '../../../components/form/form';
 import {Form, Button, Container} from 'reactstrap';
+import LoginForm from '../../../components/Register/Register';
 
 class Admin extends Component {
 
@@ -64,22 +64,9 @@ class Admin extends Component {
     console.log(this.state.userLoginInfo);
     let registrationForm = <Spinner/>
 
-    registrationForm = registrationFormSettings.map(formElements => <FormComponent
-      key={formElements.label_for}
-      generalType={formElements.generalType}
-      input_name={formElements.input_name}
-      type={formElements.type}
-      label_for={formElements.label_for}
-      title={formElements.label_for}
-      formdata={this.getInputFormValue}
-      submitform={this.submitForm}/>);
-
     let content = !this.state.userLoggedIn
       ? (
-        <Form onSubmit={this.submitForm}>
-          {registrationForm}
-          <Button id="register">Submit</Button>
-        </Form>
+    <h1>Admin Menu</h1>
       )
       : <User_admin_section/>
 
@@ -89,6 +76,10 @@ class Admin extends Component {
         <div className="mt-5"></div>
         <Container>
           {content}
+          <LoginForm 
+            getinputvalues={this.getInputFormValue}
+            submitform={this.submitForm}
+          />
         </Container>
       </div>
     );
