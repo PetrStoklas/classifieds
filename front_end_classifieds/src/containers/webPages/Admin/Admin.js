@@ -12,12 +12,13 @@ class Admin extends Component {
 
   state = {
     userLoggedIn: false,
-    userLoginInfo: {
+    userRegistrationInfo: {
       name: null,
       email: null,
       password: null,
       password_confirmation: null
     }
+
   }
 
   componentDidMount() {
@@ -35,8 +36,8 @@ class Admin extends Component {
     e.preventDefault();
     console.log(e.target.name)
     this.setState({
-      userLoginInfo: {
-        ...this.state.userLoginInfo,
+      userRegistrationInfo: {
+        ...this.state.userRegistrationInfo,
         [e.target.name]: e.target.value
       }
     });
@@ -47,10 +48,10 @@ class Admin extends Component {
     e.preventDefault();
     if(e.target.id = 'register'){
       fetchLogin.post('/register', {
-        name: this.state.userLoginInfo.name,
-        email: this.state.userLoginInfo.email,
-        password: this.state.userLoginInfo.password,
-        password_confirmation: this.state.userLoginInfo.password_confirmation
+        name: this.state.userRegistrationInfo.name,
+        email: this.state.userRegistrationInfo.email,
+        password: this.state.userRegistrationInfo.password,
+        password_confirmation: this.state.userRegistrationInfo.password_confirmation
       })
       .then(res => {
         localStorage.setItem('login-jwt', res.data)
@@ -61,7 +62,7 @@ class Admin extends Component {
 
   render() {
 
-    console.log(this.state.userLoginInfo);
+    console.log(this.state.userRegistrationInfo);
     let registrationForm = <Spinner/>
 
     let content = !this.state.userLoggedIn

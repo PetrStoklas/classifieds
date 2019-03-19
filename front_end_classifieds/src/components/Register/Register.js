@@ -1,5 +1,5 @@
 import React from 'react';
-import registrationFormSettings from '../../config_files/registrationForm'
+import loginForm from '../../config_files/login_form_config'
 import {Form, Button, Spinner} from 'reactstrap';
 import FormComponent from '../../components/form/form';
 
@@ -8,16 +8,15 @@ const RegisterFrom = props => {
 
   const createRegisterForm = () => {
     let registrationForm = <Spinner/>
-    registrationForm = registrationFormSettings.map(formElements => <FormComponent
+    registrationForm = loginForm.map(formElements => <FormComponent
       key={formElements.label_for}
       generalType={formElements.generalType}
       input_name={formElements.input_name}
       type={formElements.type}
       label_for={formElements.label_for}
       title={formElements.label_for}
-      formdata={props.getinputvalues}/>
-      );
-      return registrationForm;
+      formdata={props.getinputvalues}/>);
+    return registrationForm;
   }
 
   return (
