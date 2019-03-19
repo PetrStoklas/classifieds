@@ -62,19 +62,21 @@ class Admin extends Component {
 
   render() {
 
-    console.log(loginFormSettings);
+    console.log(this.state.userLoginInfo);
     let form = <Spinner/>
 
     // form = !this.state.userLoggedIn   ? <Form sumbitForm={this.submitForm}
     // getInputFormValue={this.getInputFormValue}/> : <User_admin_section/>
 
-    form = loginFormSettings.map(formElements => 
-    <TmpForm
+    form = loginFormSettings.map(formElements => <TmpForm
+      key={formElements.label_for}
+      generalType={formElements.generalType}
       type={formElements.type}
       label_for={formElements.label_for}
-      title={formElements.label_for}/>);
+      title={formElements.label_for}
+      formdata={this.getInputFormValue}
+      submitform={this.submitForm}/>);
 
-      
     return (
       <div>
         <Navigation/>

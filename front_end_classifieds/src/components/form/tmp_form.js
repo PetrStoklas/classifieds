@@ -11,31 +11,24 @@ import {
 const temp_form = props => {
 
 
-  console.log(props);
   let form = null;
 
-  const generateForm = (type, label_for, input_name, input_id, input_placeholder) => {
+  const generateForm = (type, label_for, input_name, input_id, input_placeholder, formdata, submitform) => {
 
-    switch (type) {
-      case 'email':
-        form = <FormGroup>
+    switch (props.generalType) {
+      case 'text_email_passw':
+        form = 
+        (<FormGroup onSubmit={props.submitform}>
           <Label for={label_for}>{label_for}</Label>
           <Input
             type={type}
             name={input_name}
             id={input_id}
-            placeholder={input_placeholder}/>
+            placeholder={input_placeholder}
+            onChange={props.formdata}
+            />
         </FormGroup>
-        return form;
-      case 'password':
-        form = <FormGroup>
-          <Label for={label_for}>{label_for}</Label>
-          <Input
-            type={type}
-            name={input_name}
-            id={input_id}
-            placeholder={input_placeholder}/>
-        </FormGroup>
+        )
         return form;
 
       default:
@@ -46,8 +39,9 @@ const temp_form = props => {
 
   return (
     <div>
-      <Form>
+      <Form> 
         {generateForm(props.type, props.label_for, props.title)}
+        <Button>Submit</Button>
       </Form>
     </div>
   );
