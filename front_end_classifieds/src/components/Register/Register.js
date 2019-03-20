@@ -1,10 +1,10 @@
 import React from 'react';
 import loginForm from '../../config_files/login_form_config'
 import {Form, Button, Spinner} from 'reactstrap';
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import FormComponent from '../../components/form/form';
 
 const RegisterFrom = props => {
-  console.log(props)
 
   const createRegisterForm = () => {
     let registrationForm = <Spinner/>
@@ -23,8 +23,11 @@ const RegisterFrom = props => {
     <div>
       <Form onSubmit={props.submitform}>
         {createRegisterForm(props.getinputvalues, props.submitform)}
-        <Button id="register">
+        <Button id="login">
           Submit
+        </Button>
+        <Button id="register">
+          <Link to={'/admin/register'}>Register</Link>
         </Button>
       </Form >
     </div>

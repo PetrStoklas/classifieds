@@ -57,7 +57,16 @@ class Admin extends Component {
         localStorage.setItem('login-jwt', res.data)
         this.checkForLoggUsr();
       })
-    };
+    } else {
+      fetchLogin.post('/login', {
+        email: this.state.userRegistrationInfo.email,
+        password: this.state.userRegistrationInfo.password,
+      })
+      .then(res => {
+        localStorage.setItem('login-jwt', res.data)
+        this.checkForLoggUsr();
+      })
+    }
   }
 
   render() {
