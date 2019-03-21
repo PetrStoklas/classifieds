@@ -1,7 +1,8 @@
 import React from 'react';
 import {Container, Row, Col, Card, Button} from 'reactstrap';
-import ProductCarousel from '../UI/ProductCarousel/ProductCarousel';
+import ProductCarousel from '../../UI/ProductCarousel/ProductCarousel';
 import './productCardDetail.css';
+import Horizontal from '../horizontalCard/horizontalCard';
 
 const card_detail = props => {
   return (
@@ -10,6 +11,7 @@ const card_detail = props => {
         <Row className="product-image">
           <div className="product-image">
             <ProductCarousel/>
+    <Horizontal />
           </div>
         </Row>
         <Row className="card_info_section">

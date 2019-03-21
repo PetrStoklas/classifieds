@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Row, Col, Container} from 'reactstrap';
-import Card from '../../components/productCardDetail/productCardDetail';
+import Card from '../../components/productCardTypes/productCardDetail/productCardDetail';
 
 class CardsContainer extends Component {
 
