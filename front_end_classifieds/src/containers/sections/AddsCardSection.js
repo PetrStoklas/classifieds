@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
+import {Row, Col, Container} from 'reactstrap';
 import Card from '../../components/UI/card/card';
-import {CardDeck} from 'reactstrap';
 
 class CardsContainer extends Component {
 
@@ -20,9 +20,10 @@ class CardsContainer extends Component {
 
     return (
       <div>
-        <CardDeck>
-          {cards}
-        </CardDeck>
+          <div className="d-flex flex-wrap">
+            {cards}
+          </div>
+        
       </div>
     );
   }

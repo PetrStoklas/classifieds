@@ -90,8 +90,9 @@ class Home extends Component {
 
     console.log(this.state);
     return (
-        <> <Navigation/>
-        <Jumbotron/>
+        <> 
+        {/* <Navigation/>
+        <Jumbotron/> */}
         <Container>
           <Row>
             <Col md="1">

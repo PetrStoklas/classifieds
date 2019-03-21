@@ -7,30 +7,70 @@ import {
   CardText,
   CardDeck,
   CardSubtitle,
-  CardBody
+  CardBody,
+  Container,
+  Row,
+  Col,
 } from 'reactstrap';
+import ProductCarousel from '../ProductCarousel/ProductCarousel';
 import './Card.css';
+import ShareSvg from '../../../img/share-icon.svg';
+
+// const ShareSvg = require('../../../img/share-icon.svg')
 
 const Example = (props) => {
 
-  console.log(props);
+  // console.log(props);
 
 
   return (
-      <Card className="red" >
-        <CardImg
-          top
-          width="25%"
-          src="https://images.pexels.com/photos/305223/pexels-photo-305223.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-          alt={props.name}/>
-        <CardBody>
-          <CardTitle>{props.name}</CardTitle>
-          <CardSubtitle> $ {props.price}</CardSubtitle>
-          <CardText>{props.description}</CardText>
-          <CardSubtitle>{props.created}</CardSubtitle>
-          <Button>Button</Button>
-        </CardBody>
-      </Card>
+      
+      <Col lg="4">
+
+        <Card body className="w-100">
+          <Row className="product-image">
+          <div class="product-image">
+            <ProductCarousel />
+          </div>
+          </Row>
+
+
+          
+          <Row className="card_info">
+            <Col xs="6 left">
+              <Row className="card_title"><span>Dodge Challenger</span></Row>
+              <Row className="values_row">
+                <Col class="values_col "><h4>120000km</h4></Col>
+                <Col class="values_col right"><h4>gasoline</h4></Col>
+              </Row>
+              <Row className="values_row">
+                <Col class="values_col"><h4>2.8L Injection</h4></Col>
+                <Col class="values_col right"><h4>manual</h4></Col>     
+              </Row>
+            </Col>
+            
+            <Col xs="6 right">
+
+             <Row className="icons">
+              
+             </Row>
+
+             <Row className="location_price_row">
+
+             <Col class="values_col location"><h4 className="location">Prague, CZ</h4></Col>
+
+             <Col class="values_col price"><h4 className="price">1500000<span className="currency">czk</span></h4></Col>
+
+             </Row>
+            </Col>
+            
+          </Row>
+
+          
+      
+        </Card>
+        
+      </Col>
   );
 };
 
