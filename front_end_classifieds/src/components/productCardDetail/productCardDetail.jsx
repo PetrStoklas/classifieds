@@ -1,18 +1,17 @@
 import React from 'react';
 import {Container, Row, Col, Card, Button} from 'reactstrap';
 import ProductCarousel from '../UI/ProductCarousel/ProductCarousel';
-import './product_card_detail.css';
+import './productCardDetail.css';
 
 const card_detail = props => {
   return (
     <Col md="6" lg="4">
       <Card body className="w-100">
-        <Row class="product-image">
-          <div class="product-image">
+        <Row className="product-image">
+          <div className="product-image">
             <ProductCarousel/>
           </div>
         </Row>
-
         <Row className="card_info_section">
           <Container className="car_info rounded mt-2 mx-2 px-1">
             <hr/>

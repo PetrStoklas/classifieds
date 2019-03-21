@@ -6,8 +6,6 @@ import {BrowserRouter, Route,
 import Admin from './containers/webPages/Admin/Admin';
 import RegistrationPage from './containers/webPages/Admin/Registration';
 
-import Card_detail from './components/product_card/product_card_detail';
-
 class App extends Component {
   render() {
     return (
@@ -21,8 +19,6 @@ class App extends Component {
             <Route exact path='/admin/register' component={RegistrationPage}></Route>
           </div>
         </div>
-      <Card_detail></Card_detail>
-
       </> 
       </BrowserRouter>
     );

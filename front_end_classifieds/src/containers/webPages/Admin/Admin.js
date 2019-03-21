@@ -5,7 +5,6 @@ import fetchLogin from '../../../axios_routes/auth_routes';
 import getJwt from '../../../utilites/jwt';
 import UserAdminSection from '../../../components/user_admin_section/user_admin_section';
 import Navigation from '../../../components/UI/Navigation/Navigation';
-// import FormComponent from '../../../components/form/form';
 import {
   // Form, Button,
   Container

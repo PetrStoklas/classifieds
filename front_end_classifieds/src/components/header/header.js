@@ -5,7 +5,6 @@ import { Jumbotron,
 import classes from './header.module.css';
 
 const header = props => {
-//   console.log(props);
   
   return (
     <div>

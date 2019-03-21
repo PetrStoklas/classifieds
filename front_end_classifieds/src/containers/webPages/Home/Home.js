@@ -3,7 +3,7 @@ import classes from './Home.module.css';
 import fetchCategories from '../../../axios_routes/categories_axios';
 import fetchProducts from '../../../axios_routes/products_axios';
 import {Container, Row, Col} from 'reactstrap';
-import CategoriesNav from '../../../components/categories_nav/categories_nav';
+import CategoriesNav from '../../../components/categoriesNav/categoriesNav';
 import {
   // BrowserRouter as Router, 
   Route} from "react-router-dom";
@@ -92,16 +92,11 @@ class Home extends Component {
 
     return (
         <> 
-        {/* <Navigation/>
-        <Jumbotron/> */}
+        <Navigation/>
+        <Jumbotron/>
         <Container>
           <Row>
             <Col md="1">
-              <p
-                className={this.state.color
-                ? classes.Red
-                : ''}></p>
-
             </Col>
             <Col md="6">
               <Route
@@ -119,10 +114,6 @@ class Home extends Component {
             </Col>
 
             <Col md="5">
-              <p
-                className={this.state.color
-                ? classes.Red
-                : ''}></p>
 
             </Col>
           </Row>
