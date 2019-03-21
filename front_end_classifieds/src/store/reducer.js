@@ -1,4 +1,6 @@
 import fetchLogin from '../axios_routes/auth_routes';
+import { push } from 'react-router-redux'
+
 
 const initialState = {
   userLoggedIn: false,
@@ -11,7 +13,6 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-  // console.log(action);
   if (action.type === 'USERLOGGEDIN') {
     return {
       ...state,
@@ -40,6 +41,7 @@ const reducer = (state = initialState, action) => {
     })
       .then(res => {
         localStorage.setItem('login-jwt', res.data)
+        push('/')
       })
   }
 
