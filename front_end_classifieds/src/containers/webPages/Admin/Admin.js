@@ -24,9 +24,7 @@ class Admin extends Component {
   }
 
   componentDidMount() {
-
     let token = getJwt();
-    console.log(Boolean(token));
     if(token) {
       this.setState({
         ...this.state,
