@@ -1,4 +1,5 @@
 import fetchLogin from '../axios_routes/auth_routes';
+import {BrowserRouter as Router, Route, Link, Redirect, withRouter} from "react-router-dom";
 
 const initialState = {
   userLoggedIn: false,
@@ -41,7 +42,6 @@ const reducer = (state = initialState, action) => {
       })
       .then(res => {
         localStorage.setItem('login-jwt', res.data)
-        // this.checkForLoggUsr();
       })
     }
 

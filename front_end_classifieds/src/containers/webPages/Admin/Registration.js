@@ -12,14 +12,7 @@ class RegistrationPage extends Component {
 
   componentDidMount() {
     let token = getJWT();
-    //
-    this
-      .props
-      .userLoggedInStatus(Boolean(token));
-  }
-
-  getInputValues = () => {
-    console.log(this.props.loggedInStatus)
+    this.props.userLoggedInStatus(Boolean(token));
   }
 
   render() {
@@ -59,7 +52,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getInputValues: () => dispatch({type: 'GETINPUTVALUES', payload: 'new user'}),
     userLoggedInStatus: (isLoggedIn) => dispatch({type: 'USERLOGGEDIN', payload: isLoggedIn}),
     formInputEvent: (event) => dispatch({type: 'REGISTRATONCHANGED', payload: event}),
     registrationFromSubmit: () => dispatch({type: 'SUBMITREGISTRATIONFORM'})
