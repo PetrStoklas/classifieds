@@ -4,7 +4,7 @@ import {Button, Spinner} from 'reactstrap';
 import getJWT from '../../../utilites/jwt';
 import FormComponent from '../../../components/form/form';
 import registrationFromSettings from '../../../config_files/registrationForm';
-import fetchLogin from '../../../axios_routes/auth_routes';
+// import fetchLogin from '../../../axios_routes/auth_routes';
 
 import {BrowserRouter as Router, Route, Link, Redirect, withRouter} from "react-router-dom";
 
@@ -23,7 +23,7 @@ class RegistrationPage extends Component {
 
   render() {
 
-    console.log(this.props.loggedInStatus);
+    // console.log(this.props.userInfoFromInputs);
     if(this.props.loggedInStatus) return <Redirect to="/" />
 
     let registrationForm = <Spinner/>
@@ -52,7 +52,8 @@ class RegistrationPage extends Component {
 }
 
 const mapStateToProps = state => {
-  return {loggedInStatus: state.userLoggedIn, userInfoFromInputs: state.userRegistrationInfo}
+  return {loggedInStatus: state.userLoggedIn, 
+    userInfoFromInputs: state.userRegistrationInfo}
 }
 
 const mapDispatchToProps = dispatch => {
