@@ -16,8 +16,6 @@
   }
   
   .title {
-    
-    /* margin: auto; */
     position: relative; 
     top: calc(4px + (26 - 14) * ((100% - 300px) / (1600 - 300)));
     left: 50%;
@@ -27,17 +25,14 @@
     background-color: #428DE6;
     border: 2px solid #175EB2;
     border-radius: 10px;
-    font-size: 10px;
-  
     transform: translateX(-50%);
     text-align: center;
-    z-index: 2;
-  
+    z-index: 1;
   }
   
-  h3 {
+  .title h3 {
     font-family: Arial Rounded MT Bold;
-    font-size: calc(12px + (26 - 14) * ((100% - 300px) / (1600 - 300)));
+    font-size: calc(18px + (26 - 14) * ((100% - 300px) / (1600 - 300)));
     color: white;
     margin-bottom: 0;
   }
