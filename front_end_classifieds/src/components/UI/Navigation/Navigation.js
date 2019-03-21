@@ -6,7 +6,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
+  // NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -46,12 +46,6 @@ class Navigation extends React.Component {
                   <Link to="/admin">Admin</Link>
                 {/* </NavLink> */}
               </NavItem>
-              {/* <NavItem>
-                <NavLink><Link to="/admin/register">Admin</Link></NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink><Link to="/admin/login">Login</Link></NavLink>
-              </NavItem> */}
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options

@@ -1,28 +1,38 @@
 import React, {Component} from 'react'
-import RegisterForm from '../../../components/register_login/register_login';
-import {Spinner} from 'reactstrap';
-import Form from '../../../components/form/form';
+import {connect} from 'react-redux';
+// import {Spinner} from 'reactstrap';
 import fetchLogin from '../../../axios_routes/auth_routes';
 import getJwt from '../../../utilites/jwt';
-import User_admin_section from '../../../components/user_admin_section/user_admin_section';
+import UserAdminSection from '../../../components/user_admin_section/user_admin_section';
 import Navigation from '../../../components/UI/Navigation/Navigation';
-import loginFormSettings from '../../../config_files/loginForm.js';
-import TmpForm from '../../../components/form/tmp_form';
+// import FormComponent from '../../../components/form/form';
+import {
+  // Form, Button,
+  Container
+} from 'reactstrap';
+import LoginForm from '../../../components/Register/Register';
 
 class Admin extends Component {
 
   state = {
     userLoggedIn: false,
-    userLoginInfo: {
-      name: null,
+    userRegistrationInfo: {
       email: null,
-      password: null,
-      password_confirmation: null
+      password: null
     }
+
   }
 
   componentDidMount() {
-    this.checkForLoggUsr();
+
+    let token = getJwt();
+    console.log(Boolean(token));
+    if(token) {
+      this.setState({
+        ...this.state,
+        userLoggedIn: true
+      })
+    }
   }
 
   checkForLoggUsr = () => {
@@ -36,8 +46,8 @@ class Admin extends Component {
     e.preventDefault();
     console.log(e.target.name)
     this.setState({
-      userLoginInfo: {
-        ...this.state.userLoginInfo,
+      userRegistrationInfo: {
+        ...this.state.userRegistrationInfo,
         [e.target.name]: e.target.value
       }
     });
@@ -47,14 +57,11 @@ class Admin extends Component {
   submitForm = e => {
     e.preventDefault();
     fetchLogin
-      .post('/register', {
-      name: this.state.userLoginInfo.name,
-      email: this.state.userLoginInfo.email,
-      password: this.state.userLoginInfo.password,
-      password_confirmation: this.state.userLoginInfo.password_confirmation
+      .post('/login', {
+      email: this.state.userRegistrationInfo.email,
+      password: this.state.userRegistrationInfo.password
     })
       .then(res => {
-        console.log(res.data)
         localStorage.setItem('login-jwt', res.data)
         this.checkForLoggUsr();
       })
@@ -62,27 +69,28 @@ class Admin extends Component {
 
   render() {
 
-    console.log(loginFormSettings);
-    let form = <Spinner/>
+    console.log(this.state.userLoggedIn);
 
-    // form = !this.state.userLoggedIn   ? <Form sumbitForm={this.submitForm}
-    // getInputFormValue={this.getInputFormValue}/> : <User_admin_section/>
+    let content = this.state.userLoggedIn
+      ? <UserAdminSection/>
+      : <LoginForm
+        getinputvalues={this.getInputFormValue}
+        submitform={this.submitForm}/>
 
-    form = loginFormSettings.map(formElements => 
-    <TmpForm
-      type={formElements.type}
-      label_for={formElements.label_for}
-      title={formElements.label_for}/>);
-
-      
     return (
       <div>
         <Navigation/>
-        <h1>Your Admin Page</h1>
-        {form}
+        <div className="mt-5"></div>
+        <Container>
+          {content}
+        </Container>
       </div>
     );
   }
 }
 
-export default Admin;
+const mapStateToProps = state => {
+  return {loggedInStatus: state.userLoggedIn}
+}
+
+export default connect(mapStateToProps, null)(Admin);

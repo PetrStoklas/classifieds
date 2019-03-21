@@ -1,63 +1,46 @@
 import React from 'react';
 import {
-  Button,
-  Form,
   FormGroup,
   Label,
   Input,
-  FormText,
-  Container
+  // FormText
+  // Container
 } from 'reactstrap';
 
-const loginForm = props => {
+const temp_form = props => {
+
 
   let form = null;
 
-  
-  console.log(props);
+  const generateForm = (type, label_for, input_name, input_id, input_placeholder, formdata, submitform) => {
+    switch (props.generalType) {
+      case 'text_email_passw':
+        form = 
+        (<FormGroup onSubmit={props.submitform}>
+          <Label for={label_for}>{label_for}</Label>
+          <Input
+            type={type}
+            name={input_name}
+            id={input_id}
+            placeholder={input_placeholder}
+            onChange={props.formdata}
+            />
+        </FormGroup>
+        )
+        return form;
+
+      default:
+        break;
+    }
+
+  }
+
   return (
-    <Container>
-      <Form onSubmit={props.sumbitForm}>
-        <FormGroup>
-          <Label for="loginName">Your Name</Label>
-          <Input
-            onChange={props.getInputFormValue}
-            type="text"
-            name="name"
-            id="loginName"
-            placeholder="Please input your Name"/>
-        </FormGroup>
-        <FormGroup>
-          <Label for="loginEmail">Email</Label>
-          <Input
-            onChange={props.getInputFormValue}
-            type="email"
-            name="email"
-            id="loginEmail"
-            placeholder="Please input your Email"/>
-        </FormGroup>
-        <FormGroup>
-          <Label for="password">Password</Label>
-          <Input
-            onChange={props.getInputFormValue}
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Please input your password"/>
-        </FormGroup>
-        <FormGroup>
-          <Label for="password_confirmation">Password</Label>
-          <Input
-            onChange={props.getInputFormValue}
-            type="password"
-            name="password_confirmation"
-            id="password_confirmation"
-            placeholder="Please confirm your password"/>
-        </FormGroup>
-        <Button>Submit</Button>
-      </Form>
-    </Container>
+    <>
+        {generateForm(props.type, props.label_for, props.input_name, props.input_id, props.input_placeholder, props.formdata,props.submitform)}
+    </>
+    
   );
 };
 
-export default loginForm
+export default temp_form

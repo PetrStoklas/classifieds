@@ -5,7 +5,6 @@ import Card from '../../components/UI/card/card';
 class CardsContainer extends Component {
 
   render() {
-    console.log(this.props.cardsData)
 
     let cards = '';
     cards = this

@@ -5,7 +5,7 @@ import {
   CardImg,
   CardTitle,
   CardText,
-  CardDeck,
+  // CardDeck,
   CardSubtitle,
   CardBody,
   Container,
@@ -20,9 +20,12 @@ import ShareSvg from '../../../img/share-icon.svg';
 
 const Example = (props) => {
 
+<<<<<<< HEAD
   // console.log(props);
 
 
+=======
+>>>>>>> 38d26346349b8cedd3435be711af59d8780e1455
   return (
       
       <Col lg="4">
