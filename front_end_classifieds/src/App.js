@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Home from './containers/webPages/Home/Home';
-import {BrowserRouter, Route, Link} from 'react-router-dom';
+import {BrowserRouter, Route, 
+  // Link
+} from 'react-router-dom';
 import Admin from './containers/webPages/Admin/Admin';
 import RegistrationPage from './containers/webPages/Admin/Registration';
 

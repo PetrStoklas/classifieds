@@ -1,7 +1,10 @@
 import React from 'react';
 import loginForm from '../../config_files/login_form_config'
 import {Form, Button, Spinner} from 'reactstrap';
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {
+  // BrowserRouter as Router, 
+  // Route, 
+  Link} from "react-router-dom";
 import FormComponent from '../../components/form/form';
 
 const RegisterFrom = props => {

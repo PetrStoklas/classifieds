@@ -4,7 +4,9 @@ import fetchCategories from '../../../axios_routes/categories_axios';
 import fetchProducts from '../../../axios_routes/products_axios';
 import {Container, Row, Col} from 'reactstrap';
 import CategoriesNav from '../../../components/categories_nav/categories_nav';
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {
+  // BrowserRouter as Router, 
+  Route} from "react-router-dom";
 import Jumbotron from '../../../components/header/header';
 import CardsContainer from '../../sections/AddsCardSection';
 import Navigation from '../../../components/UI/Navigation/Navigation';
