@@ -15,9 +15,16 @@ class RegistrationPage extends Component {
     this.props.userLoggedInStatus(Boolean(token));
   }
 
+  checkForLoggedInUser = () => {
+    console.log(this.props.loggedInStatus);
+    this.props.registrationFromSubmit()
+    
+  }
+
   render() {
 
     console.log(this.props.loggedInStatus);
+    if(this.props.loggedInStatus) return <Redirect to="/" />
 
     let registrationForm = <Spinner/>
     registrationForm = registrationFromSettings.map(formElements => <FormComponent
@@ -31,11 +38,9 @@ class RegistrationPage extends Component {
 
     let regForm = <div>
       {registrationForm}
-      <Button onClick={this.props.registrationFromSubmit} id="register">Register</Button>
+      <Button onClick={this.checkForLoggedInUser} id="register">Register</Button>
     </div>;
 
-    if (this.props.loggedInStatus) 
-      return <Redirect to="/"/>;
     
     return (
       <div>

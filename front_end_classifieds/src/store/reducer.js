@@ -33,7 +33,7 @@ const reducer = (state = initialState, action) => {
 
 
     if(action.type === 'SUBMITREGISTRATIONFORM'){
-    
+      
       fetchLogin.post('/register', {
         name: state.name,
         email: state.email,
