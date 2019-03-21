@@ -5,16 +5,13 @@ import {
   CardImg,
   CardTitle,
   CardText,
-  CardDeck,
+  // CardDeck,
   CardSubtitle,
   CardBody
 } from 'reactstrap';
 import './Card.css';
 
 const Example = (props) => {
-
-  console.log(props);
-
 
   return (
       <Card className="red" >

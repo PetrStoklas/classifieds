@@ -4,7 +4,7 @@ import {
   Label,
   Input,
   // FormText
-  Container
+  // Container
 } from 'reactstrap';
 
 const temp_form = props => {
@@ -13,7 +13,6 @@ const temp_form = props => {
   let form = null;
 
   const generateForm = (type, label_for, input_name, input_id, input_placeholder, formdata, submitform) => {
-
     switch (props.generalType) {
       case 'text_email_passw':
         form = 

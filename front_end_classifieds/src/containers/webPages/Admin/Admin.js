@@ -1,27 +1,38 @@
 import React, {Component} from 'react'
-import {Spinner} from 'reactstrap';
+import {connect} from 'react-redux';
+// import {Spinner} from 'reactstrap';
 import fetchLogin from '../../../axios_routes/auth_routes';
 import getJwt from '../../../utilites/jwt';
-import User_admin_section from '../../../components/user_admin_section/user_admin_section';
+import UserAdminSection from '../../../components/user_admin_section/user_admin_section';
 import Navigation from '../../../components/UI/Navigation/Navigation';
-import registrationFormSettings from '../../../config_files/loginForm.js';
-import FormComponent from '../../../components/form/form';
-import {Form, Button, Container} from 'reactstrap';
+// import FormComponent from '../../../components/form/form';
+import {
+  // Form, Button,
+  Container
+} from 'reactstrap';
+import LoginForm from '../../../components/Register/Register';
 
 class Admin extends Component {
 
   state = {
     userLoggedIn: false,
-    userLoginInfo: {
-      name: null,
+    userRegistrationInfo: {
       email: null,
-      password: null,
-      password_confirmation: null
+      password: null
     }
+
   }
 
   componentDidMount() {
-    this.checkForLoggUsr();
+
+    let token = getJwt();
+    console.log(Boolean(token));
+    if(token) {
+      this.setState({
+        ...this.state,
+        userLoggedIn: true
+      })
+    }
   }
 
   checkForLoggUsr = () => {
@@ -35,8 +46,8 @@ class Admin extends Component {
     e.preventDefault();
     console.log(e.target.name)
     this.setState({
-      userLoginInfo: {
-        ...this.state.userLoginInfo,
+      userRegistrationInfo: {
+        ...this.state.userRegistrationInfo,
         [e.target.name]: e.target.value
       }
     });
@@ -45,43 +56,26 @@ class Admin extends Component {
 
   submitForm = e => {
     e.preventDefault();
-    if(e.target.id = 'register'){
-      fetchLogin.post('/register', {
-        name: this.state.userLoginInfo.name,
-        email: this.state.userLoginInfo.email,
-        password: this.state.userLoginInfo.password,
-        password_confirmation: this.state.userLoginInfo.password_confirmation
-      })
+    fetchLogin
+      .post('/login', {
+      email: this.state.userRegistrationInfo.email,
+      password: this.state.userRegistrationInfo.password
+    })
       .then(res => {
         localStorage.setItem('login-jwt', res.data)
         this.checkForLoggUsr();
       })
-    };
   }
 
   render() {
 
-    console.log(this.state.userLoginInfo);
-    let registrationForm = <Spinner/>
+    console.log(this.state.userLoggedIn);
 
-    registrationForm = registrationFormSettings.map(formElements => <FormComponent
-      key={formElements.label_for}
-      generalType={formElements.generalType}
-      input_name={formElements.input_name}
-      type={formElements.type}
-      label_for={formElements.label_for}
-      title={formElements.label_for}
-      formdata={this.getInputFormValue}
-      submitform={this.submitForm}/>);
-
-    let content = !this.state.userLoggedIn
-      ? (
-        <Form onSubmit={this.submitForm}>
-          {registrationForm}
-          <Button id="register">Submit</Button>
-        </Form>
-      )
-      : <User_admin_section/>
+    let content = this.state.userLoggedIn
+      ? <UserAdminSection/>
+      : <LoginForm
+        getinputvalues={this.getInputFormValue}
+        submitform={this.submitForm}/>
 
     return (
       <div>
@@ -95,4 +89,8 @@ class Admin extends Component {
   }
 }
 
-export default Admin;
+const mapStateToProps = state => {
+  return {loggedInStatus: state.userLoggedIn}
+}
+
+export default connect(mapStateToProps, null)(Admin);

@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import Home from './containers/webPages/Home/Home';
-import {BrowserRouter, Route, Link} from 'react-router-dom';
+import {BrowserRouter, Route, 
+  // Link
+} from 'react-router-dom';
 import Admin from './containers/webPages/Admin/Admin';
+import RegistrationPage from './containers/webPages/Admin/Registration';
 
 class App extends Component {
   render() {
@@ -12,7 +15,7 @@ class App extends Component {
             <Route exact path='/' component={Home}></Route>
             <Route exact path='/admin' component={Admin}></Route>
             <Route exact path='/admin/login' component={Admin}></Route>
-            <Route exact path='/admin/register' component={Admin}></Route>
+            <Route exact path='/admin/register' component={RegistrationPage}></Route>
           </div>
         </div>
       </BrowserRouter>
