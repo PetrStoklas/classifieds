@@ -32,8 +32,6 @@ const reducer = (state = initialState, action) => {
 
 
     if(action.type === 'SUBMITREGISTRATIONFORM'){
-      console.log('success')
-      console.log(state.name);
     
       fetchLogin.post('/register', {
         name: state.name,
