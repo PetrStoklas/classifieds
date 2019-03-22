@@ -125,6 +125,7 @@
 hr {
   width: 20px;
   background-color: white;
+  border: 1px white solid;
 }
 
 .custom_desc {
