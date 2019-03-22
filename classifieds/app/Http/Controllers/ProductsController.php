@@ -71,7 +71,7 @@ class ProductsController extends Controller
         return Product::findOrFail($id);
     }
 
-    public function get_categories_by_parent_id($id)
+    public function get_products_by_parent_id($id)
     {
 
         $category = Category::findOrFail($id);
@@ -81,6 +81,9 @@ class ProductsController extends Controller
         return Product::whereIn('category_id', $leaveIDs)->get();
     }
 
+
+
+    
     private function getChildrenIDs($category, $IDs){
         if($category->children->count() == 0){
             return [$category->id];

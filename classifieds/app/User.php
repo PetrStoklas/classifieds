@@ -32,6 +32,7 @@
         {
             return $this->getKey();
         }
+        
         public function getJWTCustomClaims()
         {
             return [];

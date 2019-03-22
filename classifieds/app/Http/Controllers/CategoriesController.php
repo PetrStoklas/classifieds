@@ -46,9 +46,23 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        $category = new Category;
-        // return $category->where('parent_id', '=', $id)->get();
-        return $category->where('parent_id', $id)->get();
+        $category = Category::findOrFail($id);
+        // return $category;
+        $res = $this->getChildrenIDs($category, []);
+        // return $res;
+        return $category->whereIn('id', $res)->get();
+    }
+
+    private function getChildrenIDs($category, $IDs){
+        if($category->children->count() == 0){
+            return [$category->id];
+        }
+
+        foreach($category->children as $category){
+            $IDs = array_merge($IDs, $this->getChildrenIDs($category, $IDs));
+        }
+
+        return $IDs;
     }
 
     /**
