@@ -73,8 +73,26 @@ class ProductsController extends Controller
 
     public function get_categories_by_parent_id($id)
     {
-        return Product::where('category_id', '=', $id)->get();
+
+        $category = Category::findOrFail($id);
+
+        $leaveIDs = $this->getChildrenIDs($category, []);
+
+        return Product::whereIn('category_id',$leaveIDs)->get();
     }
+
+    private function getChildrenIDs($category, $IDs){
+        if($category->children->count() == 0){
+            return [$category->id];
+        }
+
+        foreach($category->children as $category){
+            $IDs = array_merge($IDs, $this->getChildrenIDs($category, $IDs));
+        }
+
+        return $IDs;
+    }
+
 
     /**
      * Show the form for editing the specified resource.
