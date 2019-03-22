@@ -6,25 +6,30 @@ import FormComponent from '../../../components/form/form';
 import registrationFromSettings from '../../../config_files/registrationForm';
 // import fetchLogin from '../../../axios_routes/auth_routes';
 
-import {BrowserRouter as Router, Route, Link, Redirect, withRouter} from "react-router-dom";
+import { Redirect} from "react-router-dom";
 
 class RegistrationPage extends Component {
 
   componentDidMount() {
     let token = getJWT();
-    this.props.userLoggedInStatus(Boolean(token));
+    this
+      .props
+      .userLoggedInStatus(Boolean(token));
   }
 
   checkForLoggedInUser = () => {
     console.log(this.props.loggedInStatus);
-    this.props.registrationFromSubmit()
-    
+    this
+      .props
+      .registrationFromSubmit()
+
   }
 
   render() {
 
     // console.log(this.props.userInfoFromInputs);
-    if(this.props.loggedInStatus) return <Redirect to="/" />
+    if (this.props.loggedInStatus) 
+      return <Redirect to="/"/>
 
     let registrationForm = <Spinner/>
     registrationForm = registrationFromSettings.map(formElements => <FormComponent
@@ -41,7 +46,6 @@ class RegistrationPage extends Component {
       <Button onClick={this.checkForLoggedInUser} id="register">Register</Button>
     </div>;
 
-    
     return (
       <div>
         <h1>Registration Page</h1>
@@ -52,8 +56,7 @@ class RegistrationPage extends Component {
 }
 
 const mapStateToProps = state => {
-  return {loggedInStatus: state.userLoggedIn, 
-    userInfoFromInputs: state.userRegistrationInfo}
+  return {loggedInStatus: state.userLoggedIn, userInfoFromInputs: state.userRegistrationInfo}
 }
 
 const mapDispatchToProps = dispatch => {

@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import classes from './Home.module.css';
+// import classes from './Home.module.css';
 import fetchCategories from '../../../axios_routes/categories_axios';
 import fetchProducts from '../../../axios_routes/products_axios';
-import {Container, Row, Col} from 'reactstrap';
+import {Container, Row, Col, Spinner} from 'reactstrap';
 import CategoriesNav from '../../../components/categoriesNav/categoriesNav';
 import {
   // BrowserRouter as Router, 
@@ -77,6 +77,7 @@ class Home extends Component {
     fetchProducts
       .get('/' + id)
       .then(res => {
+        console.log(res.data);
         this.setState({
           productsWithCategory: [
             ...this.state.productsWithCategory,
@@ -90,10 +91,15 @@ class Home extends Component {
 
   render() {
 
+    let jumbotron = <Spinner />
+    if(this.state.categories.length > 0){
+      jumbotron = <Jumbotron categories={this.state.categories}/>
+    }
+
     return (
         <> 
         <Navigation/>
-        <Jumbotron/>
+        {jumbotron}
         <Container>
           <Row>
             <Col md="1">
