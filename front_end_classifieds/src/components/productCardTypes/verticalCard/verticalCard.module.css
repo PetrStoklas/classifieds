@@ -1,0 +1,67 @@
+.CardInfoSection {
+    /* rounded corners and shifted up so it overlaps the picture */
+    border-radius: 15px;
+    overflow: hidden;
+
+    position: relative;
+    top: -15px;
+    z-index: 1;
+
+    background-color: #428DE6;
+}
+
+.RoundCorners {
+    border-radius: 15px 15px 0 0;
+    overflow: hidden;
+}
+
+.Blue {
+    color:  #428DE6;
+}
+@media only screen and (max-width: 330px) {
+    .Blue {
+        display: none;
+    }
+}
+
+
+.Hr {
+    width: 15px;
+    border: 1px white solid;
+    border-radius: 2px;
+    background-color: white;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.Vr {
+    height: 50px;
+    width: 1px;
+    background-color: #7EA0E2;
+    margin-top: 2.5%;
+    margin-bottom: 0;
+}
+
+
+.Title {  
+    font-size: calc(13px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+    font-family: 'Arial Rounded MT Bold';
+    color: white;
+}
+
+.Text {
+    font-size: calc(13px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+    font-family: 'Arial Narrow';
+    color: white;
+}
+
+.Price {
+    font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+    font-weight: bold;
+    font-family: 'Arial Narrow';
+    color: white;
+}
+
+.Column {
+    width: 45%;
+}
