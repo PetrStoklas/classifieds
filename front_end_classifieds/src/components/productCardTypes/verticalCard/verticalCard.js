@@ -11,7 +11,7 @@ const VerticalCard = () => {
   return (
     // <div className={classes.Foo}>
     //   <h1>Vertical Card</h1>
-      <Card className="w-100 my-3 border-0">
+      <Card className="w-100 mx-1 my-3 border-0">
         <div className={classes.RoundCorners}>
             <ProductCarousel/>
         </div>

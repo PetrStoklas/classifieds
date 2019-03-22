@@ -8,6 +8,9 @@
     z-index: 1;
 
     background-color: #428DE6;
+    -webkit-box-shadow: 0px 27px 36px -3px rgba(0,0,0,0.23);
+    -moz-box-shadow: 0px 27px 36px -3px rgba(0,0,0,0.23);
+    box-shadow: 0px 27px 36px -3px rgba(0,0,0,0.23);
 }
 
 .RoundCorners {
@@ -20,7 +23,7 @@
 }
 @media only screen and (max-width: 330px) {
     .Blue {
-        display: none;
+        /* display: none; */
     }
 }
 
@@ -35,7 +38,7 @@
 }
 
 .Vr {
-    height: 50px;
+    height: 85px;
     width: 1px;
     background-color: #7EA0E2;
     margin-top: 2.5%;
