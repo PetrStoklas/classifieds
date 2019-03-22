@@ -69,7 +69,11 @@ class ProductsController extends Controller
     public function show($id)
     {
         return Product::findOrFail($id);
+    }
 
+    public function get_categories_by_parent_id($id)
+    {
+        return Product::where('category_id', '=', $id)->get();
     }
 
     /**

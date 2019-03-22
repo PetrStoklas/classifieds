@@ -73,6 +73,7 @@ class RouteServiceProvider extends ServiceProvider
              //Add you routes here, for example:
             Route::apiResource('/products','ProductsController');
             Route::apiResource('/categories','CategoriesController');
+            Route::get('/products/bybrand/{id}', 'ProductsController@get_categories_by_parent_id');
             Route::post('register', 'UserController@register');
             Route::post('login', 'UserController@authenticate');
             Route::get('open', 'DataController@open');
