@@ -93,7 +93,10 @@ class Home extends Component {
 
     let jumbotron = <Spinner />
     if(this.state.categories.length > 0){
-      jumbotron = <Jumbotron categories={this.state.categories}/>
+      jumbotron = <Jumbotron 
+        categories={this.state.categories}
+        getCategoryId = {(id) => {console.log('home', id)}}
+      />
     }
 
     return (

@@ -5,6 +5,7 @@ const BrandCard = props => {
 
   const returnIdToParent = e => {
       console.log(e.target.id);
+      props.getChildrenId(e.target.id);
   }
 
 
@@ -16,7 +17,11 @@ const BrandCard = props => {
       <div className={styles.Card}
       key={res.id}
       id={res.id}
-      onClick={returnIdToParent}
+      
+      onClick={() => { 
+        props.getChildrenId(res.id)
+      }}
+      
       >{res.name}</div>
     ))
 
