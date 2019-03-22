@@ -81,10 +81,7 @@ class Home extends Component {
       .then(res => {
         console.log(res.data);
         this.setState({
-          productsWithCategory: [
-            ...this.state.productsWithCategory,
-            res.data
-          ]
+          productsWithCategory: res.data
         })
       })
       .catch(err => console.log(err))
