@@ -5,7 +5,6 @@ import fetchLogin from '../../../axios_routes/auth_routes';
 import getJwt from '../../../utilites/jwt';
 import UserAdminSection from '../../../components/user_admin_section/user_admin_section';
 import Navigation from '../../../components/UI/Navigation/Navigation';
-// import FormComponent from '../../../components/form/form';
 import {
   // Form, Button,
   Container
@@ -24,9 +23,7 @@ class Admin extends Component {
   }
 
   componentDidMount() {
-
     let token = getJwt();
-    console.log(Boolean(token));
     if(token) {
       this.setState({
         ...this.state,

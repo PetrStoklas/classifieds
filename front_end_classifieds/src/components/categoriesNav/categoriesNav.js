@@ -22,7 +22,7 @@ const Categories_nav = props => {
 
   if (window.innerWidth < 390) {
     categories = categoriesType.map(res => <ListGroupItem key={res.id} onClick={props.getSubcategories}>
-      <Link exact to={"/" + res.name} id={res.id}>{res.name}
+      <Link to={"/" + res.name} id={res.id}>{res.name}
       </Link>
     </ListGroupItem>)
   } else {

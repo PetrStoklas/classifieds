@@ -10,6 +10,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
+      <>
         <div>
           <div id="root">
             <Route exact path='/' component={Home}></Route>
@@ -18,6 +19,7 @@ class App extends Component {
             <Route exact path='/admin/register' component={RegistrationPage}></Route>
           </div>
         </div>
+      </> 
       </BrowserRouter>
     );
   }
