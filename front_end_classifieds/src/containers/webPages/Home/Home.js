@@ -8,8 +8,9 @@ import BrandCard from '../../../components/brandCards/brandCard';
 import ProudctCard from '../../../components/productCardTypes/productCardDetail/productCardDetail';
 
 import {
-  // BrowserRouter as Router, 
-  Route} from "react-router-dom";
+  // BrowserRouter as Router,
+  Route
+} from "react-router-dom";
 import Jumbotron from '../../../components/header/header';
 import CardsContainer from '../../sections/AddsCardSection';
 import Navigation from '../../../components/UI/Navigation/Navigation';
@@ -45,19 +46,17 @@ class Home extends Component {
           });
       })
       .catch(err => console.log(err));
+    // Get All Products
     fetchProducts
       .get()
       .then(res => this.setState({productsAll: res.data}))
       .catch(err => console.log(err));
     fetchCategories.get()
-    // .then(this.setState({subCategories: [...this.state.subCategories: ]}))
   }
 
   getChildren = e => {
     this.setState({active_category: e.target.textContent, subCategories: []})
-
     let id = e.target.id
-
     fetchCategories
       .get('/' + id)
       .then(subCategories => {
@@ -76,7 +75,7 @@ class Home extends Component {
   }
 
   getProductsWithCategory = (id) => {
-    this.setState({productsId: id, productsWithCategory: []});
+    // this.setState({productsId: id, productsWithCategory: []});
     fetchProducts
       .get('/' + id)
       .then(res => {
@@ -93,28 +92,22 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.state);
-    let jumbotron = <Spinner />
-    if(this.state.categories.length > 0){
-      jumbotron = <Jumbotron 
-        categories={this.state.categories}
-        getCategoryId = {(id) => {this.getProductsWithCategory(id) 
-          console.log('home', id)}}
 
-      />
+    console.log(this.state.productsWithCategory);
+
+    let jumbotron = <Spinner/>
+    if (this.state.categories.length > 0) {
+      jumbotron = <Jumbotron
+        categories={this.state.categories}
+        getCategoryId=
+        {(id) => {this.getProductsWithCategory(id); console.log('home', id)}}/>
     }
 
     return (
-        <> 
-        <Navigation/>
-        {jumbotron}
+      <div>
+        <Navigation/> {jumbotron}
         <Container>
-          {/* <BrandCard /> */}
-          {/* <ProudctCard /> */}
-
           <Row>
-            <Col md="1">
-            </Col>
             <Col md="6">
               <Route
                 path="/"
@@ -129,10 +122,6 @@ class Home extends Component {
                 component=
                 {() => <CategoriesNav subCats={this.state.subCategories} productsId={this.state.productsId} /> }/>
             </Col>
-
-            <Col md="5">
-
-            </Col>
           </Row>
           <Row>
             <CardsContainer
@@ -141,7 +130,7 @@ class Home extends Component {
               : this.state.productsWithCategory}/>
           </Row>
         </Container>
-      </>
+      </div>
     );
   }
 }

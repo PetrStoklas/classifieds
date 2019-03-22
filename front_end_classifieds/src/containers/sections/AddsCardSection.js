@@ -4,8 +4,10 @@ import Card from '../../components/productCardTypes/verticalCard/verticalCard';
 
 class CardsContainer extends Component {
 
+  
   render() {
 
+    console.log(this.props.cardsData)
     let cards = '';
     cards = this
       .props
@@ -19,10 +21,10 @@ class CardsContainer extends Component {
 
     return (
       <div>
-          <div className="d-flex flex-wrap">
-            {cards}
-          </div>
-        
+        <div className="d-flex flex-wrap">
+          {cards}
+        </div>
+
       </div>
     );
   }
