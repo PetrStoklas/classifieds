@@ -97,11 +97,10 @@ class Home extends Component {
         <> 
         <Navigation/>
 
-
-        {/* <Jumbotron/> */}
+        <Jumbotron/>
         <Container>
           {/* <BrandCard /> */}
-          <ProudctCard />
+          {/* <ProudctCard /> */}
 
           <Row>
             <Col md="1">
