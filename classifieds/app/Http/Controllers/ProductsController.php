@@ -78,7 +78,7 @@ class ProductsController extends Controller
 
         $leaveIDs = $this->getChildrenIDs($category, []);
 
-        return Product::whereIn('category_id',$leaveIDs)->get();
+        return Product::whereIn('category_id', $leaveIDs)->get();
     }
 
     private function getChildrenIDs($category, $IDs){
