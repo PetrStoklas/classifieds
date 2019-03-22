@@ -33,7 +33,7 @@ const VerticalCard = () => {
                     
                 <hr className={classes.Vr} />
 
-                <Col className="col-4 mx-1">
+                <Col className="col-4 d-flex flex-column justify-content-between mx-1">
                     <Row className="mr-2 mb-2 d-flex flex-row justify-content-end">
                         <ShareIcon />
                     
