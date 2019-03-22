@@ -7,12 +7,7 @@ import BrandCard from '../brandCard/brandCard';
 
 const header = props => {
 
-  // console.log(props)
-
-  const getChildrenId = (id) => {
-      console.log(id);
-      console.log('clicked')
-  }
+  
 
   return (
     <div>

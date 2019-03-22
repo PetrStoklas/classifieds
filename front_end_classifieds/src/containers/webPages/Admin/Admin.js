@@ -15,7 +15,7 @@ class Admin extends Component {
 
   state = {
     userLoggedIn: false,
-    userRegistrationInfo: {
+    userLogInInfo: {
       email: null,
       password: null
     }
@@ -41,10 +41,9 @@ class Admin extends Component {
 
   getInputFormValue = e => {
     e.preventDefault();
-    console.log(e.target.name)
     this.setState({
-      userRegistrationInfo: {
-        ...this.state.userRegistrationInfo,
+      userLogInInfo: {
+        ...this.state.userLogInInfo,
         [e.target.name]: e.target.value
       }
     });
@@ -55,19 +54,21 @@ class Admin extends Component {
     e.preventDefault();
     fetchLogin
       .post('/login', {
-      email: this.state.userRegistrationInfo.email,
-      password: this.state.userRegistrationInfo.password
+      email: this.state.userLogInInfo.email,
+      password: this.state.userLogInInfo.password
     })
       .then(res => {
         localStorage.setItem('login-jwt', res.data)
         this.checkForLoggUsr();
       })
+      .catch(err => {
+        console.log(err)
+        alert('please provide correct login details')
+      });
   }
 
   render() {
-
-    console.log(this.state.userLoggedIn);
-
+    console.log(this.state)
     let content = this.state.userLoggedIn
       ? <UserAdminSection/>
       : <LoginForm

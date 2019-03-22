@@ -6,8 +6,6 @@ class CardsContainer extends Component {
 
   
   render() {
-
-    console.log(this.props.cardsData)
     let cards = '';
     cards = this
       .props

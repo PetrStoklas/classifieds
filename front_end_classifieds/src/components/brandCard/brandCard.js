@@ -1,12 +1,13 @@
 import React from 'react';
+// eslint-disable-next-line
 import styles from './brandCard.module.css';
 
 const BrandCard = props => {
 
-  const returnIdToParent = e => {
-      console.log(e.target.id);
-      props.getChildrenId(e.target.id);
-  }
+  // const returnIdToParent = e => {
+  //     console.log(e.target.id);
+  //     props.getChildrenId(e.target.id);
+  // }
 
 
   let brandCard = '';

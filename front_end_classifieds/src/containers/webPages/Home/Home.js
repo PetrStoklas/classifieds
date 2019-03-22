@@ -4,9 +4,6 @@ import fetchCategories from '../../../axios_routes/categories_axios';
 import fetchProducts from '../../../axios_routes/products_axios';
 import {Container, Row, Col, Spinner} from 'reactstrap';
 import CategoriesNav from '../../../components/categoriesNav/categoriesNav';
-import BrandCard from '../../../components/brandCards/brandCard';
-import ProudctCard from '../../../components/productCardTypes/productCardDetail/productCardDetail';
-
 import {
   // BrowserRouter as Router,
   Route
@@ -89,8 +86,6 @@ class Home extends Component {
   }
 
   render() {
-
-    console.log(this.state.productsWithCategory);
 
     let jumbotron = <Spinner/>
     if (this.state.categories.length > 0) {
