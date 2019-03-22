@@ -1,6 +1,9 @@
 import React from 'react';
 import ProductCarousel from '../../UI/ProductCarousel/ProductCarousel';
-import {Container, Row, Col, Card, CardBody, Button} from 'reactstrap';
+import {Container, Row, Col, Card, 
+    // CardBody, 
+    // Button
+} from 'reactstrap';
 import classes from './verticalCard.module.css';
 import { ReactComponent as ShareIcon } from '../../../img/share-icon.svg'
 
