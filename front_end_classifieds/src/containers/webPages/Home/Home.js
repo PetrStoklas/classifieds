@@ -4,6 +4,9 @@ import fetchCategories from '../../../axios_routes/categories_axios';
 import fetchProducts from '../../../axios_routes/products_axios';
 import {Container, Row, Col} from 'reactstrap';
 import CategoriesNav from '../../../components/categoriesNav/categoriesNav';
+import BrandCard from '../../../components/brandCards/brandCard';
+import ProudctCard from '../../../components/productCardTypes/productCardDetail/productCardDetail';
+
 import {
   // BrowserRouter as Router, 
   Route} from "react-router-dom";
@@ -93,8 +96,13 @@ class Home extends Component {
     return (
         <> 
         <Navigation/>
-        <Jumbotron/>
+
+
+        {/* <Jumbotron/> */}
         <Container>
+          {/* <BrandCard /> */}
+          <ProudctCard />
+
           <Row>
             <Col md="1">
             </Col>
