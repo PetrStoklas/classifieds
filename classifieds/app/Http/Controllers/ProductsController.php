@@ -9,6 +9,7 @@ use App\Category;
 use App\Product;
 use App\User;
 use App\Image;
+use Auth;
 
 class ProductsController extends Controller
 {
@@ -49,12 +50,13 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {   
+        // var_dump($request);
         $product = new Product;
         $product->title = $request->title;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->category_id = $request->category_id;
-        $product->seller_id = $request->seller_id;
+        $product->seller_id = 1;
         // dd($product);
         $product->save();
 
@@ -64,7 +66,7 @@ class ProductsController extends Controller
 
         //creating and inserting image into DB('images')
         $new_image = new Image;
-        $new_image->product_id = $new_product->id;
+        $new_image->product_id = $product->id;
         $new_image->filename = $image->getFilename().'.'.$extension;
         $new_image->original_filename = $image->getClientOriginalName();
         $new_image->mime = $image->getClientMimeType();
