@@ -15,29 +15,47 @@ const temp_form = props => {
   const generateForm = (type, label_for, input_name, input_id, input_placeholder, formdata, submitform) => {
     switch (props.generalType) {
       case 'text_email_passw':
-        form = 
-        (<FormGroup onSubmit={props.submitform}>
-          <Label for={label_for}>{label_for}</Label>
-          <Input
-            type={type}
-            name={input_name}
-            id={input_id}
-            placeholder={input_placeholder}
-            onChange={props.formdata}
-            />
-        </FormGroup>
+        form = (
+          <FormGroup onSubmit={props.submitform}>
+            <Label for={label_for}>{label_for}</Label>
+            <Input
+              type={type}
+              name={input_name}
+              id={input_id}
+              placeholder={input_placeholder}
+              onChange={props.formdata}
+              />
+          </FormGroup>
         )
         return form;
+
         case 'file_upload': 
         form = (
           <FormGroup>
-          <Label for="exampleFile">File</Label>
-          <Input type="file" name="file" id="exampleFile" />
-          <FormText color="muted">
-            This is some placeholder block-level help text for the above input.
-            It's a bit lighter and easily wraps to a new line.
-          </FormText>
-        </FormGroup>
+            <Label for={label_for}>{label_for}</Label>
+            <Input 
+              type={type}
+              name={input_name}  
+              id={input_id}
+              />
+            <FormText color="muted">
+              {input_placeholder}
+            </FormText>
+          </FormGroup>
+        )
+        return form;
+
+        case 'text_area':
+        form = (
+          <FormGroup>
+            <Label for={label_for}>{label_for}</Label>
+            <Input 
+              type={type} 
+              name={input_name} 
+              id={input_id}
+              placeholder={input_placeholder}
+              onChange={props.formdata} />
+          </FormGroup>
         )
         return form;
 

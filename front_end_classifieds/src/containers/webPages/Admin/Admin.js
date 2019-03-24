@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
 // import {Spinner} from 'reactstrap';
+import fetchProduct from '../../../axios_routes/products_axios';
 import fetchLogin from '../../../axios_routes/auth_routes';
 import getJwt from '../../../utilites/jwt';
 import UserAdminSection from '../../../components/user_admin_section/user_admin_section';
@@ -11,6 +12,7 @@ import {
 } from 'reactstrap';
 import LoginForm from '../../../components/Register/RegisterForm';
 import axios from 'axios';
+import AddNewProductForm from '../../../components/forms/addNewProductForm';
 
 class Admin extends Component {
 
@@ -70,6 +72,24 @@ class Admin extends Component {
       });
   }
 
+  submitProductForm = e => {
+    e.preventDefault();
+    fetchProduct
+      .post('/create_new_product' , {
+        // name of product
+        // description of product
+        // price
+        // image
+      })
+      .then(res => {
+
+      })
+      .catch(err => {
+        console.log(err)
+        alert('failed to upload your product')
+      });
+  }
+
   uploadImageHandler = e => {
     this.setState({uploadedFiles: e.target.files[0]});
   }
@@ -90,19 +110,31 @@ class Admin extends Component {
     console.log(this.state.uploadedFiles);
     
     let content = this.state.userLoggedIn
-      ? <UserAdminSection/>
-      : <LoginForm
-        getinputvalues={this.getInputFormValue}
-        submitform={this.submitForm}/>
+      ? <div>
+          {/* <UserAdminSection/> */}
+          <AddNewProductForm
+            getinputvalues={this.getInputFormValue}
+            submitform={this.submitForm}            
+          />
+        </div>
+
+      : <div> 
+          <LoginForm
+            getinputvalues={this.getInputFormValue}
+            submitform={this.submitForm}
+          />
+        </div>
 
     return (
       <div>
         <Navigation/>
+        
+
         <div className="mt-5"></div>
-        <form method="post" >
+        {/* <form method="post" >
           <input onChange={this.uploadImageHandler} type="file" name="fileToUpload" id="fileToUpload" />
           <input onClick={this.submitImageHandler} value="Upload Image" name="submit" />
-        </form>
+        </form> */}
         <Container>
           {content}
         </Container>
