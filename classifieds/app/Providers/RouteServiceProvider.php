@@ -77,6 +77,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::post('register', 'UserController@register');
             Route::post('login', 'UserController@authenticate');
             Route::get('open', 'DataController@open');
+            Route::post('/create_new_product', 'ProductsController@store');
 
             Route::group(['middleware' => ['jwt.verify']], function() {
                 Route::get('user', 'UserController@getAuthenticatedUser');
