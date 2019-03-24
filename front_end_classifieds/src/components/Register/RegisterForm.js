@@ -5,7 +5,7 @@ import {
   // BrowserRouter as Router, 
   // Route, 
   Link} from "react-router-dom";
-import FormComponent from '../../components/form/form';
+import FormComponent from '../form/input';
 
 const RegisterFrom = props => {
 

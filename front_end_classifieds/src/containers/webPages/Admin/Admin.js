@@ -9,7 +9,7 @@ import {
   // Form, Button,
   Container
 } from 'reactstrap';
-import LoginForm from '../../../components/Register/Register';
+import LoginForm from '../../../components/Register/RegisterForm';
 
 class Admin extends Component {
 
@@ -68,7 +68,7 @@ class Admin extends Component {
   }
 
   render() {
-    console.log(this.state)
+    
     let content = this.state.userLoggedIn
       ? <UserAdminSection/>
       : <LoginForm

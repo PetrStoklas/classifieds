@@ -3,13 +3,7 @@ import React from 'react';
 import styles from './brandCard.module.css';
 
 const BrandCard = props => {
-
-  // const returnIdToParent = e => {
-  //     console.log(e.target.id);
-  //     props.getChildrenId(e.target.id);
-  // }
-
-
+  
   let brandCard = '';
   brandCard = props
     .categories
