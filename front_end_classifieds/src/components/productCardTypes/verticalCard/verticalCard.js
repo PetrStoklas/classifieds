@@ -2,7 +2,8 @@ import React from 'react';
 import ProductCarousel from '../../UI/ProductCarousel/ProductCarousel';
 import {
   Container, Row, Col, Card,
-  // CardBody, Button
+  // CardBody, 
+  Button
 } from 'reactstrap';
 import classes from './verticalCard.module.css';
 import {ReactComponent as ShareIcon} from '../../../img/share-icon.svg'
@@ -39,7 +40,7 @@ const VerticalCard = props => {
             <Col className="col-4 d-flex flex-column justify-content-between mx-1">
               <Row className="mr-2 mb-2 d-flex flex-row justify-content-end">
                 <ShareIcon/>
-
+                <Button onClick={props.productView}>See Details</Button>
               </Row>
               <Row className="empty mx-1 d-flex flex-row justify-content-between">
                 <span className={classes.Blue}>-</span>

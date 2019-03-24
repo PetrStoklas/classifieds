@@ -82,7 +82,10 @@ class Home extends Component {
         })
       })
       .catch(err => console.log(err))
+  }
 
+  getClickedId = id => {
+    console.log(id);
   }
 
   render() {
@@ -97,7 +100,8 @@ class Home extends Component {
 
     return (
       <div>
-        <Navigation/> {jumbotron}
+        <Navigation/> 
+        {jumbotron}
         <Container>
           <Row>
             <Col md="6">
@@ -117,6 +121,7 @@ class Home extends Component {
           </Row>
           <Row>
             <CardsContainer
+              getClickedId={this.getClickedId}
               cardsData={(this.state.productsWithCategory.length === 0)
               ? this.state.productsAll
               : this.state.productsWithCategory}/>
