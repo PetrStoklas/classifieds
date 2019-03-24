@@ -3,7 +3,7 @@ import {
   FormGroup,
   Label,
   Input,
-  // FormText
+  FormText
   // Container
 } from 'reactstrap';
 
@@ -25,6 +25,18 @@ const temp_form = props => {
             placeholder={input_placeholder}
             onChange={props.formdata}
             />
+        </FormGroup>
+        )
+        return form;
+        case 'file_upload': 
+        form = (
+          <FormGroup>
+          <Label for="exampleFile">File</Label>
+          <Input type="file" name="file" id="exampleFile" />
+          <FormText color="muted">
+            This is some placeholder block-level help text for the above input.
+            It's a bit lighter and easily wraps to a new line.
+          </FormText>
         </FormGroup>
         )
         return form;

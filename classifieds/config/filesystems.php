@@ -50,7 +50,8 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => public_path() . '/uploads',   //storage_path('app/public'),
+            'root' => public_path() . '/uploads/products', // here we can add folder route where to save; 
+            // storage_path('app/public'),
             'url' => env('APP_URL').'/public',      //'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
