@@ -58,6 +58,22 @@ class ProductsController extends Controller
         // dd($product);
         $product->save();
 
+        $image = $request->file('image');
+        $extension = $image->getClientOriginalExtension(); // NEEDS PARAMETERS???
+        Storage::disk('public')->put($image->getFilename().'.'.$extension,  File::get($image));
+
+        //creating and inserting image into DB('images')
+        $new_image = new Image;
+        $new_image->product_id = $new_product->id;
+        $new_image->filename = $image->getFilename().'.'.$extension;
+        $new_image->original_filename = $image->getClientOriginalName();
+        $new_image->mime = $image->getClientMimeType();
+        $new_image->save();
+
+        session()->flash('success_message', 'Success!');
+
+        return redirect('/products');
+
     }
 
     /**
