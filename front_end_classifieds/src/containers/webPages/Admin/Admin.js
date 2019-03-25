@@ -51,8 +51,7 @@ class Admin extends Component {
 
   getInputFormValue = e => {
     e.preventDefault();
-    if (this.state.userLoggedIn) { //if user is logged in -> we are creating new product
-      
+    if (this.state.userLoggedIn) { //if user is logged in -> we are creating new product 
       this.setState({
         newProduct: {
           ...this.state.newProduct,
@@ -60,10 +59,8 @@ class Admin extends Component {
         }
       })
       
-
-
     } else {
-      console.log('user se logging in')
+      // console.log('user se logging in')
       this.setState({
         userLogInInfo: {
           ...this.state.userLogInInfo,
@@ -93,15 +90,16 @@ class Admin extends Component {
 
   submitProductForm = e => {
     e.preventDefault();
+    console.log(this.state.newProduct);
     fetchProduct
-      .post('/create_new_product' , {
-        // name of product
-        // description of product
-        // price
-        // image
+      .post('/' , {
+        title: this.state.newProduct.title,
+        description: this.state.newProduct.description,
+        price: this.state.newProduct.price,
+        category_id: 1,
       })
       .then(res => {
-
+        console.log(res);
       })
       .catch(err => {
         console.log(err)
@@ -126,8 +124,6 @@ class Admin extends Component {
   }
 
   render() {
-    console.log(this.state.userLoggedIn);
-    console.log(this.state.newProduct);
     
     let content = this.state.userLoggedIn
       ? <div>
