@@ -105,12 +105,7 @@ class Admin extends Component {
   
   submitForm = e => {
     e.preventDefault();
-    let fd = new FormData();
-    fd.append('image', this.state.uploadedFiles, this.state.uploadedFiles.name);
-    fd.append('title', this.state.uploadedFiles, this.state.uploadedFiles.name);
-    fd.append('price', this.state.uploadedFiles, this.state.uploadedFiles.name);
-    fd.append('category_id', 1);
-    console.log(this.state.newProduct);
+    
     fetchLogin
       .post('/login', {
       email: this.state.userLogInInfo.email,
@@ -128,21 +123,16 @@ class Admin extends Component {
 
   submitProductForm = e => {
     e.preventDefault();
-    console.log(this.state.newProduct.uploadedFiles);
-    // let fd = new FormData();
-    // fd.append('image', this.state.uploadedFiles, this.state.uploadedFiles.name);
-    let fd = new FormData();
-
-    
+   
+    let fd = new FormData();   
     fd.append('image', this.state.newProduct.uploadedFiles[0]);
-
     fd.append('title', this.state.newProduct.title);
     fd.append('price', this.state.newProduct.price);
     fd.append('description', this.state.newProduct.description);
     fd.append('category_id', 1);
 
-    axios
-      .post('http://127.0.0.1:8000/api/products', fd,{
+    fetchProduct
+      .post('/', fd,{
         headers: {
           'Content-Type': 'multipart/form-data'
         }  
