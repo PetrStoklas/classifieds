@@ -5,8 +5,11 @@ import Input from '../form/input';
 import addNewProductConfig from '../../config_files/addNewProductConfig';
 
 class AddNewProductForm extends Component {
+
     render() {
         // console.log(addNewProductConfig);
+        // console.log('Add new product form ------');
+        // console.log(this.props);
         let formContent = null;
         formContent = addNewProductConfig.map(config =>
             
@@ -25,8 +28,9 @@ class AddNewProductForm extends Component {
             
             <div>
                 <h3>addNewProductForm</h3>
-                <Form>
+                <Form onChange={this.props.getinputvalues} onSubmit={this.props.submitform}>
                     {formContent}
+                    <Button type="submit" id="submitUpload">Upload new product</Button>
                 </Form>
             </div>
         )

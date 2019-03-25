@@ -22,11 +22,11 @@ class Admin extends Component {
       email: null,
       password: null
     },
-    product: {
-      name: null,
+    newProduct: {
+      title: null,
       description: null,
       price: null,
-      uploadedFiles: null,
+      original_filename: null, //image upload
     }
 
 
@@ -51,12 +51,26 @@ class Admin extends Component {
 
   getInputFormValue = e => {
     e.preventDefault();
-    this.setState({
-      userLogInInfo: {
-        ...this.state.userLogInInfo,
-        [e.target.name]: e.target.value
-      }
-    });
+    if (this.state.userLoggedIn) { //if user is logged in -> we are creating new product
+      
+      this.setState({
+        newProduct: {
+          ...this.state.newProduct,
+          [e.target.id]: e.target.value, 
+        }
+      })
+      
+
+
+    } else {
+      console.log('user se logging in')
+      this.setState({
+        userLogInInfo: {
+          ...this.state.userLogInInfo,
+          [e.target.name]: e.target.value
+        }
+      });
+    }
     this.checkForLoggUsr();
   }
 
@@ -112,7 +126,8 @@ class Admin extends Component {
   }
 
   render() {
-    console.log(this.state.uploadedFiles);
+    console.log(this.state.userLoggedIn);
+    console.log(this.state.newProduct);
     
     let content = this.state.userLoggedIn
       ? <div>
