@@ -29,6 +29,7 @@ class ProductsController extends Controller
         $data_to_return = [];
         foreach($products as $product)
         {
+            // here I am attaching images to its product -> sending them to frontend as "$data_to_return"
             $images = Image::where('product_id', $product->id)->get();    
             array_push($data_to_return, ['product' => $product, 'images' => $images]);
         }
