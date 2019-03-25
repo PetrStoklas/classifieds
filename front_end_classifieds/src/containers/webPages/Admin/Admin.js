@@ -26,7 +26,6 @@ class Admin extends Component {
       title: null,
       description: null,
       price: null,
-      // original_filename: null, 
       uploadedFiles: null, //image upload
     }
 
@@ -52,22 +51,29 @@ class Admin extends Component {
 
   getInputFormValue = e => {
     e.preventDefault();
+
+    // redo with ternary operator
+
     if (this.state.userLoggedIn) { //if user is logged in -> we are creating new product 
-      if (e.target.id === 'original_filename') {
+      if (e.target.id === 'original_filename') { // if image -> using e.target.files insead of e.target.value
+
         console.log('image upload touched');
+        console.log(e.target.files);
         this.setState({
           newProduct: {
             ...this.state.newProduct,
-            uploadedFiles: e.target.files[0]
+            uploadedFiles: e.target.files,
+          }
+        });
+
+      } else {
+        this.setState({
+          newProduct: {
+            ...this.state.newProduct,
+            [e.target.id]: e.target.value, 
           }
         })
       }
-      this.setState({
-        newProduct: {
-          ...this.state.newProduct,
-          [e.target.id]: e.target.value, 
-        }
-      })
       
     } else {
       // console.log('user se logging in')
@@ -140,7 +146,7 @@ class Admin extends Component {
       ? <div>
           {/* <UserAdminSection/> */}
           <AddNewProductForm
-            getinputvalues={this.getInputFormValue}
+            getinputvalues={this.getInputFormValue} 
             submitform={this.submitProductForm}            
           />
         </div>
