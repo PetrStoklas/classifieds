@@ -113,7 +113,9 @@ class Admin extends Component {
     fd.append('title', this.state.newProduct.title);
     fd.append('price', this.state.newProduct.price);
     fd.append('description', this.state.newProduct.description);
-    fd.append('category_id', 1);
+
+    
+    fd.append('category_id', 1); // needs to be dynamic 
 
     fetchProduct
       .post('/', fd,{

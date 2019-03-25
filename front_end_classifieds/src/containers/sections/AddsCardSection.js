@@ -16,7 +16,7 @@ class CardsContainer extends Component {
         price={res.price}
         created={res.created_at}
         description={res.description}/>);
-    console.log('cards data',this.props.cardsData);
+    // console.log('cards data',this.props.cardsData);
 
     return (
       <div>

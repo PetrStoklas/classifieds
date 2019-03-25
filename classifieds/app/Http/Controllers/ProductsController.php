@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
 use App\User;
 use App\Image;
+
+
 
 class ProductsController extends Controller
 {
@@ -19,13 +22,21 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        // it should be possible to use "toJson() for the returned data?"
+        // https://laravel.com/docs/5.8/eloquent-serialization
+
         $products = Product::all();
-        // $the = Product::find(20);
+        $data_to_return = [];
+        foreach($products as $product)
+        {
+            $images = Image::where('product_id', $product->id)->get();    
+            array_push($data_to_return, ['product' => $product, 'images' => $images]);
+        }
+
         $categories = Category::all();     
         
         // return view('products_show', compact('products', 'categories'));
-        return $products;
+        return $data_to_return;
     }
 
     /**
