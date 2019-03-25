@@ -26,7 +26,8 @@ class Admin extends Component {
       title: null,
       description: null,
       price: null,
-      original_filename: null, //image upload
+      // original_filename: null, 
+      uploadedFiles: null, //image upload
     }
 
 
@@ -52,6 +53,15 @@ class Admin extends Component {
   getInputFormValue = e => {
     e.preventDefault();
     if (this.state.userLoggedIn) { //if user is logged in -> we are creating new product 
+      if (e.target.id === 'original_filename') {
+        console.log('image upload touched');
+        this.setState({
+          newProduct: {
+            ...this.state.newProduct,
+            uploadedFiles: e.target.files[0]
+          }
+        })
+      }
       this.setState({
         newProduct: {
           ...this.state.newProduct,
@@ -71,8 +81,25 @@ class Admin extends Component {
     this.checkForLoggUsr();
   }
 
+  uploadImageHandler = e => {
+    this.setState({uploadedFiles: e.target.files[0]});
+  }
+  
+  submitImageHandler = () => {
+    const fd = new FormData();
+    fd.append('image', this.state.uploadedFiles, this.state.uploadedFiles.name);
+    axios.post('http://127.0.0.1:8000/api/create_new_product', fd)
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+  
   submitForm = e => {
     e.preventDefault();
+    console.log(this.state.newProduct);
     fetchLogin
       .post('/login', {
       email: this.state.userLogInInfo.email,
@@ -106,23 +133,7 @@ class Admin extends Component {
         alert('failed to upload your product')
       });
   }
-
-  uploadImageHandler = e => {
-    this.setState({uploadedFiles: e.target.files[0]});
-  }
-
-  submitImageHandler = () => {
-    const fd = new FormData();
-    fd.append('image', this.state.uploadedFiles, this.state.uploadedFiles.name);
-    axios.post('http://127.0.0.1:8000/api/create_new_product', fd)
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  }
-
+  
   render() {
     
     let content = this.state.userLoggedIn
