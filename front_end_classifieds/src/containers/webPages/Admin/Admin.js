@@ -22,7 +22,12 @@ class Admin extends Component {
       email: null,
       password: null
     },
-    uploadedFiles: null,
+    product: {
+      name: null,
+      description: null,
+      price: null,
+      uploadedFiles: null,
+    }
 
 
   }
@@ -114,7 +119,7 @@ class Admin extends Component {
           {/* <UserAdminSection/> */}
           <AddNewProductForm
             getinputvalues={this.getInputFormValue}
-            submitform={this.submitForm}            
+            submitform={this.submitProductForm}            
           />
         </div>
 
