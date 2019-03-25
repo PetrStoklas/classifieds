@@ -64,7 +64,7 @@ class ProductsController extends Controller
 
         //creating and inserting image into DB('images')
         $new_image = new Image;
-        $new_image->product_id = 1;
+        $new_image->product_id = $product->id;
         $new_image->filename = $image->getFilename().'.'.$extension;
         $new_image->original_filename = $image->getClientOriginalName();
         $new_image->mime = $image->getClientMimeType();

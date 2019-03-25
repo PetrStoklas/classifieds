@@ -14,7 +14,8 @@ const VerticalCard = props => {
     card = (
       <Card className="w-100 mx-1 my-3 border-0">
         <div className={classes.RoundCorners}>
-          <ProductCarousel/>
+        {/* images={props.images}  ADDED TO RECIEVE PATH TO IMAGES*/}
+          <ProductCarousel images={props.images}/> 
         </div>
         <Container className={classes.CardInfoSection}>
           <hr className={classes.Hr}/>

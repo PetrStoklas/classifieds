@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 // import {Row, Col, Container} from 'reactstrap';
-import Card from '../../components/productCardTypes/verticalCard/verticalCard';
+import VerticalCard from '../../components/productCardTypes/verticalCard/verticalCard';
 
 class CardsContainer extends Component {
 
@@ -10,12 +10,13 @@ class CardsContainer extends Component {
     cards = this
       .props
       .cardsData
-      .map(res => <Card
+      .map(res => <VerticalCard
         key={res.id}
         name={res.title}
         price={res.price}
         created={res.created_at}
         description={res.description}/>);
+    console.log('cards data',this.props.cardsData);
 
     return (
       <div>
