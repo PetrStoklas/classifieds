@@ -14,6 +14,8 @@ import LoginForm from '../../../components/Register/RegisterForm';
 import axios from 'axios';
 import AddNewProductForm from '../../../components/forms/addNewProductForm';
 
+// import axios from 'axios';
+
 class Admin extends Component {
 
   state = {
@@ -87,24 +89,27 @@ class Admin extends Component {
     this.checkForLoggUsr();
   }
 
-  uploadImageHandler = e => {
-    this.setState({uploadedFiles: e.target.files[0]});
-  }
+  // uploadImageHandler = e => {
+  //   this.setState({uploadedFiles: e.target.files[0]});
+  // }
   
-  submitImageHandler = () => {
-    const fd = new FormData();
-    fd.append('image', this.state.uploadedFiles, this.state.uploadedFiles.name);
-    axios.post('http://127.0.0.1:8000/api/create_new_product', fd)
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  }
+  // submitImageHandler = () => {
+    
+  //   .then(res => {
+  //     console.log(res);
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
+  // }
   
   submitForm = e => {
     e.preventDefault();
+    let fd = new FormData();
+    fd.append('image', this.state.uploadedFiles, this.state.uploadedFiles.name);
+    fd.append('title', this.state.uploadedFiles, this.state.uploadedFiles.name);
+    fd.append('price', this.state.uploadedFiles, this.state.uploadedFiles.name);
+    fd.append('category_id', 1);
     console.log(this.state.newProduct);
     fetchLogin
       .post('/login', {
@@ -123,13 +128,24 @@ class Admin extends Component {
 
   submitProductForm = e => {
     e.preventDefault();
-    console.log(this.state.newProduct);
-    fetchProduct
-      .post('/' , {
-        title: this.state.newProduct.title,
-        description: this.state.newProduct.description,
-        price: this.state.newProduct.price,
-        category_id: 1,
+    console.log(this.state.newProduct.uploadedFiles);
+    // let fd = new FormData();
+    // fd.append('image', this.state.uploadedFiles, this.state.uploadedFiles.name);
+    let fd = new FormData();
+
+    
+    fd.append('image', this.state.newProduct.uploadedFiles[0]);
+
+    fd.append('title', this.state.newProduct.title);
+    fd.append('price', this.state.newProduct.price);
+    fd.append('description', this.state.newProduct.description);
+    fd.append('category_id', 1);
+
+    axios
+      .post('http://127.0.0.1:8000/api/products', fd,{
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }  
       })
       .then(res => {
         console.log(res);

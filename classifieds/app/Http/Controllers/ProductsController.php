@@ -48,8 +48,7 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {  
-        
+    {   
         $product = new Product;
         $product->title = $request->title;
         $product->description = $request->description;
@@ -59,21 +58,17 @@ class ProductsController extends Controller
         // dd($product);
         $product->save();
 
-        foreach ($request->uploadedFiles as $file)
-        {
-            $image = $file;
-            $extension = $image->getClientOriginalExtension(); // NEEDS PARAMETERS???
-            Storage::disk('public')->put($image->getFilename().'.'.$extension,  File::get($image));
-    
-            //creating and inserting image into DB('images')
-            $new_image = new Image;
-            $new_image->product_id = 1;
-            $new_image->filename = $image->getFilename().'.'.$extension;
-            $new_image->original_filename = $image->getClientOriginalName();
-            $new_image->mime = $image->getClientMimeType();
-            $new_image->save();
-        }
+        $image = $request->file('image');
+        $extension = $image->getClientOriginalExtension(); // NEEDS PARAMETERS???
+        Storage::disk('public')->put($image->getFilename().'.'.$extension,  File::get($image));
 
+        //creating and inserting image into DB('images')
+        $new_image = new Image;
+        $new_image->product_id = 1;
+        $new_image->filename = $image->getFilename().'.'.$extension;
+        $new_image->original_filename = $image->getClientOriginalName();
+        $new_image->mime = $image->getClientMimeType();
+        $new_image->save();
 
         // session()->flash('success_message', 'Success!');
 

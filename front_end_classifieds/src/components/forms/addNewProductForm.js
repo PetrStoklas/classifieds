@@ -21,6 +21,7 @@ class AddNewProductForm extends Component {
                 input_id = {config.input_id}
                 label_for = {config.label_for}
                 title = {config.title}
+                multiple = {config.multiple}
             />
         )
         
