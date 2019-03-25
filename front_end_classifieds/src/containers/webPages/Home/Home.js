@@ -11,6 +11,7 @@ import {
 import Jumbotron from '../../../components/header/header';
 import CardsContainer from '../../sections/AddsCardSection';
 import Navigation from '../../../components/UI/Navigation/Navigation';
+import SingleProductView from '../SingleProductView/SingleProductView';
 
 class Home extends Component {
 
@@ -19,6 +20,7 @@ class Home extends Component {
     subCategories: [],
     color: true,
     active_category: null,
+    active_product_id: null,
     productsId: null,
     productsAll: [],
     productsWithCategory: []
@@ -86,10 +88,14 @@ class Home extends Component {
 
   getClickedId = id => {
     console.log(id);
+    this.setState({
+      active_product_id: id,
+    })
   }
 
   render() {
 
+    console.log(this.state.active_product_id);
     let jumbotron = <Spinner/>
     if (this.state.categories.length > 0) {
       jumbotron = <Jumbotron
@@ -105,6 +111,10 @@ class Home extends Component {
         <Container>
           <Row>
             <Col md="6">
+            <Route 
+                  path={'/products'} 
+                  exact
+                  component={SingleProductView} />
               <Route
                 path="/"
                 exact
@@ -123,8 +133,8 @@ class Home extends Component {
             <CardsContainer
               getClickedId={this.getClickedId}
               cardsData={(this.state.productsWithCategory.length === 0)
-              ? this.state.productsAll
-              : this.state.productsWithCategory}/>
+                ? this.state.productsAll
+                : this.state.productsWithCategory}/>
           </Row>
         </Container>
       </div>

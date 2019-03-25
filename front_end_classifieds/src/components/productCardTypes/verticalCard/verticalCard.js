@@ -7,10 +7,13 @@ import {
 } from 'reactstrap';
 import classes from './verticalCard.module.css';
 import {ReactComponent as ShareIcon} from '../../../img/share-icon.svg'
+import {Link} from 'react-router-dom'
 
 const VerticalCard = props => {
 
   let card = ''
+
+  
   if (props) {
     card = (
       <Card className="w-100 mx-1 my-3 border-0">
@@ -40,7 +43,7 @@ const VerticalCard = props => {
             <Col className="col-4 d-flex flex-column justify-content-between mx-1">
               <Row className="mr-2 mb-2 d-flex flex-row justify-content-end">
                 <ShareIcon/>
-                <Button onClick={props.productView}>See Details</Button>
+                <Link to="/products"><Button onClick={props.productView}>See Details</Button></Link>
               </Row>
               <Row className="empty mx-1 d-flex flex-row justify-content-between">
                 <span className={classes.Blue}>-</span>
