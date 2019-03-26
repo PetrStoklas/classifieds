@@ -19,7 +19,6 @@ const header = props => {
           categories={props}
           getChildrenId={(id) => { props.getCategoryId(id)}}
           />
-        <p>We believe in something other's don't</p>
         <p className="lead">
         </p>
       </Jumbotron>

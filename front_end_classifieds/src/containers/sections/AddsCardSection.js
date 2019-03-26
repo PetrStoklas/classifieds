@@ -27,7 +27,7 @@ class CardsContainer extends Component {
 
     return (
       <div>
-        <div className="d-flex flex-wrap">
+        <div className="d-flex flex-wrap  justify-content-between mt-5">
           {cards}
         </div>
       </div>
