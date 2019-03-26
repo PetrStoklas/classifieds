@@ -49,14 +49,14 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {   
-        // $product = new Product;
-        // $product->title = $request->title;
-        // $product->description = $request->description;
-        // $product->price = $request->price;
-        // $product->category_id = $request->category_id;
-        // $product->seller_id = 1;
-        // // dd($product);
-        // $product->save();
+        $product = new Product;
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->category_id = $request->category_id;
+        $product->seller_id = 1;
+        // dd($product);
+        $product->save();
 
         $image = $request->file('image');
         $extension = $image->getClientOriginalExtension(); // NEEDS PARAMETERS???
