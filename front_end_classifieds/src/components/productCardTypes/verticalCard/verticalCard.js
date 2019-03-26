@@ -7,27 +7,33 @@ import {
 } from 'reactstrap';
 import classes from './verticalCard.module.css';
 import {ReactComponent as ShareIcon} from '../../../img/share-icon.svg'
-import {Link, 
+import {
+  Link,
   // Route
 } from 'react-router-dom'
 
 const VerticalCard = props => {
 
   let card = ''
-
+  let shareIcon = <ShareIcon className={classes.Icon}/>
+  
+  
   if (props) {
-    console.log(props['images']);
+
     card = (
       <Card className="w-100 mx-1 my-3 border-0">
         <div className={classes.RoundCorners}>
           {/* <ProductCarousel images={props.images}/>  */}
           {/*   WHEN ON SERVER -> WE NEED TO CHANGE THE PATH    */}
 
-          <img 
-            className="w-100" 
-            src={props['images'] ? "http://127.0.0.1:8000/uploads/products/"+props['images'][0]['filename'] : ''} 
-            alt={props['images'] ? props['images'][0]['original_filename'] : 'empty'} 
-          />
+          <img
+            className="w-100"
+            src={props['images']
+            ? "http://127.0.0.1:8000/uploads/products/" + props['images'][0]['filename']
+            : ''}
+            alt={props['images']
+            ? props['images'][0]['original_filename']
+            : 'empty'}/>
 
         </div>
         <Container className={classes.CardInfoSection}>
@@ -52,12 +58,12 @@ const VerticalCard = props => {
 
             <Col className="col-4 d-flex flex-column justify-content-between mx-1">
               <Row className="mr-2 mb-2 d-flex flex-row justify-content-end">
-                <ShareIcon/>
-                <Link to={{ 
+                <Link
+                  to={{
                   pathname: "/product",
                   search: props.id
-                  }}>
-                  <Button onClick={props.productView}>See Details</Button>
+                }}>
+                  {shareIcon}
                 </Link>
               </Row>
               <Row className="empty mx-1 d-flex flex-row justify-content-between">
