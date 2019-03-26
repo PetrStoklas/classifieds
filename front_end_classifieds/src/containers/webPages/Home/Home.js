@@ -136,13 +136,16 @@ class Home extends Component {
         <Container>
           <Row>
             <Col md="6">
+
               <Route
                 path="/"
                 exact
                 component={() => <CategoriesNav
                 categories={this.state.categories}
                 getSubcategories={this.getChildren}
-                getAllProducts={this.getProductsWithCategory}/>}/>
+                getAllProducts={this.getProductsWithCategory}/>}
+                />
+                
               <Route
                 path={'/' + this.state.active_category}
                 exact

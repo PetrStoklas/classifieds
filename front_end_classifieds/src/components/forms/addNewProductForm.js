@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import  { Button, Form } from 'reactstrap';
 import Input from '../form/input';
 import addNewProductConfig from '../../config_files/addNewProductConfig';
+import CategoriesNav from '../categoriesNav/categoriesNav';
+import fetchCategories from '../../axios_routes/categories_axios';
 
 class AddNewProductForm extends Component {
+
+    state = {
+        categories: [],
+        subCategories: [],
+    }
 
     render() {
         // console.log(addNewProductConfig);
@@ -31,6 +38,12 @@ class AddNewProductForm extends Component {
                 <h3>addNewProductForm</h3>
                 <Form onChange={this.props.getinputvalues} onSubmit={this.props.submitform}>
                     {formContent}
+
+                    <CategoriesNav 
+                        categories={this.state.categories}
+                        getSubcategories={this.getChildren}
+                        // getAllProducts={this.getProductsWithCategory}
+                    />
                     <Button type="submit" id="submitUpload">Upload new product</Button>
                 </Form>
             </div>
