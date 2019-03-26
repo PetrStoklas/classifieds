@@ -15,9 +15,15 @@ const VerticalCard = props => {
     card = (
       <Card className="w-100 mx-1 my-3 border-0">
         <div className={classes.RoundCorners}>
-        {/* images={props.images}  ADDED TO RECIEVE PATH TO IMAGES*/}
           {/* <ProductCarousel images={props.images}/>  */}
-          <img className="w-100" src={"http://127.0.0.1:8000/uploads/products/"+props['images'][0]['filename']} alt={props['images'][0]['original_filename']} />
+          {/*   WHEN ON SERVER -> WE NEED TO CHANGE THE PATH    */}
+
+          <img 
+            className="w-100" 
+            src={props['images'] ? "http://127.0.0.1:8000/uploads/products/"+props['images'][0]['filename'] : ''} 
+            alt={props['images'] ? props['images'][0]['original_filename'] : 'empty'} 
+          />
+
         </div>
         <Container className={classes.CardInfoSection}>
           <hr className={classes.Hr}/>
