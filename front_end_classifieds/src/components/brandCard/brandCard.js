@@ -5,7 +5,10 @@ import styles from './brandCard.module.css';
 const BrandCard = props => {
 
   const images = {
-    HONDA: 'honda-logo.jpg'
+    HONDA: 'honda-logo.png',
+    BMW: 'bmw_new.png',
+    MERCEDES: 'Mercedes-Benz.png',
+    VOLVO: 'volvo-logo.png',
   }
 
   let brandCard = '';
