@@ -10,13 +10,21 @@ class CardsContainer extends Component {
     cards = this
       .props
       .cardsData
-      .map(res => <VerticalCard
-        key={res.id}
-        name={res.title}
-        price={res.price}
-        created={res.created_at}
-        description={res.description}/>);
-    // console.log('cards data',this.props.cardsData);
+      .map(res => 
+
+        <VerticalCard
+        images={res['images']}
+        key={res['product'].id}
+        name={res['product'].title}
+        price={res['product'].price}
+        // created={res['product'].created_at}
+        // description={res['product'].description}
+        
+        />
+        
+        // console.log('ress ----- ', res['product'].title),
+    // console.log('cards data',this.props.cardsData
+    );
 
     return (
       <div>

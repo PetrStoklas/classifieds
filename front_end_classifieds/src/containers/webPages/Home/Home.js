@@ -49,7 +49,8 @@ class Home extends Component {
     // HOW TO GET IMAGES TO THE PRODUCT ?   getting two arrays ($products AND $images)
     fetchProducts
       .get()
-      .then(res => this.setState({productsAll: res.data}))
+      .then(res => this.setState({
+        productsAll: res.data}))
       .catch(err => console.log(err));
     fetchCategories.get()
       // console.log('products and images',this.state.productsAll);
@@ -102,6 +103,9 @@ class Home extends Component {
 
 
     if (!this.isEmpty(this.state.productsAll)){
+      this.state.productsAll.map(product => {
+        // console.log('product info', product['product'],'images', product['images']);
+      })
       // this.state.productsAll[0].map(product => {
       //   console.log(product);
       // })
@@ -110,7 +114,10 @@ class Home extends Component {
       //   console.log(image);
       // })
       
-      console.log('prod and img----', this.state.productsAll);
+      // console.log('prod and img----', this.state.productsAll);
+      // console.log('products----', this.state.productsAll);
+      
+      
     }
     
     

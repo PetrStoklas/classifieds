@@ -48,7 +48,7 @@ const VerticalCard = props => {
               <Row className="mx-2 d-flex flex-row justify-content-between">
                 <span className={classes.Text}>Prague, cz</span>
                 <div>
-                  <span className={classes.Price}>300000</span>
+                  <span className={classes.Price}>{props.price}</span>
                   <span className={classes.Text}>czk</span>
                 </div>
               </Row>
