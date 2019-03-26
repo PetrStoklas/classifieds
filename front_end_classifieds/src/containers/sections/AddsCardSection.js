@@ -14,6 +14,7 @@ class CardsContainer extends Component {
       .cardsData
       .map(res => 
       <Card
+        images={res.images}
         key={res.id}
         name={res.title}
         price={res.price}

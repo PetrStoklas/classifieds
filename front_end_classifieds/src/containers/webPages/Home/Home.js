@@ -127,7 +127,7 @@ class Home extends Component {
     return (
       <div>
         <Navigation/> 
-        {jumbotron}
+        { jumbotron }
         <Container>
           <Row>
             <Col md="6">
