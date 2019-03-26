@@ -31,6 +31,7 @@ class SearchForm extends Component {
       .catch(err => console.log(err));
 
     this.setState({productId: e.target.value});
+    
   }
 
   // passing the selected category to home view via categories_nav component
@@ -45,8 +46,9 @@ class SearchForm extends Component {
   render() {
 
     // console.log('searchForm options----', this.props.categories);
+    // console.log('subCatetgories',this.state.subSubcategories);
     if (this.state.productId) {
-      console.log(this.state.productId);
+      // console.log(this.state.productId);
     }
 
     let categories = '';
@@ -63,7 +65,8 @@ class SearchForm extends Component {
       .map(res => <option key={res.id} value={res.id}>{res.name}</option>)
 
     return (
-      <Form onSubmit={this.getProducts}>
+      <>
+      {/* <Form onSubmit={this.getProducts}> */}
         {/* <ButtonToolbar>
           <ButtonGroup className="mx-auto" size="lg">
             <Button>Left</Button>
@@ -87,13 +90,19 @@ class SearchForm extends Component {
           <Col md="6">
             <FormGroup>
               <Label for="model_select">Select Model</Label>
-              <Input type="select" name="select" id="model_select">
+              <Input 
+                type="select" 
+                name="select" 
+                id="category_id"
+                // onChange={this.props.categoryId}
+              >
                 {subCategories}
               </Input>
             </FormGroup>
           </Col>
         </Row>
-      </Form>
+      {/* </Form> */}
+      </>
     );
   }
 }

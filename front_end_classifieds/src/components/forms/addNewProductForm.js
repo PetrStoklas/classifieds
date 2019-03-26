@@ -66,11 +66,13 @@ class AddNewProductForm extends Component {
                     {formContent}
                     
                     <CategoriesNav 
-                        categories={this.props.categories}
-                        getSubcategories={this.getChildren}
-                        subCats={this.props.subCats}
-                        // getAllProducts={this.getProductsWithCategory}
+                      categories={this.props.categories}
+                      getSubcategories={this.getChildren}
+                      subCats={this.props.subCats}
+                      // category_id={this.props.category_id}
+                      // getAllProducts={this.getProductsWithCategory}
                     />
+
                     <Button type="submit" id="submitUpload">Upload new product</Button>
                 </Form>
             </div>
