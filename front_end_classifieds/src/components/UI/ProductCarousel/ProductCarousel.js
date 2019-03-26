@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import storage from '../../../../../classifieds/public/uploads/products';
 import {
   Carousel,
   CarouselItem,
@@ -29,12 +30,20 @@ const items = [
 class ProductCarousel extends Component {
     constructor(props) {
       super(props);
-      this.state = { activeIndex: 0 };
+      this.state = { 
+        activeIndex: 0,
+        images: this.props.images,
+        items: {
+          altText: ['slide 1', 'slide 2', 'slide 3'],
+          caption: ['slide 1', 'slide 2', 'slide 3'],
+        }
+      };
       this.next = this.next.bind(this);
       this.previous = this.previous.bind(this);
       this.goToIndex = this.goToIndex.bind(this);
       this.onExiting = this.onExiting.bind(this);
       this.onExited = this.onExited.bind(this);
+      // this.images = this.props.images;
     }
   
     onExiting() {
@@ -63,17 +72,20 @@ class ProductCarousel extends Component {
     }
   
     render() {
+      // console.log('carousel images-----', this.state.images);
       const { activeIndex } = this.state;
   
-      const slides = items.map((item) => {
+      const slides = this.state.images.map((image) => {
+        
         return (
           <CarouselItem
             onExiting={this.onExiting}
             onExited={this.onExited}
-            key={item.caption}
+            key={image['id']}
             interval={false}
           >
-            <img className="w-100" src={item.src} alt={item.altText} />
+          <img className="w-100" src={"http://127.0.0.1:8000/uploads/products/"+image['filename']} alt={image['original_filename']} />
+          {/*          artisan has to run -> paht using its the artisan project path           */}
           </CarouselItem>
         );
       });

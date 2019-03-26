@@ -9,7 +9,7 @@ import {
   Route
 } from "react-router-dom";
 import Jumbotron from '../../../components/header/header';
-import CardsContainer from '../../sections/AddsCardSection';
+import CardsSection from '../../sections/AddsCardSection';
 import Navigation from '../../../components/UI/Navigation/Navigation';
 
 class Home extends Component {
@@ -21,6 +21,7 @@ class Home extends Component {
     active_category: null,
     productsId: null,
     productsAll: [],
+    productsWithImages: [],
     productsWithCategory: []
   }
 
@@ -43,12 +44,16 @@ class Home extends Component {
           });
       })
       .catch(err => console.log(err));
-    // Get All Products
+    // Get All Products     
+    
+    // HOW TO GET IMAGES TO THE PRODUCT ?   getting two arrays ($products AND $images)
     fetchProducts
       .get()
-      .then(res => this.setState({productsAll: res.data}))
+      .then(res => this.setState({
+        productsAll: res.data}))
       .catch(err => console.log(err));
     fetchCategories.get()
+      // console.log('products and images',this.state.productsAll);
   }
 
   getChildren = e => {
@@ -85,7 +90,37 @@ class Home extends Component {
 
   }
 
+  // CAN CHECK IF JSON OBJECT IS FILLED ALREADY
+  isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+  }
+
   render() {
+
+
+    if (!this.isEmpty(this.state.productsAll)){
+      this.state.productsAll.map(product => {
+        // console.log('product info', product['product'],'images', product['images']);
+      })
+      // this.state.productsAll[0].map(product => {
+      //   console.log(product);
+      // })
+  
+      // this.state.productsAll[1].map(image => {
+      //   console.log(image);
+      // })
+      
+      // console.log('prod and img----', this.state.productsAll);
+      // console.log('products----', this.state.productsAll);
+      
+      
+    }
+    
+    
 
     let jumbotron = <Spinner/>
     if (this.state.categories.length > 0) {
@@ -116,7 +151,7 @@ class Home extends Component {
             </Col>
           </Row>
           <Row>
-            <CardsContainer
+            <CardsSection
               cardsData={(this.state.productsWithCategory.length === 0)
               ? this.state.productsAll
               : this.state.productsWithCategory}/>

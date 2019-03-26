@@ -27,6 +27,7 @@ const newProductForm = [
         "generalType": "file_upload",
         "label_for": "add your images",
         "type": "file",
+        "multiple": true,
         "input_name": "original_filename",
         "input_id": "original_filename",
         "input_placeholder": "upload your images here"

@@ -11,10 +11,13 @@ const VerticalCard = props => {
 
   let card = ''
   if (props) {
+    console.log(props['images']);
     card = (
       <Card className="w-100 mx-1 my-3 border-0">
         <div className={classes.RoundCorners}>
-          <ProductCarousel/>
+        {/* images={props.images}  ADDED TO RECIEVE PATH TO IMAGES*/}
+          {/* <ProductCarousel images={props.images}/>  */}
+          <img className="w-100" src={"http://127.0.0.1:8000/uploads/products/"+props['images'][0]['filename']} alt={props['images'][0]['original_filename']} />
         </div>
         <Container className={classes.CardInfoSection}>
           <hr className={classes.Hr}/>
@@ -47,7 +50,7 @@ const VerticalCard = props => {
               <Row className="mx-2 d-flex flex-row justify-content-between">
                 <span className={classes.Text}>Prague, cz</span>
                 <div>
-                  <span className={classes.Price}>300000</span>
+                  <span className={classes.Price}>{props.price}</span>
                   <span className={classes.Text}>czk</span>
                 </div>
               </Row>

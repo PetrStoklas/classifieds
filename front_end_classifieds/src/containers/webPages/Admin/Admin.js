@@ -28,10 +28,8 @@ class Admin extends Component {
       title: null,
       description: null,
       price: null,
-      uploadedFiles: null, //image upload
+      uploadedFiles: null, //image file
     }
-
-
   }
 
   componentDidMount() {
@@ -59,8 +57,8 @@ class Admin extends Component {
     if (this.state.userLoggedIn) { //if user is logged in -> we are creating new product 
       if (e.target.id === 'original_filename') { // if image -> using e.target.files insead of e.target.value
 
-        console.log('image upload touched');
-        console.log(e.target.files);
+        // console.log('image upload touched');
+        // console.log(e.target.files);
         this.setState({
           newProduct: {
             ...this.state.newProduct,
@@ -88,22 +86,8 @@ class Admin extends Component {
     }
     this.checkForLoggUsr();
   }
-
-  // uploadImageHandler = e => {
-  //   this.setState({uploadedFiles: e.target.files[0]});
-  // }
   
-  // submitImageHandler = () => {
-    
-  //   .then(res => {
-  //     console.log(res);
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
-  // }
-  
-  submitForm = e => {
+  submitForm = e => { // USER LOGIN SUBMIT
     e.preventDefault();
     
     fetchLogin
@@ -121,7 +105,7 @@ class Admin extends Component {
       });
   }
 
-  submitProductForm = e => {
+  submitProductForm = e => { // NEW PRODUCT FORM SUBMIT
     e.preventDefault();
    
     let fd = new FormData();   
@@ -129,7 +113,9 @@ class Admin extends Component {
     fd.append('title', this.state.newProduct.title);
     fd.append('price', this.state.newProduct.price);
     fd.append('description', this.state.newProduct.description);
-    fd.append('category_id', 1);
+
+    
+    fd.append('category_id', 1); // needs to be dynamic 
 
     fetchProduct
       .post('/', fd,{
@@ -167,13 +153,7 @@ class Admin extends Component {
     return (
       <div>
         <Navigation/>
-        
-
         <div className="mt-5"></div>
-        {/* <form method="post" >
-          <input onChange={this.uploadImageHandler} type="file" name="fileToUpload" id="fileToUpload" />
-          <input onClick={this.submitImageHandler} value="Upload Image" name="submit" />
-        </form> */}
         <Container>
           {content}
         </Container>
