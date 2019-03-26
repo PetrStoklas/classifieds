@@ -73,6 +73,9 @@ class ProductsController extends Controller
         $image = $request->file('image');
         $extension = $image->getClientOriginalExtension(); // NEEDS PARAMETERS???
         Storage::disk('public')->put($image->getFilename().'.'.$extension,  File::get($image));
+        
+
+
 
         //creating and inserting image into DB('images')
         $new_image = new Image;

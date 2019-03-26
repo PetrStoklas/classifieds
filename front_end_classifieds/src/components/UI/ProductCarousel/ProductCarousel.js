@@ -32,7 +32,11 @@ class ProductCarousel extends Component {
       super(props);
       this.state = { 
         activeIndex: 0,
-        images: this.props.images
+        images: this.props.images,
+        items: {
+          altText: ['slide 1', 'slide 2', 'slide 3'],
+          caption: ['slide 1', 'slide 2', 'slide 3'],
+        }
       };
       this.next = this.next.bind(this);
       this.previous = this.previous.bind(this);
@@ -68,7 +72,7 @@ class ProductCarousel extends Component {
     }
   
     render() {
-      console.log('carousel images-----', this.state.images);
+      // console.log('carousel images-----', this.state.images);
       const { activeIndex } = this.state;
   
       const slides = this.state.images.map((image) => {
