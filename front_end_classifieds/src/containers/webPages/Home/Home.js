@@ -79,18 +79,14 @@ class Home extends Component {
       .get('/' + id)
       .then(res => {
         console.log(res.data);
-        this.setState({
-          productsWithCategory: res.data
-        })
+        this.setState({productsWithCategory: res.data})
       })
       .catch(err => console.log(err))
   }
 
   getClickedId = id => {
     console.log(id);
-    this.setState({
-      active_product_id: id,
-    })
+    this.setState({active_product_id: id})
   }
 
   render() {
@@ -101,7 +97,8 @@ class Home extends Component {
       jumbotron = <Jumbotron
         categories={this.state.categories}
         getCategoryId=
-        {(id) => {this.getProductsWithCategory(id); console.log('home', id)}}/>
+        {(id) => {this.getProductsWithCategory(id); 
+        console.log('home', id)}}/>
     }
 
     return (
@@ -111,10 +108,6 @@ class Home extends Component {
         <Container>
           <Row>
             <Col md="6">
-            <Route 
-                  path={'/products'} 
-                  exact
-                  component={SingleProductView} />
               <Route
                 path="/"
                 exact
@@ -127,14 +120,15 @@ class Home extends Component {
                 exact
                 component=
                 {() => <CategoriesNav subCats={this.state.subCategories} productsId={this.state.productsId} /> }/>
+              <Route path="/product" exact component={SingleProductView}/>
             </Col>
           </Row>
           <Row>
             <CardsContainer
               getClickedId={this.getClickedId}
               cardsData={(this.state.productsWithCategory.length === 0)
-                ? this.state.productsAll
-                : this.state.productsWithCategory}/>
+              ? this.state.productsAll
+              : this.state.productsWithCategory}/>
           </Row>
         </Container>
       </div>

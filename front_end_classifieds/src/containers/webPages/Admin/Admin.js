@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import fetchLogin from '../../../axios_routes/auth_routes';
 import getJwt from '../../../utilites/jwt';
 import UserAdminSection from '../../../components/user_admin_section/user_admin_section';
-import Navigation from '../../../components/UI/Navigation/Navigation';
 import {
   // Form, Button,
   Container
@@ -20,14 +19,12 @@ class Admin extends Component {
       email: null,
       password: null
     },
-    uploadedFiles: null,
-
-
+    uploadedFiles: null
   }
 
   componentDidMount() {
     let token = getJwt();
-    if(token) {
+    if (token) {
       this.setState({
         ...this.state,
         userLoggedIn: true
@@ -77,18 +74,19 @@ class Admin extends Component {
   submitImageHandler = () => {
     const fd = new FormData();
     fd.append('image', this.state.uploadedFiles, this.state.uploadedFiles.name);
-    axios.post('http://127.0.0.1:8000/api/create_new_product', fd)
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    axios
+      .post('http://127.0.0.1:8000/api/create_new_product', fd)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render() {
     console.log(this.state.uploadedFiles);
-    
+
     let content = this.state.userLoggedIn
       ? <UserAdminSection/>
       : <LoginForm
@@ -97,11 +95,14 @@ class Admin extends Component {
 
     return (
       <div>
-        <Navigation/>
         <div className="mt-5"></div>
-        <form method="post" >
-          <input onChange={this.uploadImageHandler} type="file" name="fileToUpload" id="fileToUpload" />
-          <input onClick={this.submitImageHandler} value="Upload Image" name="submit" />
+        <form method="post">
+          <input
+            onChange={this.uploadImageHandler}
+            type="file"
+            name="fileToUpload"
+            id="fileToUpload"/>
+          <input onClick={this.submitImageHandler} value="Upload Image" name="submit"/>
         </form>
         <Container>
           {content}

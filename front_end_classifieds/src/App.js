@@ -6,7 +6,8 @@ import {
 } from 'react-router-dom';
 import Admin from './containers/webPages/Admin/Admin';
 import RegistrationPage from './containers/webPages/Admin/Registration';
-import SingleProductView from './components/UI/Navigation/Navigation';
+// import SingleProductView from './components/productCardTypes/verticalCard/verticalCard';
+import SingleProductView from './containers/webPages/SingleProductView/SingleProductView';
 
 class App extends Component {
   render() {
@@ -18,7 +19,7 @@ class App extends Component {
             <Route exact path='/admin' component={Admin}></Route>
             <Route exact path='/admin/login' component={Admin}></Route>
             <Route exact path='/admin/register' component={RegistrationPage}></Route>
-            {/* <Route path={'/products'} exact component={SingleProductView}/> */}
+            <Route path={'/product'} exact component={SingleProductView}/>  
           </div>
         </div>
       </BrowserRouter>
