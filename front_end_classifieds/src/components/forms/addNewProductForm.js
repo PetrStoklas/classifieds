@@ -7,7 +7,7 @@ import CategoriesNav from '../categoriesNav/categoriesNav';
 import fetchCategories from '../../axios_routes/categories_axios';
 import {
     // BrowserRouter as Router,
-    Route
+    // Route
   } from "react-router-dom";
 
 

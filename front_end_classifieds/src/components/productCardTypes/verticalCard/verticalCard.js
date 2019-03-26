@@ -20,6 +20,7 @@ const VerticalCard = props => {
   
   if (props) {
 
+
     card = (
       <Card className="w-100 mx-1 my-3 border-0">
         <div className={classes.RoundCorners}>

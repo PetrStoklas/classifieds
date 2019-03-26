@@ -44,7 +44,6 @@ class SearchForm extends Component {
 
   render() {
 
-    console.log('searchForm options----', this.props.categories);
     if (this.state.productId) {
       console.log(this.state.productId);
     }

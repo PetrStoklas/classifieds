@@ -79,7 +79,6 @@ class Home extends Component {
   }
 
   getProductsWithCategory = (id) => {
-    // this.setState({productsId: id, productsWithCategory: []});
     fetchProducts
       .get('/' + id)
       .then(res => {
@@ -113,7 +112,6 @@ class Home extends Component {
 
   render() {
     
-    console.log(this.state.productsId);
 
     let jumbotron = <Spinner/>
     if (this.state.categories.length > 0) {
