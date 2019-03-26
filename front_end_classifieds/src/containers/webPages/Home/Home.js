@@ -113,6 +113,8 @@ class Home extends Component {
 
   render() {
     
+    console.log(this.state.productsId);
+
     let jumbotron = <Spinner/>
     if (this.state.categories.length > 0) {
       jumbotron = <Jumbotron
