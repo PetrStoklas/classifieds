@@ -95,4 +95,5 @@ return (
 )
 }
 
+
 export default card_detail

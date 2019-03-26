@@ -11,6 +11,7 @@ import {
 import Jumbotron from '../../../components/header/header';
 import CardsSection from '../../sections/AddsCardSection';
 import Navigation from '../../../components/UI/Navigation/Navigation';
+import SingleProductView from '../SingleProductView/SingleProductView';
 
 class Home extends Component {
 
@@ -19,6 +20,7 @@ class Home extends Component {
     subCategories: [],
     color: true,
     active_category: null,
+    active_product_id: null,
     productsId: null,
     productsAll: [],
     productsWithImages: [],
@@ -82,12 +84,14 @@ class Home extends Component {
       .get('/' + id)
       .then(res => {
         console.log(res.data);
-        this.setState({
-          productsWithCategory: res.data
-        })
+        this.setState({productsWithCategory: res.data})
       })
       .catch(err => console.log(err))
+  }
 
+  getClickedId = id => {
+    console.log(id);
+    this.setState({active_product_id: id})
   }
 
   getProducts = e => {
@@ -108,66 +112,41 @@ class Home extends Component {
   }
 
   render() {
-
-
-    if (!this.isEmpty(this.state.productsAll)){
-      this.state.productsAll.map(product => {
-        // console.log('product info', product['product'],'images', product['images']);
-      })
-      // this.state.productsAll[0].map(product => {
-      //   console.log(product);
-      // })
-  
-      // this.state.productsAll[1].map(image => {
-      //   console.log(image);
-      // })
-      
-      // console.log('prod and img----', this.state.productsAll);
-      // console.log('products----', this.state.productsAll);
-      
-      
-    }
     
-    
-
     let jumbotron = <Spinner/>
     if (this.state.categories.length > 0) {
       jumbotron = <Jumbotron
         categories={this.state.categories}
         getCategoryId=
-        {(id) => {this.getProductsWithCategory(id); console.log('home', id)}}/>
+        {(id) => {this.getProductsWithCategory(id); 
+        console.log('home', id)}}/>
     }
 
     return (
       <div>
-        <Navigation/> {jumbotron}
+        <Navigation/> 
+        {jumbotron}
         <Container>
           <Row>
             <Col md="6">
-              <Form onSubmit={this.getProducts}>
-                <Route
-                  path="/"
-                  exact
-                  component={() => <CategoriesNav
-                  categories={this.state.categories}
-                  getSubcategories={this.getChildren}
-                  getAllProducts={this.getProductsWithCategory} />}
-                />
-                  
-                <Route
-                  path={'/' + this.state.active_category}
-                  exact
-                  component={() => <CategoriesNav 
-                  subCats={this.state.subCategories} 
-                  productsId={this.state.productsId} /> }
-                />
-
-                <Button >Get Cars</Button>
-              </Form>
+              <Route
+                path="/"
+                exact
+                component={() => <CategoriesNav
+                categories={this.state.categories}
+                getSubcategories={this.getChildren}
+                getAllProducts={this.getProductsWithCategory}/>}/>
+              <Route
+                path={'/' + this.state.active_category}
+                exact
+                component=
+                {() => <CategoriesNav subCats={this.state.subCategories} productsId={this.state.productsId} /> }/>
+              <Route path="/product" exact component={SingleProductView}/>
             </Col>
           </Row>
           <Row>
             <CardsSection
+              getClickedId={this.getClickedId}
               cardsData={(this.state.productsWithCategory.length === 0)
               ? this.state.productsAll
               : this.state.productsWithCategory}/>

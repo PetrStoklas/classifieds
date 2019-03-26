@@ -1,37 +1,35 @@
 import React, {Component} from 'react'
-// import {Row, Col, Container} from 'reactstrap';
-import VerticalCard from '../../components/productCardTypes/verticalCard/verticalCard';
+import Card from '../../components/productCardTypes/verticalCard/verticalCard';
 
 class CardsContainer extends Component {
 
-  
+  seeProduct = props => {
+    console.log('see product details')    
+  }
+
   render() {
     let cards = '';
     cards = this
       .props
       .cardsData
       .map(res => 
+      <Card
+        key={res.id}
+        name={res.title}
+        price={res.price}
+        created={res.created_at}
+        description={res.description}
+        productView={() => {
+          this.props.getClickedId(res.id)
+          }}
+        />);
 
-        <VerticalCard
-        images={res['images']}
-        key={res['product'].id}
-        name={res['product'].title}
-        price={res['product'].price}
-        // created={res['product'].created_at}
-        // description={res['product'].description}
-        
-        />
-        
-        // console.log('ress ----- ', res['product'].title),
-    // console.log('cards data',this.props.cardsData
-    );
 
     return (
       <div>
         <div className="d-flex flex-wrap">
           {cards}
         </div>
-
       </div>
     );
   }

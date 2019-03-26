@@ -5,7 +5,6 @@ import fetchProduct from '../../../axios_routes/products_axios';
 import fetchLogin from '../../../axios_routes/auth_routes';
 import getJwt from '../../../utilites/jwt';
 import UserAdminSection from '../../../components/user_admin_section/user_admin_section';
-import Navigation from '../../../components/UI/Navigation/Navigation';
 import {
   // Form, Button,
   Container
@@ -13,9 +12,9 @@ import {
 import LoginForm from '../../../components/Register/RegisterForm';
 import axios from 'axios';
 import AddNewProductForm from '../../../components/forms/addNewProductForm';
+import Navigation from '../../../components/UI/Navigation/Navigation';
 import fetchCategories from '../../../axios_routes/categories_axios';
 
-// import axios from 'axios';
 
 class Admin extends Component {
 
@@ -38,7 +37,7 @@ class Admin extends Component {
   componentDidMount() {
 
     let token = getJwt();
-    if(token) {
+    if (token) {
       this.setState({
         ...this.state,
         userLoggedIn: true
