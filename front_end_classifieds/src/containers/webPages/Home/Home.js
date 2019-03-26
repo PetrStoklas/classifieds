@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 // import classes from './Home.module.css';
 import fetchCategories from '../../../axios_routes/categories_axios';
 import fetchProducts from '../../../axios_routes/products_axios';
-import {Container, Row, Col, Spinner} from 'reactstrap';
+import {Container, Row, Col, Spinner, Button, Form} from 'reactstrap';
 import CategoriesNav from '../../../components/categoriesNav/categoriesNav';
 import {
   // BrowserRouter as Router,
@@ -90,6 +90,14 @@ class Home extends Component {
 
   }
 
+  getProducts = e => {
+    e.preventDefault();
+    const id = this.state.productId;
+    this
+      .props
+      .getProducts(id)
+  }
+
   // CAN CHECK IF JSON OBJECT IS FILLED ALREADY
   isEmpty(obj) {
     for(var key in obj) {
@@ -136,21 +144,26 @@ class Home extends Component {
         <Container>
           <Row>
             <Col md="6">
-
-              <Route
-                path="/"
-                exact
-                component={() => <CategoriesNav
-                categories={this.state.categories}
-                getSubcategories={this.getChildren}
-                getAllProducts={this.getProductsWithCategory}/>}
+              <Form onSubmit={this.getProducts}>
+                <Route
+                  path="/"
+                  exact
+                  component={() => <CategoriesNav
+                  categories={this.state.categories}
+                  getSubcategories={this.getChildren}
+                  getAllProducts={this.getProductsWithCategory} />}
                 />
-                
-              <Route
-                path={'/' + this.state.active_category}
-                exact
-                component=
-                {() => <CategoriesNav subCats={this.state.subCategories} productsId={this.state.productsId} /> }/>
+                  
+                <Route
+                  path={'/' + this.state.active_category}
+                  exact
+                  component={() => <CategoriesNav 
+                  subCats={this.state.subCategories} 
+                  productsId={this.state.productsId} /> }
+                />
+
+                <Button >Get Cars</Button>
+              </Form>
             </Col>
           </Row>
           <Row>

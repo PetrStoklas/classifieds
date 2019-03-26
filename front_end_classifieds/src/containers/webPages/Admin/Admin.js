@@ -13,6 +13,7 @@ import {
 import LoginForm from '../../../components/Register/RegisterForm';
 import axios from 'axios';
 import AddNewProductForm from '../../../components/forms/addNewProductForm';
+import fetchCategories from '../../../axios_routes/categories_axios';
 
 // import axios from 'axios';
 
@@ -29,10 +30,13 @@ class Admin extends Component {
       description: null,
       price: null,
       uploadedFiles: null, //image file
-    }
+    },
+    categories: [],
+    subCategories: [],
   }
 
   componentDidMount() {
+
     let token = getJwt();
     if(token) {
       this.setState({
@@ -40,6 +44,46 @@ class Admin extends Component {
         userLoggedIn: true
       })
     }
+
+    fetchCategories
+    .get()
+    .then(categories => {
+      categories
+        .data
+        .map(res => {
+          if (!res.parent_id) {
+            return (this.setState({
+              categories: [
+                ...this.state.categories,
+                res
+              ]
+            }))
+          }
+          return null;
+        });
+    })
+    .catch(err => console.log(err));
+
+  }
+
+  getChildren = e => {
+    this.setState({active_category: e.target.textContent, subCategories: []})
+    let id = e.target.id
+    fetchCategories
+      .get('/' + id)
+      .then(subCategories => {
+        subCategories
+          .data
+          .map(res => {
+            return (this.setState({
+              subCategories: [
+                ...this.state.subCategories,
+                res
+              ]
+            }))
+          })
+      })
+      .catch(err => console.log(err));
   }
 
   checkForLoggUsr = () => {
@@ -114,7 +158,7 @@ class Admin extends Component {
     fd.append('price', this.state.newProduct.price);
     fd.append('description', this.state.newProduct.description);
 
-    
+
     fd.append('category_id', 1); // needs to be dynamic 
 
     fetchProduct
@@ -133,13 +177,17 @@ class Admin extends Component {
   }
   
   render() {
+
+    // console.log('admin.js state----', this.state);
     
     let content = this.state.userLoggedIn
       ? <div>
           {/* <UserAdminSection/> */}
           <AddNewProductForm
             getinputvalues={this.getInputFormValue} 
-            submitform={this.submitProductForm}            
+            submitform={this.submitProductForm}
+            categories={this.state.categories} 
+            subCats={this.state.subCategories}           
           />
         </div>
 

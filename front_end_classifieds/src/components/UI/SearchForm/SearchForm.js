@@ -43,6 +43,8 @@ class SearchForm extends Component {
   }
 
   render() {
+
+    console.log('searchForm options----', this.props.categories);
     if (this.state.productId) {
       console.log(this.state.productId);
     }
@@ -52,10 +54,9 @@ class SearchForm extends Component {
     if (this.state.subSubcategories) {
       subCategories = this.categories;
     }
-    categories = this
-      .state
-      .optionsList
-      .map(res => <option key={res.id} value={res.id}>{res.name}</option>)
+    categories = this.props.categories.map(res => <option key={res.id} value={res.id}>{res.name}</option>)
+
+
     subCategories = this
       .state
       .subSubcategories
@@ -63,13 +64,13 @@ class SearchForm extends Component {
 
     return (
       <Form onSubmit={this.getProducts}>
-        <ButtonToolbar>
+        {/* <ButtonToolbar>
           <ButtonGroup className="mx-auto" size="lg">
             <Button>Left</Button>
             <Button>Middle</Button>
             <Button>Right</Button>
           </ButtonGroup>
-        </ButtonToolbar>
+        </ButtonToolbar> */}
         <Row>
           <Col md="6">
             <FormGroup>
@@ -91,7 +92,6 @@ class SearchForm extends Component {
               </Input>
             </FormGroup>
           </Col>
-          <Button>Get Cars</Button>
         </Row>
       </Form>
     );

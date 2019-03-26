@@ -5,6 +5,11 @@ import Input from '../form/input';
 import addNewProductConfig from '../../config_files/addNewProductConfig';
 import CategoriesNav from '../categoriesNav/categoriesNav';
 import fetchCategories from '../../axios_routes/categories_axios';
+import {
+    // BrowserRouter as Router,
+    Route
+  } from "react-router-dom";
+
 
 class AddNewProductForm extends Component {
 
@@ -13,10 +18,30 @@ class AddNewProductForm extends Component {
         subCategories: [],
     }
 
+    getChildren = e => {
+        this.setState({active_category: e.target.textContent, subCategories: []})
+        let id = e.target.id
+        fetchCategories
+          .get('/' + id)
+          .then(subCategories => {
+            subCategories
+              .data
+              .map(res => {
+                return (this.setState({
+                  subCategories: [
+                    ...this.state.subCategories,
+                    res
+                  ]
+                }))
+              })
+          })
+          .catch(err => console.log(err));
+    }
+
     render() {
         // console.log(addNewProductConfig);
         // console.log('Add new product form ------');
-        // console.log(this.props);
+        console.log('addNewProd props------',this.props);
         let formContent = null;
         formContent = addNewProductConfig.map(config =>
             
@@ -38,10 +63,11 @@ class AddNewProductForm extends Component {
                 <h3>addNewProductForm</h3>
                 <Form onChange={this.props.getinputvalues} onSubmit={this.props.submitform}>
                     {formContent}
-
+                    
                     <CategoriesNav 
-                        categories={this.state.categories}
+                        categories={this.props.categories}
                         getSubcategories={this.getChildren}
+                        subCats={this.props.subCats}
                         // getAllProducts={this.getProductsWithCategory}
                     />
                     <Button type="submit" id="submitUpload">Upload new product</Button>
