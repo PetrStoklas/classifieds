@@ -12,8 +12,8 @@ import {
 import LoginForm from '../../../components/Register/RegisterForm';
 import axios from 'axios';
 import AddNewProductForm from '../../../components/forms/addNewProductForm';
+import Navigation from '../../../components/UI/Navigation/Navigation';
 
-// import axios from 'axios';
 
 class Admin extends Component {
 
@@ -165,7 +165,7 @@ class Admin extends Component {
 
     return (
       <div>
-        {/* <Navigation/> */}
+        <Navigation/>
         
 
         <div className="mt-5"></div>
