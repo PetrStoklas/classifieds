@@ -5,7 +5,6 @@ import images from '../../config_files/brandCards';
 
 const BrandCard = props => {
 
-  console.log(images);
 
   let brandCard = '';
   brandCard = props

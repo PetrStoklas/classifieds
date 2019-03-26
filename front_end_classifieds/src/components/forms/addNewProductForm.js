@@ -42,6 +42,7 @@ class AddNewProductForm extends Component {
         // console.log(addNewProductConfig);
         // console.log('Add new product form ------');
         console.log('addNewProd props------',this.props);
+        
         let formContent = null;
         formContent = addNewProductConfig.map(config =>
             
