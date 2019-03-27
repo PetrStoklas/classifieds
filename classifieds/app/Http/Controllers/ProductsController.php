@@ -73,7 +73,7 @@ class ProductsController extends Controller
         $image = $request->file('image');
         $extension = $image->getClientOriginalExtension(); // NEEDS PARAMETERS???
         Storage::disk('public')->put($image->getFilename().'.'.$extension,  File::get($image));
-        
+
 
 
 
@@ -123,7 +123,14 @@ class ProductsController extends Controller
 
         $leaveIDs = $this->getChildrenIDs($category, []);
 
-        return Product::whereIn('category_id', $leaveIDs)->get();
+        $data_to_return = [];
+        $products = Product::whereIn('category_id', $leaveIDs)->get();
+        foreach($products as $product)
+        {
+            $images = Image::where('product_id', $product->id)->get();    
+            array_push($data_to_return, ['product' => $product, 'images' => $images]); 
+        }
+        return $data_to_return;
     }
 
 

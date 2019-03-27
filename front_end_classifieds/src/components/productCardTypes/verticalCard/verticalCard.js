@@ -26,14 +26,14 @@ const VerticalCard = props => {
       <Card className="w-100 mx-1 my-3 border-0">
         <div className={classes.RoundCorners}>
 
-          {/* <img
+          <img
             className="w-100"
             src={props['images']
             ? "http://127.0.0.1:8000/uploads/products/" + props['images'][0]['filename']
             : ''}
             alt={props['images']
             ? props['images'][0]['original_filename']
-            : 'empty'}/> */}
+            : 'empty'}/>
 
         </div>
         <Container className={classes.CardInfoSection}>
