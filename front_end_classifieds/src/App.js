@@ -18,7 +18,7 @@ class App extends Component {
             <Route exact path='/admin' component={Admin}></Route>
             <Route exact path='/admin/login' component={Admin}></Route>
             <Route exact path='/admin/register' component={RegistrationPage}></Route>
-            <Route path={'/product'} exact component={SingleProductView}/>  
+            <Route path={'/product'} exact component={() => <SingleProductView payload={'something'}/>}/>  
           </div>
         </div>
       </BrowserRouter>

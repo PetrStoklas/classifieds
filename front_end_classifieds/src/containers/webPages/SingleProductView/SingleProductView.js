@@ -20,4 +20,5 @@ class SingleProductView extends Component {
 }
 
 
+
 export default SingleProductView;

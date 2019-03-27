@@ -2,8 +2,7 @@ import React from 'react';
 // import ProductCarousel from '../../UI/ProductCarousel/ProductCarousel';
 import {
   Container, Row, Col, Card,
-  // CardBody,
-  // Button
+  // CardBody, Button
 } from 'reactstrap';
 import classes from './verticalCard.module.css';
 import {ReactComponent as ShareIcon} from '../../../img/share-icon.svg'
@@ -16,20 +15,25 @@ const VerticalCard = props => {
 
   let card = ''
   let shareIcon = <ShareIcon className={classes.Icon}/>
-  
-  
+
   if (props) {
 
     let img = '';
-    console.log(props.images, typeof props.images);
-    console.log(props.images.map(res => {
-      img = <img
-      className="w-100"
-      src={'http://127.0.0.1:8000/uploads/products/' + res.filename}
-      alt={props['images']
-      ? props['images'][0]['original_filename']
-      : 'empty'}/>
-    }))
+    if (props.images) {
+
+      console.log(props.images, typeof props.images);
+      console.log(props.images.map(res => {
+        img = <img
+          className="w-100"
+          src={'http://127.0.0.1:8000/uploads/products/' + res.filename}
+          alt={props['images']
+          ? props['images'][0]['original_filename']
+          : 'empty'}/>
+      }))
+    }
+    // img = <img className="w-100" src={'http://127.0.0.1:8000/uploads/products/' +
+    // res.filename} alt={props['images'] ? props['images'][0]['original_filename']
+    // : 'empty'}/>
 
     card = (
       <Card className="w-100 mx-1 my-3 border-0">
