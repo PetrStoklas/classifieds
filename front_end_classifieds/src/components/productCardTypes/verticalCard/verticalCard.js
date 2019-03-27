@@ -20,20 +20,22 @@ const VerticalCard = props => {
   
   if (props) {
 
+    let img = '';
     console.log(props.images, typeof props.images);
+    console.log(props.images.map(res => {
+      img = <img
+      className="w-100"
+      src={'http://127.0.0.1:8000/uploads/products/' + res.filename}
+      alt={props['images']
+      ? props['images'][0]['original_filename']
+      : 'empty'}/>
+    }))
 
     card = (
       <Card className="w-100 mx-1 my-3 border-0">
         <div className={classes.RoundCorners}>
 
-          {/* <img
-            className="w-100"
-            src={props['images']
-            ? "http://127.0.0.1:8000/uploads/products/" + props['images'][0]['filename']
-            : ''}
-            alt={props['images']
-            ? props['images'][0]['original_filename']
-            : 'empty'}/> */}
+          {img}
 
         </div>
         <Container className={classes.CardInfoSection}>
