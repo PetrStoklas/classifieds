@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {
-  Button,
-  Form,
+  // Button,
+  // Form,
   FormGroup,
   Label,
   Input,
   // FormText,
-  ButtonGroup,
-  ButtonToolbar
+  // ButtonGroup,
+  // ButtonToolbar
 } from 'reactstrap';
 import {Row, Col} from 'reactstrap';
 import categories from '../../../axios_routes/categories_axios'

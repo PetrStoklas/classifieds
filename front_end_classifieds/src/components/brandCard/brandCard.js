@@ -20,7 +20,7 @@ const BrandCard = props => {
       }}>
         <img
           className={styles.BrandLogo}
-          src={'http://127.0.0.1:8000/uploads/brand_icons/' + images[res.name]}/>
+          src={'http://127.0.0.1:8000/uploads/brand_icons/' + images[res.name]} alt='test'/>
       </div>
     ))
 

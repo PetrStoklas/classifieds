@@ -90,6 +90,7 @@ class ProductCarousel extends Component {
         );
       });
   
+      
       return (
         <Carousel
           activeIndex={activeIndex}

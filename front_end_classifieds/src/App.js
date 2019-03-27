@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom';
 import Admin from './containers/webPages/Admin/Admin';
 import RegistrationPage from './containers/webPages/Admin/Registration';
-// import SingleProductView from './components/productCardTypes/verticalCard/verticalCard';
 import SingleProductView from './containers/webPages/SingleProductView/SingleProductView';
 
 class App extends Component {

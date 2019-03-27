@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import fetchCategories from '../../../axios_routes/categories_axios';
 import fetchProducts from '../../../axios_routes/products_axios';
-import {Container, Row, Col, Spinner, Button, Form} from 'reactstrap';
+import {Container, Row, Col, Spinner, 
+  // Button, Form
+} from 'reactstrap';
 import CategoriesNav from '../../../components/categoriesNav/categoriesNav';
 import {
   // BrowserRouter as Router,
@@ -10,7 +12,7 @@ import {
 import Jumbotron from '../../../components/header/header';
 import AddsCardSection from '../../sections/AddsCardSection';
 import Navigation from '../../../components/UI/Navigation/Navigation';
-import SingleProductView from '../SingleProductView/SingleProductView';
+// import SingleProductView from '../SingleProductView/SingleProductView';
 
 class Home extends Component {
 
@@ -144,7 +146,7 @@ class Home extends Component {
                 exact
                 component=
                 {() => <CategoriesNav subCats={this.state.subCategories} productsId={this.state.productsId} /> }/>
-              <Route path="/product" exact component={SingleProductView}/>
+              {/* <Route path="/product" exact component={SingleProductView}/> */}
             </Col>
           </Row>
           <Row>

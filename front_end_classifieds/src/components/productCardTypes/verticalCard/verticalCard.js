@@ -1,9 +1,9 @@
 import React from 'react';
-import ProductCarousel from '../../UI/ProductCarousel/ProductCarousel';
+// import ProductCarousel from '../../UI/ProductCarousel/ProductCarousel';
 import {
   Container, Row, Col, Card,
   // CardBody,
-  Button
+  // Button
 } from 'reactstrap';
 import classes from './verticalCard.module.css';
 import {ReactComponent as ShareIcon} from '../../../img/share-icon.svg'
@@ -27,14 +27,14 @@ const VerticalCard = props => {
           {/* <ProductCarousel images={props.images}/>  */}
           {/*   WHEN ON SERVER -> WE NEED TO CHANGE THE PATH    */}
 
-          {/* <img
+          <img
             className="w-100"
             src={props['images']
             ? "http://127.0.0.1:8000/uploads/products/" + props['images'][0]['filename']
             : ''}
             alt={props['images']
             ? props['images'][0]['original_filename']
-            : 'empty'}/> */}
+            : 'empty'}/>
 
         </div>
         <Container className={classes.CardInfoSection}>

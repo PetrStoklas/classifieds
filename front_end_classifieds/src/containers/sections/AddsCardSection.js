@@ -1,21 +1,21 @@
 import React, {Component} from 'react'
 import Card from '../../components/productCardTypes/verticalCard/verticalCard';
-import {type} from 'os';
+// import {type} from 'os';
 
 class CardsContainer extends Component {
 
   render() {
-    let cards = '';
-    let all = ''
+
+    let allCards = ''
     if (this.props.cardsData) {
-      all = this
+      allCards = this
         .props
         .cardsData
         .map(res => {
-          console.log(res);
+          // console.log(res);
           let singleCard = '';
           let allProducts = Object.keys(res.product);
-          cards = allProducts.map(fres => {
+          allProducts.map(() => {
             // console.log(res.product['title'])
             singleCard = <Card
               category_id={res.product['category_id']}
@@ -39,7 +39,7 @@ class CardsContainer extends Component {
     return (
       <div>
         <div className="d-flex flex-wrap  justify-content-between">
-          {all}
+          {allCards}
         </div>
       </div>
     );

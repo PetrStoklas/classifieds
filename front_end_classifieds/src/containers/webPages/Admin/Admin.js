@@ -4,13 +4,13 @@ import {connect} from 'react-redux';
 import fetchProduct from '../../../axios_routes/products_axios';
 import fetchLogin from '../../../axios_routes/auth_routes';
 import getJwt from '../../../utilites/jwt';
-import UserAdminSection from '../../../components/user_admin_section/user_admin_section';
+// import UserAdminSection from '../../../components/user_admin_section/user_admin_section';
 import {
   // Form, Button,
   Container
 } from 'reactstrap';
 import LoginForm from '../../../components/Register/RegisterForm';
-import axios from 'axios';
+// import axios from 'axios';
 import AddNewProductForm from '../../../components/forms/addNewProductForm';
 import Navigation from '../../../components/UI/Navigation/Navigation';
 import fetchCategories from '../../../axios_routes/categories_axios';
