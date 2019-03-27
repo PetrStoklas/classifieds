@@ -6,7 +6,7 @@ import fetchCategories from '../../axios_routes/categories_axios';
 
 const Categories_nav = props => {
   let categories = '';
-
+  var category_id = null;
   let categoriesType = '';
 
   if (props.categories) {
@@ -30,9 +30,11 @@ const Categories_nav = props => {
   } else {
     categories = <SearchForm
       getProducts={passingIdMiddleware}
-      options={props.categories} // kdyz zmenim na categoriesType tak nefunguje
+      options={props.categories} 
       productsId={props.productsId}
-      categories={categoriesType}/>
+      categories={categoriesType}
+      // categoryId={props.category_id} // category_id of new product passed to 'addNewProductForm.js' -> 'Admin.js'
+    />
   }
 
   return (

@@ -28,6 +28,7 @@ class Admin extends Component {
       title: null,
       description: null,
       price: null,
+      category_id: null,
       uploadedFiles: null, //image file
     },
     categories: [],
@@ -92,9 +93,21 @@ class Admin extends Component {
       : this.setState({userLoggedIn: true});
   }
 
+
+  // // here we get category_id from 'SearchForm.js' when creating new product
+  // setNewProductCategoryId = (e) => {
+  //   // console.log('setting category_id state', e.target.value);
+  //   this.setState({
+  //     newProduct: {
+  //       ...this.state.newProduct,
+  //       category_id: e.target.value,
+  //     }
+  //   })
+  //   // console.log('state set---', this.state.newProduct);
+  // }
+
   getInputFormValue = e => {
     e.preventDefault();
-
     // redo with ternary operator
 
     if (this.state.userLoggedIn) { //if user is logged in -> we are creating new product 
@@ -116,6 +129,7 @@ class Admin extends Component {
             [e.target.id]: e.target.value, 
           }
         })
+        console.log(e.target.id, '=', e.target.value);
       }
       
     } else {
@@ -126,6 +140,7 @@ class Admin extends Component {
           [e.target.name]: e.target.value
         }
       });
+      
     }
     this.checkForLoggUsr();
   }
@@ -156,9 +171,9 @@ class Admin extends Component {
     fd.append('title', this.state.newProduct.title);
     fd.append('price', this.state.newProduct.price);
     fd.append('description', this.state.newProduct.description);
+    fd.append('category_id', this.state.newProduct.category_id);
 
-
-    fd.append('category_id', 1); // needs to be dynamic 
+    // fd.append('category_id', 1); // needs to be dynamic 
 
     fetchProduct
       .post('/', fd,{
@@ -186,7 +201,9 @@ class Admin extends Component {
             getinputvalues={this.getInputFormValue} 
             submitform={this.submitProductForm}
             categories={this.state.categories} 
-            subCats={this.state.subCategories}           
+            subCats={this.state.subCategories}
+            // category_id={this.setNewProductCategoryId} // getting the category_id from 'SearchForm.js'
+            // category_id={}           
           />
         </div>
 
