@@ -1,6 +1,5 @@
 import fetchLogin from '../axios_routes/auth_routes';
-import { push } from 'react-router-redux'
-
+import {push} from 'react-router-redux'
 
 const initialState = {
   userLoggedIn: false,

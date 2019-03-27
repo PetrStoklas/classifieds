@@ -17,19 +17,19 @@ const VerticalCard = props => {
   let shareIcon = <ShareIcon className={classes.Icon}/>
 
   if (props) {
-
+    console.log(props);
     let img = '';
     if (props.images) {
 
-      console.log(props.images, typeof props.images);
-      console.log(props.images.map(res => {
+      // console.log(props.images, typeof props.images);
+      props.images.map(res => {
         img = <img
-          className="w-50"
+          className="w-100"
           src={'http://127.0.0.1:8000/uploads/products/' + res.filename}
           alt={props['images']
           ? props['images'][0]['original_filename']
           : 'empty'}/>
-      }))
+      })
     }
     // img = <img className="w-100" src={'http://127.0.0.1:8000/uploads/products/' +
     // res.filename} alt={props['images'] ? props['images'][0]['original_filename']
