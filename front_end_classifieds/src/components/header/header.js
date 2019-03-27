@@ -7,7 +7,7 @@ import BrandCard from '../brandCard/brandCard';
 
 const header = props => {
 
-  
+  // console.log('header props jumbotrone', props)
 
   return (
     <div>
@@ -18,7 +18,7 @@ const header = props => {
         <BrandCard 
           categories={props}
           getChildrenId={(id) => { props.getCategoryId(id)}}
-          />
+        />
         <p className="lead">
         </p>
       </Jumbotron>

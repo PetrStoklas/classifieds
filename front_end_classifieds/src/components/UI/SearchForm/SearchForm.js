@@ -17,7 +17,7 @@ class SearchForm extends Component {
   state = {
     optionsList: [],
     subSubcategories: [],
-    productId: null
+    productId: null // ??
   }
 
   componentDidMount() {
@@ -45,8 +45,10 @@ class SearchForm extends Component {
 
   render() {
 
+    // console.log('rendering SearchForm.js')
     // console.log('searchForm options----', this.props.categories);
     // console.log('subCatetgories',this.state.subSubcategories);
+    // console.log('productIDprops', this.props.productId)
     if (this.state.productId) {
       // console.log(this.state.productId);
     }
@@ -94,7 +96,7 @@ class SearchForm extends Component {
                 type="select" 
                 name="select" 
                 id="category_id"
-                // onChange={this.props.categoryId}
+                onChange={this.props.categoryId}
               >
                 {subCategories}
               </Input>

@@ -110,7 +110,6 @@ class ProductsController extends Controller
 
         $categories = Category::all();     
         
-        // return view('products_show', compact('products', 'categories'));
         return $data_to_return;
     }
 
@@ -127,6 +126,7 @@ class ProductsController extends Controller
         $products = Product::whereIn('category_id', $leaveIDs)->get();
         foreach($products as $product)
         {
+            // here I am attaching images to its product -> sending them to frontend as "$data_to_return"
             $images = Image::where('product_id', $product->id)->get();    
             array_push($data_to_return, ['product' => $product, 'images' => $images]); 
         }

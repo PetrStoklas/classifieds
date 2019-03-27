@@ -12,7 +12,7 @@ class CardsContainer extends Component {
         .props
         .cardsData
         .map(res => {
-          console.log('res',res);
+          // console.log('res',res);
           let singleCard = '';
           let allProducts = Object.keys(res.product);
           allProducts.map(() => {
@@ -35,7 +35,7 @@ class CardsContainer extends Component {
           })
           return singleCard;
         });
-        console.log('addCard  end ---------')
+        // console.log('addCard  end ---------')
     }
 
     return (
