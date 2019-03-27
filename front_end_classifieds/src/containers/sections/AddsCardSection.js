@@ -26,6 +26,7 @@ class CardsContainer extends Component {
               price={res.product['price']}
               seller_id={res.product['seller_id']}
               updated_at={res.product['updated_at']}
+              images={res.images}
               productView={() => {
               this
                 .props
