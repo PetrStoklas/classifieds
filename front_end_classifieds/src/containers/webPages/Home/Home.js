@@ -93,6 +93,16 @@ class Home extends Component {
       .catch(err => console.log(err))
   }
 
+  getProductsbyBrand = (id) => {
+    fetchProducts
+      .get('/bybrand/' + id)
+      .then(res => {
+        console.log(res.data);
+        this.setState({productsWithCategory: res.data})
+      })
+      .catch(err => console.log(err))
+  }
+
   getClickedId = id => {
     console.log(id);
     this.setState({active_product_id: id})
@@ -123,7 +133,7 @@ class Home extends Component {
       jumbotron = <Jumbotron
         categories={this.state.categories}
         getCategoryId=
-        {(id) => {this.getProductsWithCategory(id); 
+        {(id) => {this.getProductsbyBrand(id); 
         console.log('home', id)}}/>
     }
 
