@@ -4,10 +4,6 @@ import {type} from 'os';
 
 class CardsContainer extends Component {
 
-  seeProduct = props => {
-    console.log('see product details')
-  }
-
   render() {
     let cards = '';
     let all = ''
@@ -16,27 +12,27 @@ class CardsContainer extends Component {
         .props
         .cardsData
         .map(res => {
-          // console.log(res);
-          let foo = '';
-          let arr = Object.keys(res.product);
-          cards = arr.map(fres => {
+          console.log(res);
+          let singleCard = '';
+          let allProducts = Object.keys(res.product);
+          cards = allProducts.map(fres => {
             // console.log(res.product['title'])
-            foo = <Card
-              category_id={res.product[fres]}
-              created={res.product[fres]}
+            singleCard = <Card
+              category_id={res.product['category_id']}
+              created={res.product['created_at']}
               name={res.product['title']}
-              description={res.product[fres]}
+              description={res.product['description']}
               key={res.product['id']}
               price={res.product['price']}
-              seller_id={res.product[fres]}
-              updated_at={res.product[fres]}
+              seller_id={res.product['seller_id']}
+              updated_at={res.product['updated_at']}
               productView={() => {
               this
                 .props
                 .getClickedId(res.id)
             }}/>
           })
-          return foo;
+          return singleCard;
         });
     }
 

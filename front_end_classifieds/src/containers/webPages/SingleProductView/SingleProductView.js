@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import Navigation from '../../../components/UI/Navigation/Navigation';
-import FullCardView from '../../../components/productCardTypes/verticalCard/verticalCard';
+import VerticalCard from '../../../components/productCardTypes/verticalCard/verticalCard';
 import {Container} from 'reactstrap';
 
 class SingleProductView extends Component {
@@ -11,13 +11,13 @@ class SingleProductView extends Component {
       <div>
         <Navigation/>
         <Container>
-
           <p>All Products Will Come Here</p>
-          <FullCardView/>
+          <VerticalCard name={this.props.name}/>
         </Container>
       </div>
     );
   }
 }
+
 
 export default SingleProductView;
