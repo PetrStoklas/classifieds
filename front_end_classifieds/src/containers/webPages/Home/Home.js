@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-// import classes from './Home.module.css';
 import fetchCategories from '../../../axios_routes/categories_axios';
 import fetchProducts from '../../../axios_routes/products_axios';
 import {Container, Row, Col, Spinner, Button, Form} from 'reactstrap';
@@ -9,7 +8,7 @@ import {
   Route
 } from "react-router-dom";
 import Jumbotron from '../../../components/header/header';
-import CardsSection from '../../sections/AddsCardSection';
+import AddsCardSection from '../../sections/AddsCardSection';
 import Navigation from '../../../components/UI/Navigation/Navigation';
 import SingleProductView from '../SingleProductView/SingleProductView';
 
@@ -27,7 +26,7 @@ class Home extends Component {
     productsWithCategory: []
   }
 
-  componentDidMount() {
+  componentWillMount() {
     fetchCategories
       .get()
       .then(categories => {
@@ -51,8 +50,12 @@ class Home extends Component {
     // HOW TO GET IMAGES TO THE PRODUCT ?   getting two arrays ($products AND $images)
     fetchProducts
       .get()
-      .then(res => this.setState({
-        productsAll: res.data}))
+      .then(res => {
+        this.setState({
+          ...this.state.productsAll,
+          productsAll: res.data
+        })
+      })
       .catch(err => console.log(err));
     fetchCategories.get()
       // console.log('products and images',this.state.productsAll);
@@ -111,7 +114,7 @@ class Home extends Component {
   }
 
   render() {
-    
+    // console.log(this.state.productsAll)
 
     let jumbotron = <Spinner/>
     if (this.state.categories.length > 0) {
@@ -125,7 +128,7 @@ class Home extends Component {
     return (
       <div>
         <Navigation/> 
-        {jumbotron}
+        { jumbotron }
         <Container>
           <Row>
             <Col md="6">
@@ -145,7 +148,7 @@ class Home extends Component {
             </Col>
           </Row>
           <Row>
-            <CardsSection
+            <AddsCardSection
               getClickedId={this.getClickedId}
               cardsData={(this.state.productsWithCategory.length === 0)
               ? this.state.productsAll

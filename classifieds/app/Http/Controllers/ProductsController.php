@@ -99,8 +99,22 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        return Product::where('category_id', $id)->get();
+        $product = Product::where('category_id', $id)->get();
+        $data_to_return = [];
+        foreach($product as $product)
+        {
+            // here I am attaching images to its product -> sending them to frontend as "$data_to_return"
+            $images = Image::where('product_id', $product->id)->get();    
+            array_push($data_to_return, ['product' => $product, 'images' => $images]);
+        }
+
+        $categories = Category::all();     
+        
+        // return view('products_show', compact('products', 'categories'));
+        return $data_to_return;
     }
+
+
 
     public function get_products_by_parent_id($id)
     {

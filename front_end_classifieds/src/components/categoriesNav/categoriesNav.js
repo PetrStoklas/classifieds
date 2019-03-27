@@ -11,6 +11,7 @@ const Categories_nav = props => {
 
   if (props.categories) {
     categoriesType = props.categories;
+    // console.log('categoriesNav.js----',categoriesType);
   } else if (props.subCats) {
     categoriesType = props.subCats
 
