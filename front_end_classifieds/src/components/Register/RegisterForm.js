@@ -11,6 +11,7 @@ const RegisterFrom = props => {
 
   const createRegisterForm = () => {
     let registrationForm = <Spinner/>
+    
     registrationForm = loginForm.map(formElements => <FormComponent
       key={formElements.label_for}
       generalType={formElements.generalType}
@@ -19,6 +20,7 @@ const RegisterFrom = props => {
       label_for={formElements.label_for}
       title={formElements.label_for}
       formdata={props.getinputvalues}/>);
+
     return registrationForm;
   }
 

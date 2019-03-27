@@ -68,3 +68,7 @@
 .Column {
     width: 45%;
 }
+
+.Icon {
+    transform: rotate(90deg);
+}

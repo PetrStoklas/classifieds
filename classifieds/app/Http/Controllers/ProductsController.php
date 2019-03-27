@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
 use App\User;
 use App\Image;
+
+
 
 class ProductsController extends Controller
 {
@@ -19,13 +22,22 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        // it should be possible to use "toJson() for the returned data?"
+        // https://laravel.com/docs/5.8/eloquent-serialization
+
         $products = Product::all();
-        // $the = Product::find(20);
+        $data_to_return = [];
+        foreach($products as $product)
+        {
+            // here I am attaching images to its product -> sending them to frontend as "$data_to_return"
+            $images = Image::where('product_id', $product->id)->get();    
+            array_push($data_to_return, ['product' => $product, 'images' => $images]);
+        }
+
         $categories = Category::all();     
         
         // return view('products_show', compact('products', 'categories'));
-        return $products;
+        return $data_to_return;
     }
 
     /**
@@ -54,9 +66,28 @@ class ProductsController extends Controller
         $product->description = $request->description;
         $product->price = $request->price;
         $product->category_id = $request->category_id;
-        $product->seller_id = $request->seller_id;
+        $product->seller_id = 1;
         // dd($product);
         $product->save();
+
+        $image = $request->file('image');
+        $extension = $image->getClientOriginalExtension(); // NEEDS PARAMETERS???
+        Storage::disk('public')->put($image->getFilename().'.'.$extension,  File::get($image));
+        
+
+
+
+        //creating and inserting image into DB('images')
+        $new_image = new Image;
+        $new_image->product_id = $product->id;
+        $new_image->filename = $image->getFilename().'.'.$extension;
+        $new_image->original_filename = $image->getClientOriginalName();
+        $new_image->mime = $image->getClientMimeType();
+        $new_image->save();
+
+        // session()->flash('success_message', 'Success!');
+
+        // return redirect('/products');
 
     }
 
@@ -68,8 +99,22 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        return Product::where('category_id', $id)->get();
+        $product = Product::where('category_id', $id)->get();
+        $data_to_return = [];
+        foreach($product as $product)
+        {
+            // here I am attaching images to its product -> sending them to frontend as "$data_to_return"
+            $images = Image::where('product_id', $product->id)->get();    
+            array_push($data_to_return, ['product' => $product, 'images' => $images]);
+        }
+
+        $categories = Category::all();     
+        
+        // return view('products_show', compact('products', 'categories'));
+        return $data_to_return;
     }
+
+
 
     public function get_products_by_parent_id($id)
     {

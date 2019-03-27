@@ -2,14 +2,15 @@ import React from 'react';
 import {ListGroup, ListGroupItem} from 'reactstrap';
 import {Link} from "react-router-dom";
 import SearchForm from '../UI/SearchForm/SearchForm';
+// import fetchCategories from '../../axios_routes/categories_axios';
 
 const Categories_nav = props => {
   let categories = '';
-
   let categoriesType = '';
 
   if (props.categories) {
     categoriesType = props.categories;
+    // console.log('categoriesNav.js----',categoriesType);
   } else if (props.subCats) {
     categoriesType = props.subCats
 
@@ -28,8 +29,11 @@ const Categories_nav = props => {
   } else {
     categories = <SearchForm
       getProducts={passingIdMiddleware}
-      options={props.categories}
-      productsId={props.productsId}/>
+      options={props.categories} 
+      productsId={props.productsId}
+      categories={categoriesType}
+      // categoryId={props.category_id} // category_id of new product passed to 'addNewProductForm.js' -> 'Admin.js'
+    />
   }
 
   return (

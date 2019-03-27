@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {
-  Button,
-  Form,
+  // Button,
+  // Form,
   FormGroup,
   Label,
   Input,
   // FormText,
-  ButtonGroup,
-  ButtonToolbar
+  // ButtonGroup,
+  // ButtonToolbar
 } from 'reactstrap';
 import {Row, Col} from 'reactstrap';
 import categories from '../../../axios_routes/categories_axios'
@@ -31,6 +31,7 @@ class SearchForm extends Component {
       .catch(err => console.log(err));
 
     this.setState({productId: e.target.value});
+    
   }
 
   // passing the selected category to home view via categories_nav component
@@ -43,8 +44,11 @@ class SearchForm extends Component {
   }
 
   render() {
+
+    // console.log('searchForm options----', this.props.categories);
+    // console.log('subCatetgories',this.state.subSubcategories);
     if (this.state.productId) {
-      console.log(this.state.productId);
+      // console.log(this.state.productId);
     }
 
     let categories = '';
@@ -52,24 +56,24 @@ class SearchForm extends Component {
     if (this.state.subSubcategories) {
       subCategories = this.categories;
     }
-    categories = this
-      .state
-      .optionsList
-      .map(res => <option key={res.id} value={res.id}>{res.name}</option>)
+    categories = this.props.categories.map(res => <option key={res.id} value={res.id}>{res.name}</option>)
+
+
     subCategories = this
       .state
       .subSubcategories
       .map(res => <option key={res.id} value={res.id}>{res.name}</option>)
 
     return (
-      <Form onSubmit={this.getProducts}>
-        <ButtonToolbar>
+      <>
+      {/* <Form onSubmit={this.getProducts}> */}
+        {/* <ButtonToolbar>
           <ButtonGroup className="mx-auto" size="lg">
             <Button>Left</Button>
             <Button>Middle</Button>
             <Button>Right</Button>
           </ButtonGroup>
-        </ButtonToolbar>
+        </ButtonToolbar> */}
         <Row>
           <Col md="6">
             <FormGroup>
@@ -86,14 +90,19 @@ class SearchForm extends Component {
           <Col md="6">
             <FormGroup>
               <Label for="model_select">Select Model</Label>
-              <Input type="select" name="select" id="model_select">
+              <Input 
+                type="select" 
+                name="select" 
+                id="category_id"
+                // onChange={this.props.categoryId}
+              >
                 {subCategories}
               </Input>
             </FormGroup>
           </Col>
-          <Button>Get Cars</Button>
         </Row>
-      </Form>
+      {/* </Form> */}
+      </>
     );
   }
 }

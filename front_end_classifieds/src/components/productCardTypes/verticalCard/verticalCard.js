@@ -1,20 +1,46 @@
 import React from 'react';
-import ProductCarousel from '../../UI/ProductCarousel/ProductCarousel';
+// import ProductCarousel from '../../UI/ProductCarousel/ProductCarousel';
 import {
   Container, Row, Col, Card,
   // CardBody, Button
 } from 'reactstrap';
 import classes from './verticalCard.module.css';
 import {ReactComponent as ShareIcon} from '../../../img/share-icon.svg'
+import {
+  Link,
+  // Route
+} from 'react-router-dom'
 
 const VerticalCard = props => {
 
   let card = ''
+  let shareIcon = <ShareIcon className={classes.Icon}/>
+
   if (props) {
+
+    let img = '';
+    if (props.images) {
+
+      console.log(props.images, typeof props.images);
+      console.log(props.images.map(res => {
+        img = <img
+          className="w-50"
+          src={'http://127.0.0.1:8000/uploads/products/' + res.filename}
+          alt={props['images']
+          ? props['images'][0]['original_filename']
+          : 'empty'}/>
+      }))
+    }
+    // img = <img className="w-100" src={'http://127.0.0.1:8000/uploads/products/' +
+    // res.filename} alt={props['images'] ? props['images'][0]['original_filename']
+    // : 'empty'}/>
+
     card = (
       <Card className="w-100 mx-1 my-3 border-0">
         <div className={classes.RoundCorners}>
-          <ProductCarousel/>
+
+          {img}
+
         </div>
         <Container className={classes.CardInfoSection}>
           <hr className={classes.Hr}/>
@@ -38,8 +64,13 @@ const VerticalCard = props => {
 
             <Col className="col-4 d-flex flex-column justify-content-between mx-1">
               <Row className="mr-2 mb-2 d-flex flex-row justify-content-end">
-                <ShareIcon/>
-
+                <Link
+                  to={{
+                  pathname: "/product",
+                  search: props.id
+                }}>
+                  {shareIcon}
+                </Link>
               </Row>
               <Row className="empty mx-1 d-flex flex-row justify-content-between">
                 <span className={classes.Blue}>-</span>
@@ -47,7 +78,7 @@ const VerticalCard = props => {
               <Row className="mx-2 d-flex flex-row justify-content-between">
                 <span className={classes.Text}>Prague, cz</span>
                 <div>
-                  <span className={classes.Price}>300000</span>
+                  <span className={classes.Price}>{props.price}</span>
                   <span className={classes.Text}>czk</span>
                 </div>
               </Row>

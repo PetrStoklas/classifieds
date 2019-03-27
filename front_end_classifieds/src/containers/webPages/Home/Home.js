@@ -1,16 +1,18 @@
 import React, {Component} from 'react'
-// import classes from './Home.module.css';
 import fetchCategories from '../../../axios_routes/categories_axios';
 import fetchProducts from '../../../axios_routes/products_axios';
-import {Container, Row, Col, Spinner} from 'reactstrap';
+import {Container, Row, Col, Spinner, 
+  // Button, Form
+} from 'reactstrap';
 import CategoriesNav from '../../../components/categoriesNav/categoriesNav';
 import {
   // BrowserRouter as Router,
   Route
 } from "react-router-dom";
 import Jumbotron from '../../../components/header/header';
-import CardsContainer from '../../sections/AddsCardSection';
+import AddsCardSection from '../../sections/AddsCardSection';
 import Navigation from '../../../components/UI/Navigation/Navigation';
+// import SingleProductView from '../SingleProductView/SingleProductView';
 
 class Home extends Component {
 
@@ -19,12 +21,14 @@ class Home extends Component {
     subCategories: [],
     color: true,
     active_category: null,
+    active_product_id: null,
     productsId: null,
     productsAll: [],
+    productsWithImages: [],
     productsWithCategory: []
   }
 
-  componentDidMount() {
+  componentWillMount() {
     fetchCategories
       .get()
       .then(categories => {
@@ -43,12 +47,20 @@ class Home extends Component {
           });
       })
       .catch(err => console.log(err));
-    // Get All Products
+    // Get All Products     
+    
+    // HOW TO GET IMAGES TO THE PRODUCT ?   getting two arrays ($products AND $images)
     fetchProducts
       .get()
-      .then(res => this.setState({productsAll: res.data}))
+      .then(res => {
+        this.setState({
+          ...this.state.productsAll,
+          productsAll: res.data
+        })
+      })
       .catch(err => console.log(err));
     fetchCategories.get()
+      // console.log('products and images',this.state.productsAll);
   }
 
   getChildren = e => {
@@ -72,32 +84,53 @@ class Home extends Component {
   }
 
   getProductsWithCategory = (id) => {
-    // this.setState({productsId: id, productsWithCategory: []});
     fetchProducts
       .get('/' + id)
       .then(res => {
         console.log(res.data);
-        this.setState({
-          productsWithCategory: res.data
-        })
+        this.setState({productsWithCategory: res.data})
       })
       .catch(err => console.log(err))
+  }
 
+  getClickedId = id => {
+    console.log(id);
+    this.setState({active_product_id: id})
+  }
+
+  getProducts = e => {
+    e.preventDefault();
+    const id = this.state.productId;
+    this
+      .props
+      .getProducts(id)
+  }
+
+  // CAN CHECK IF JSON OBJECT IS FILLED ALREADY
+  isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
   }
 
   render() {
+    // console.log(this.state.productsAll)
 
     let jumbotron = <Spinner/>
     if (this.state.categories.length > 0) {
       jumbotron = <Jumbotron
         categories={this.state.categories}
         getCategoryId=
-        {(id) => {this.getProductsWithCategory(id); console.log('home', id)}}/>
+        {(id) => {this.getProductsWithCategory(id); 
+        console.log('home', id)}}/>
     }
 
     return (
       <div>
-        <Navigation/> {jumbotron}
+        <Navigation/> 
+        { jumbotron }
         <Container>
           <Row>
             <Col md="6">
@@ -113,10 +146,12 @@ class Home extends Component {
                 exact
                 component=
                 {() => <CategoriesNav subCats={this.state.subCategories} productsId={this.state.productsId} /> }/>
+              {/* <Route path="/product" exact component={SingleProductView}/> */}
             </Col>
           </Row>
           <Row>
-            <CardsContainer
+            <AddsCardSection
+              getClickedId={this.getClickedId}
               cardsData={(this.state.productsWithCategory.length === 0)
               ? this.state.productsAll
               : this.state.productsWithCategory}/>
