@@ -4,12 +4,13 @@ import ProductCarousel from '../../UI/ProductCarousel/ProductCarousel';
 import './productCardDetail.css';
 
 const card_detail = props => {
+    console.log(props);
 return (
     <Col md="6" lg="4">
     <Card body className="w-100 border-0">
         <Row className="product-image">
         <div className="product-image">
-            <ProductCarousel/>
+            {/* <ProductCarousel/> */}
         </div>
         </Row>
         <Row className="card_info_section">

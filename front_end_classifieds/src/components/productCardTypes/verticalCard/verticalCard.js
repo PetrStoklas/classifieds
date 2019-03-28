@@ -63,9 +63,9 @@ const VerticalCard = props => {
                 <div className={props.id} >
 
                 <Link
+                  id={props.product_id}
                   to={{  
-                  pathname: "/product",
-                  search: props.id
+                  pathname: `/product/${props.product_id}`,
                 }}>
                   {shareIcon}
                 </Link>
