@@ -144,10 +144,9 @@ class Home extends Component {
                 getAllProducts={this.getProductsWithCategory}/>}/>
               <Route
                 path={'/' + this.state.active_category}
-                exact
                 component=
                 {() => <CategoriesNav subCats={this.state.subCategories} productsId={this.state.productsId} /> }/>
-              <Route path="/product" exact component={SingleProductView}/>
+              <Route path="/product" component={() => <SingleProductView />}/>
             </Col>
           </Row>
           <Row>

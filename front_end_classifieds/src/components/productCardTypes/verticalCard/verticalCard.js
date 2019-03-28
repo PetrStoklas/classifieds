@@ -21,7 +21,6 @@ const VerticalCard = props => {
     let img = '';
     if (props.images) {
 
-      // console.log(props.images, typeof props.images);
       props.images.map(res => {
         img = <img
           className="w-100"
