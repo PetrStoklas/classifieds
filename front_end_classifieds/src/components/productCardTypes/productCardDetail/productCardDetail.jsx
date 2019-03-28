@@ -17,7 +17,7 @@ return (
         <Container className="car_info rounded mt-2 mx-2 px-1">
             <hr/>
             <div className="title">
-            <h3>Dodge Challenger srt</h3>
+            <h3>{props.title}</h3>
             </div>
 
             <div className="info_wrap">
