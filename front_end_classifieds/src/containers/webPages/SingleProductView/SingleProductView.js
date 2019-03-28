@@ -10,6 +10,7 @@ class SingleProductView extends Component {
     productData: null,
     productImages: null,
   }
+
   componentDidMount() {
     fetchSingleProduct('/' + this.props.match.params.product_id).then(res => {
       // console.log(res);
@@ -25,14 +26,24 @@ class SingleProductView extends Component {
   }
 
   render() {
-    console.log('product data',this.state.productData);
-
+    let images = []
+    if(this.state.productImages){
+      this.state.productImages.map(res => {
+        let items = new Object();
+        items.src = 'http://127.0.0.1:8000/uploads/products/' + res.filename;
+        items.altTest = res.filename;
+        // items.caption = 'caprion one';
+        images.push(items);
+        return items;
+      })
+    }
+    console.log(images);
     let product = <Spinner/>
 
     if(this.state.productData){
       product = <ProductCardDetail 
         productData={this.state.productData}
-        images={this.state.productImages}
+        images={images}
       />
     }
     return (
