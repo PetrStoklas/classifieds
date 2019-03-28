@@ -74,6 +74,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::apiResource('/products','ProductsController');
             Route::apiResource('/categories','CategoriesController');
             Route::get('/products/bybrand/{id}', 'ProductsController@get_products_by_parent_id');
+            Route::get('/products/byseller/{id}', 'ProductsController@get_products_by_seller_id');
             Route::post('register', 'UserController@register');
             Route::post('login', 'UserController@authenticate');
             Route::get('open', 'DataController@open');

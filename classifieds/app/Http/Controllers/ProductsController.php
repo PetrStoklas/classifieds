@@ -142,6 +142,11 @@ class ProductsController extends Controller
         return $data_to_return;
     }
 
+    public function get_products_by_seller_id($id)
+    {
+        return Product::where('seller_id', $id);
+    }
+
 
 
     public function get_products_by_parent_id($id)
