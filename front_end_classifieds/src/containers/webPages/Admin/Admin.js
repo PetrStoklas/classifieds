@@ -16,6 +16,7 @@ import AddNewProductForm from '../../../components/forms/addNewProductForm';
 import Navigation from '../../../components/UI/Navigation/Navigation';
 import AdminNavigatoion from '../../../components/UI/AdminNavigatoion/AdminNavigatoion'
 import fetchCategories from '../../../axios_routes/categories_axios';
+import AdminProductList from '../../../components/AdminProductList/AdminProductList';
 
 
 class Admin extends Component {
@@ -244,7 +245,7 @@ class Admin extends Component {
             submitform={this.submitForm}
           />
         </div>
-  let currentLoc  = this.props.location.pathname;
+  let currentLocUrl  = this.props.location.pathname;
     return (
       <Router>
         <div>
@@ -256,7 +257,9 @@ class Admin extends Component {
               <AdminNavigatoion/>
               </Col>
               <Col md='8'>
-                <Route exact path={currentLoc + '/add_product'} component={() => content} ></Route>
+              {/* {content} */}
+                <Route exact path={currentLocUrl + '/add_product'} component={() => content} ></Route>
+                <Route exact path={currentLocUrl + '/allProductsList'} component={() => <AdminProductList/>} ></Route>
               </Col>
             </Row>
           </Container>
