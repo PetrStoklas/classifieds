@@ -189,6 +189,11 @@ class Admin extends Component {
         alert('failed to upload your product')
       });
   }
+
+  sayId(id){
+    console.log('id from Admin.js',id)
+    // return e.target.value
+  }  
   
   render() {
 
@@ -202,6 +207,7 @@ class Admin extends Component {
             submitform={this.submitProductForm}
             categories={this.state.categories} 
             subCats={this.state.subCategories}
+            catId={this.sayId}
             context={'admin'}
             // category_id={this.setNewProductCategoryId} // getting the category_id from 'SearchForm.js'
             // category_id={}           

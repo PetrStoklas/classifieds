@@ -85,6 +85,7 @@ class Home extends Component {
   }
 
   getProductsWithCategory = (id) => {
+    console.log('id FROM home', id)
     fetchProducts
       .get('/' + id)
       .then(res => {
