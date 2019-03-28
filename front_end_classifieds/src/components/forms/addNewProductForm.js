@@ -55,6 +55,7 @@ class AddNewProductForm extends Component {
                 label_for = {config.label_for}
                 title = {config.title}
                 multiple = {config.multiple}
+                placeholder = {config.input_placeholder}
             />
         )
         
