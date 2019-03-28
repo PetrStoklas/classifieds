@@ -7,7 +7,7 @@ import { UncontrolledCarousel } from 'reactstrap';
 const card_detail = props => {
     console.log('singelview', props.images);
 return (
-    <Col md="11 mx-auto" lg="4">
+    <Col md="11 mx-auto" lg="7">
     <Card body className="w-100 border-0">
         <Row className="product-image">
         <div className="product-image">
