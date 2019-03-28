@@ -18,10 +18,19 @@ const Categories_nav = props => {
   }
   // ----------------------------------------------------------
 
-  const sayId = (e) => {
-    // console.log('id from categNav',e.target.value)
-    props.categoryId(e.target.value);
+  const passIdToHomeOrAdmin = (e) => {
+    console.log('id from categNav',e.target.value)
+    if(props.context === 'admin'){
+
+    }
+    else if(props.context === 'home'){
+      props.categoryId(e.target.value);
+    }
     // return e.target.value
+  }
+
+  const getId = e => {
+    console.log('getId from categoriesNav', e.target.value);
   }
   //   passing the id to the Home component
   const passingIdMiddleware = (value) => {
@@ -38,9 +47,11 @@ const Categories_nav = props => {
       getProducts={passingIdMiddleware}
       options={props.categories} 
       categories={categoriesType}
+      context={props.context}
 
       productsId={props.productsId}
-      categoryId={sayId} 
+      categoryId={getId} 
+      // getCategoryIdForHome={passIdToHome}
       // category_id of new product passed to 'addNewProductForm.js' -> 'Admin.js'
     />
   }

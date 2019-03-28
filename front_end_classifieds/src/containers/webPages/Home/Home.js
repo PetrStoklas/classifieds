@@ -153,19 +153,23 @@ class Home extends Component {
                       categories={this.state.categories}
                       getSubcategories={this.getChildren}
                       getAllProducts={this.getProductsWithCategory}
-                      categoryId={this.getProductsWithCategory}/>}/>
+                      categoryId={this.getProductsWithCategory}
+                      context={'home'}
+                      />}
+                      />
                   <Route
                     path={'/' + this.state.active_category}
                     exact
                     component = {() => <CategoriesNav
                       subCats={this.state.subCategories} 
                       productsId={this.state.productsId}
+                      context={'home'}
                       // categoryId={this.sayId}
                       /> }/>
                   {/* <Route path="/product" exact component={SingleProductView}/> */}
                 </Col>
               </Row>
-              <Button>Search</Button>
+              {/* <Button>Search</Button> */}
             </Form>
             <Row>
               <AddsCardSection

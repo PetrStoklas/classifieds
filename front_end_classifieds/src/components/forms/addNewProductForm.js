@@ -69,6 +69,7 @@ class AddNewProductForm extends Component {
                       categories={this.props.categories}
                       getSubcategories={this.getChildren}
                       subCats={this.props.subCats}
+                      context={this.props.context}
                       // category_id={this.props.category_id}
                       // getAllProducts={this.getProductsWithCategory}
                     />

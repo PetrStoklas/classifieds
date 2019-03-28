@@ -22,6 +22,7 @@ class SearchForm extends Component {
 
   componentDidMount() {
     this.setState({optionsList: this.props.options});
+    // console.log(this.props.context);
   }
 
   getSubCategoriesHandler = (e) => {
@@ -45,10 +46,8 @@ class SearchForm extends Component {
 
   render() {
 
-    // console.log('rendering SearchForm.js')
-    // console.log('searchForm options----', this.props.categories);
-    // console.log('subCatetgories',this.state.subSubcategories);
-    // console.log('productIDprops', this.props.productId)
+    // console.log('form renders------', this.state);
+    
     if (this.state.productId) {
       // console.log(this.state.productId);
     }

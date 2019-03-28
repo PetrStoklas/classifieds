@@ -202,6 +202,7 @@ class Admin extends Component {
             submitform={this.submitProductForm}
             categories={this.state.categories} 
             subCats={this.state.subCategories}
+            context={'admin'}
             // category_id={this.setNewProductCategoryId} // getting the category_id from 'SearchForm.js'
             // category_id={}           
           />
