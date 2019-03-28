@@ -4,15 +4,17 @@ import {connect} from 'react-redux';
 import fetchProduct from '../../../axios_routes/products_axios';
 import fetchLogin from '../../../axios_routes/auth_routes';
 import getJwt from '../../../utilites/jwt';
-// import UserAdminSection from '../../../components/user_admin_section/user_admin_section';
 import {
   // Form, Button,
-  Container
+  Container,
+  Row,
+  Col
 } from 'reactstrap';
 import LoginForm from '../../../components/Register/RegisterForm';
-// import axios from 'axios';
+import { BrowserRouter as Router, Route, Link, withRouter} from "react-router-dom";
 import AddNewProductForm from '../../../components/forms/addNewProductForm';
 import Navigation from '../../../components/UI/Navigation/Navigation';
+import AdminNavigatoion from '../../../components/UI/AdminNavigatoion/AdminNavigatoion'
 import fetchCategories from '../../../axios_routes/categories_axios';
 
 
@@ -220,9 +222,7 @@ class Admin extends Component {
   }  
   
   render() {
-
-    // console.log('admin.js state----', this.state);
-    
+    console.log(this.props.location.pathname);
     let content = this.state.userLoggedIn
       ? <div>
           {/* <UserAdminSection/> */}
@@ -246,13 +246,23 @@ class Admin extends Component {
         </div>
 
     return (
-      <div>
-        <Navigation/>
-        <div className="mt-5"></div>
-        <Container>
-          {content}
-        </Container>
-      </div>
+      <Router>
+        <div>
+          <Navigation/>
+          <div className="mt-5"></div>
+          <Container>
+            <Row>
+              <Col md='4'>
+              <AdminNavigatoion/>
+              </Col>
+              <Col md='8'>
+                {/* <Route exact path='/admin' component={Admin}></Route> */}
+                <Route exact path='/admin/add_product' component={() => content} ></Route>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      </Router>
     );
   }
 }

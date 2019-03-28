@@ -7,7 +7,7 @@ import { UncontrolledCarousel } from 'reactstrap';
 const card_detail = props => {
     console.log('singelview', props.images);
 return (
-    <Col md="11 mx-auto" lg="4">
+    <Col md="11" className="mx-auto" lg="7">
     <Card body className="w-100 border-0">
         <Row className="product-image">
         <div className="product-image">
@@ -30,7 +30,7 @@ return (
             <h3>{props.productData.title}</h3>
             </div>
 
-            <div className="info_wrap">
+            <div className="info_wrap ">
             <Row className="row_info mx-auto mt-0">
                 <Col className="car_info_col first" xs="4">
                 <h5 className="car_info_headline">mileage</h5>
