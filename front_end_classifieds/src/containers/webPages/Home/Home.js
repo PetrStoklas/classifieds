@@ -12,9 +12,10 @@ import {
 import Jumbotron from '../../../components/header/header';
 import AddsCardSection from '../../sections/AddsCardSection';
 import Navigation from '../../../components/UI/Navigation/Navigation';
-// import SingleProductView from '../SingleProductView/SingleProductView';
+import SingleProductView from '../SingleProductView/SingleProductView';
 
 class Home extends Component {
+
 
   state = {
     categories: [],
@@ -116,7 +117,7 @@ class Home extends Component {
   }
 
   render() {
-    // console.log(this.state.productsAll)
+    console.log(this.state.active_product_id);
 
     let jumbotron = <Spinner/>
     if (this.state.categories.length > 0) {
@@ -146,7 +147,7 @@ class Home extends Component {
                 exact
                 component=
                 {() => <CategoriesNav subCats={this.state.subCategories} productsId={this.state.productsId} /> }/>
-              {/* <Route path="/product" exact component={SingleProductView}/> */}
+              <Route path="/product" exact component={SingleProductView}/>
             </Col>
           </Row>
           <Row>

@@ -17,7 +17,7 @@ const VerticalCard = props => {
   let shareIcon = <ShareIcon className={classes.Icon}/>
 
   if (props) {
-    console.log(props);
+    // console.log(props);
     let img = '';
     if (props.images) {
 
@@ -34,7 +34,6 @@ const VerticalCard = props => {
     // img = <img className="w-100" src={'http://127.0.0.1:8000/uploads/products/' +
     // res.filename} alt={props['images'] ? props['images'][0]['original_filename']
     // : 'empty'}/>
-
     card = (
       <Card className="w-100 mx-1 my-3 border-0">
         <div className={classes.RoundCorners}>
@@ -65,10 +64,7 @@ const VerticalCard = props => {
             <Col className="col-4 d-flex flex-column justify-content-between mx-1">
               <Row className="mr-2 mb-2 d-flex flex-row justify-content-end">
                 <Link
-                  to={{
-                  pathname: "/product",
-                  search: props.id
-                }}>
+                  to={"/product"} payload={props.id}>
                   {shareIcon}
                 </Link>
               </Row>
