@@ -4,13 +4,22 @@ import ProductCarousel from '../../UI/ProductCarousel/ProductCarousel';
 import './productCardDetail.css';
 
 const card_detail = props => {
-    // console.log('singelview',props);
+    console.log('singelview',props);
 return (
     <Col md="6" lg="4">
     <Card body className="w-100 border-0">
         <Row className="product-image">
         <div className="product-image">
             {/* <ProductCarousel/> */}
+            <img
+            className="w-100"
+            src={props['images']
+            ? "http://127.0.0.1:8000/uploads/products/" + props['images'][0]['filename']
+            : ''}
+            alt={props['images']
+            ? props['images'][0]['original_filename']
+            : 'empty'}
+          />
         </div>
         </Row>
         <Row className="card_info_section">

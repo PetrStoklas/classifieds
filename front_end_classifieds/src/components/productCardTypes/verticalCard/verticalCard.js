@@ -27,7 +27,7 @@ const VerticalCard = props => {
       <Card className="w-100 mx-1 my-3 border-0">
         <div className={classes.RoundCorners}>
 
-          {/* <img
+          <img
             className="w-100"
             src={props['images']
             ? "http://127.0.0.1:8000/uploads/products/" + props['images'][0]['filename']
@@ -35,7 +35,7 @@ const VerticalCard = props => {
             alt={props['images']
             ? props['images'][0]['original_filename']
             : 'empty'}
-          /> */}
+          />
 
         </div>
         <Container className={classes.CardInfoSection}>
@@ -44,7 +44,7 @@ const VerticalCard = props => {
           <Row className="pb-4 d-flex flex-row justify-content-between">
             <Col className="col d-flex flex-column justify-content-between mx-1 my-0">
               <Row className="mx-1 mb-2 d-flex flex-row justify-content-center">
-                <span className={classes.Title}>{props.name}</span>
+                <span className={classes.Title}>{props.productData.title}</span>
               </Row>
               <Row className="mx-1 d-flex flex-row justify-content-between">
                 <span className={classes.Text}>{props.productData.mileage}km</span>

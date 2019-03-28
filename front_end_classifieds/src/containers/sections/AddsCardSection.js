@@ -18,15 +18,6 @@ class CardsContainer extends Component {
           allProducts.map(() => {
             console.log(res.product['title'])
             singleCard = <Card
-              // category_id={res.product['category_id']}
-              // product_id={res.product['id']}
-              // created={res.product['created_at']}
-              name={res.product['title']}
-              // description={res.product['description']}
-              // key={res.product['id']}
-              // price={res.product['price']}
-              // seller_id={res.product['seller_id']}
-              // updated_at={res.product['updated_at']}
               productData = {res.product}
               images={res.images}
               productView={() => {
