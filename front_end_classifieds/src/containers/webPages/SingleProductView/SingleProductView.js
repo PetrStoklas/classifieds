@@ -32,7 +32,7 @@ class SingleProductView extends Component {
         let items = new Object();
         items.src = 'http://127.0.0.1:8000/uploads/products/' + res.filename;
         items.altTest = res.filename;
-        items.caption = 'caprion one';
+        // items.caption = 'caprion one';
         images.push(items);
         return items;
       })
