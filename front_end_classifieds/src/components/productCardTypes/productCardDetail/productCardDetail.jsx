@@ -2,16 +2,17 @@ import React from 'react';
 import {Container, Row, Col, Card, Button} from 'reactstrap';
 import ProductCarousel from '../../UI/ProductCarousel/ProductCarousel';
 import './productCardDetail.css';
+import { UncontrolledCarousel } from 'reactstrap';
 
 const card_detail = props => {
-    console.log('singelview',props);
+    console.log('singelview', props.images);
 return (
-    <Col md="6" lg="4">
+    <Col md="11 mx-auto" lg="4">
     <Card body className="w-100 border-0">
         <Row className="product-image">
         <div className="product-image">
-            {/* <ProductCarousel/> */}
-            <img
+            <UncontrolledCarousel items={props.images} />;
+            {/* <img
             className="w-100"
             src={props['images']
             ? "http://127.0.0.1:8000/uploads/products/" + props['images'][0]['filename']
@@ -19,7 +20,7 @@ return (
             alt={props['images']
             ? props['images'][0]['original_filename']
             : 'empty'}
-          />
+          /> */}
         </div>
         </Row>
         <Row className="card_info_section">
