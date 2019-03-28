@@ -4,19 +4,20 @@ import ProductCarousel from '../../UI/ProductCarousel/ProductCarousel';
 import './productCardDetail.css';
 
 const card_detail = props => {
+    console.log(props);
 return (
     <Col md="6" lg="4">
     <Card body className="w-100 border-0">
         <Row className="product-image">
         <div className="product-image">
-            <ProductCarousel/>
+            {/* <ProductCarousel/> */}
         </div>
         </Row>
         <Row className="card_info_section">
         <Container className="car_info rounded mt-2 mx-2 px-1">
             <hr/>
             <div className="title">
-            <h3>Dodge Challenger srt</h3>
+            <h3>{props.title}</h3>
             </div>
 
             <div className="info_wrap">

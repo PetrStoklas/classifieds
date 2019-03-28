@@ -19,6 +19,7 @@ class CardsContainer extends Component {
             // console.log(res.product['title'])
             singleCard = <Card
               category_id={res.product['category_id']}
+              product_id={res.product['id']}
               created={res.product['created_at']}
               name={res.product['title']}
               description={res.product['description']}
