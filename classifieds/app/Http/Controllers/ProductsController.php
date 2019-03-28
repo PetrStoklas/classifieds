@@ -67,6 +67,20 @@ class ProductsController extends Controller
         $product->price = $request->price;
         $product->category_id = $request->category_id;
         $product->seller_id = 1;
+        //engine info
+        $product->gearbox = $request->gearbox;
+        $product->fuel = $request->fuel;
+        $product->cubic_capacity = $request->cubic_capacity;
+        $product->cylinder = $request->cylinder;
+        $product->power = $request->power;
+        $product->mileage = $request->mileage;
+        $product->emission_class = $request->emission_class;
+        // general info
+        $product->color = $request->color;        
+        $product->interior = $request->interior;
+        $product->door_count = $request->door_count;
+        $product->registered = $request->registered;
+        $product->year = $request->year;
         // dd($product);
         $product->save();
 

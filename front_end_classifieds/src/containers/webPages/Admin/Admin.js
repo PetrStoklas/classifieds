@@ -184,6 +184,18 @@ class Admin extends Component {
     fd.append('price', this.state.newProduct.price);
     fd.append('description', this.state.newProduct.description);
     fd.append('category_id', this.state.newProduct.category_id);
+    fd.append('mileage', this.state.newProduct.mileage);
+    fd.append('cubic_capacity', this.state.newProduct.cubic_capacity);
+    fd.append('door_count', this.state.newProduct.door_count);
+    fd.append('year', this.state.newProduct.year);
+    fd.append('cylinder', this.state.newProduct.cylinder);
+    fd.append('registered', this.state.newProduct.registered);
+    fd.append('power', this.state.newProduct.power);
+    fd.append('emission_class', this.state.newProduct.emission_class);
+    fd.append('color', this.state.newProduct.color);
+    fd.append('interior', this.state.newProduct.interior);
+    fd.append('gearbox', this.state.newProduct.gearbox);
+    fd.append('fuel', this.state.newProduct.fuel);
 
     // fd.append('category_id', 1); // needs to be dynamic 
 
