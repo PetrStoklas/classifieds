@@ -13,7 +13,7 @@ class SingleProductView extends Component {
   componentDidMount() {
     fetchSingleProduct('/' + this.props.match.params.product_id).then(res => {
       // console.log(res);
-      // console.log(res.data[0].product);
+      console.log(res);
       let productData = res.data[0].product;
       let productImages = res.data[0].images;
       this.setState({
@@ -25,19 +25,13 @@ class SingleProductView extends Component {
   }
 
   render() {
-    console.log(this.state);
+    console.log('product data',this.state.productData);
 
     let product = <Spinner/>
 
     if(this.state.productData){
       product = <ProductCardDetail 
-        category_id={this.state.productData.id}
-        created_at={this.state.productData.created_at}
-        description={this.state.productData.description}
-        id={this.state.productData.id}
-        price={this.state.productData.price}
-        seller_id={this.state.productData.seller_id}
-        title={this.state.productData.title}
+        productData={this.state.productData}
         images={this.state.productImages}
       />
     }
@@ -46,7 +40,6 @@ class SingleProductView extends Component {
         <Navigation/>
         <Container>
           {product}
-
         </Container>
       </div>
     );

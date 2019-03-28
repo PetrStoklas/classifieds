@@ -21,7 +21,7 @@ const VerticalCard = props => {
   let shareIcon = <ShareIcon className={classes.Icon}/>
 
 
-  console.log(props);
+  console.log('propsss',props);
   if (props) {
     card = (
       <Card className="w-100 mx-1 my-3 border-0">
@@ -47,12 +47,12 @@ const VerticalCard = props => {
                 <span className={classes.Title}>{props.name}</span>
               </Row>
               <Row className="mx-1 d-flex flex-row justify-content-between">
-                <span className={classes.Text}>120000km</span>
-                <span className={classes.Text}>gasoline</span>
+                <span className={classes.Text}>{props.productData.mileage}km</span>
+                <span className={classes.Text}>{props.productData.fuel}</span>
               </Row>
               <Row className="mx-1 d-flex flex-row justify-content-between">
-                <span className={classes.Text}>2.8L Injektion</span>
-                <span className={classes.Text}>manual</span>
+                <span className={classes.Text}>{props.productData.cubic_capacity}</span>
+                <span className={classes.Text}>{props.productData.gearbox}l</span>
               </Row>
             </Col>
 
@@ -60,12 +60,12 @@ const VerticalCard = props => {
 
             <Col className="col-4 d-flex flex-column justify-content-between mx-1">
               <Row className="mr-2 mb-2 d-flex flex-row justify-content-end">
-                <div className={props.id} >
+                <div className={props.productData.id} >
 
                 <Link
-                  id={props.product_id}
+                  id={props.productData.id}
                   to={{  
-                  pathname: `/product/${props.product_id}`,
+                  pathname: `/product/${props.productData.id}`,
                 }}>
                   {shareIcon}
                 </Link>
@@ -77,7 +77,7 @@ const VerticalCard = props => {
               <Row className="mx-2 d-flex flex-row justify-content-between">
                 <span className={classes.Text}>Prague, cz</span>
                 <div>
-                  <span className={classes.Price}>{props.price}</span>
+                  <span className={classes.Price}>{props.productData.price}</span>
                   <span className={classes.Text}>czk</span>
                 </div>
               </Row>
