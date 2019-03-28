@@ -31,6 +31,8 @@ class SingleProductView extends Component {
       this.state.productImages.map(res => {
         let items = new Object();
         items.src = 'http://127.0.0.1:8000/uploads/products/' + res.filename;
+        items.altTest = res.filename;
+        items.caption = 'caprion one';
         images.push(items);
         return items;
       })
