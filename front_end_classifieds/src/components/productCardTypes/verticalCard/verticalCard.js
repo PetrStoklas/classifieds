@@ -2,8 +2,7 @@ import React from 'react';
 // import ProductCarousel from '../../UI/ProductCarousel/ProductCarousel';
 import {
   Container, Row, Col, Card,
-  // CardBody,
-  // Button
+  // CardBody, Button
 } from 'reactstrap';
 import classes from './verticalCard.module.css';
 import {ReactComponent as ShareIcon} from '../../../img/share-icon.svg'
@@ -14,19 +13,21 @@ import {
 
 const VerticalCard = props => {
 
+  const getClickedProductId = e => {
+    console.log('clicked');
+  }
+
   let card = ''
   let shareIcon = <ShareIcon className={classes.Icon}/>
-  
-  
+
+
+  console.log(props);
   if (props) {
-
-    // console.log(props.images, typeof props.images);
-
     card = (
       <Card className="w-100 mx-1 my-3 border-0">
         <div className={classes.RoundCorners}>
 
-          <img
+          {/* <img
             className="w-100"
             src={props['images']
             ? "http://127.0.0.1:8000/uploads/products/" + props['images'][0]['filename']
@@ -34,7 +35,7 @@ const VerticalCard = props => {
             alt={props['images']
             ? props['images'][0]['original_filename']
             : 'empty'}
-          />
+          /> */}
 
         </div>
         <Container className={classes.CardInfoSection}>
@@ -59,13 +60,16 @@ const VerticalCard = props => {
 
             <Col className="col-4 d-flex flex-column justify-content-between mx-1">
               <Row className="mr-2 mb-2 d-flex flex-row justify-content-end">
+                <div className={props.id} >
+
                 <Link
-                  to={{
+                  to={{  
                   pathname: "/product",
                   search: props.id
                 }}>
                   {shareIcon}
                 </Link>
+                </div>
               </Row>
               <Row className="empty mx-1 d-flex flex-row justify-content-between">
                 <span className={classes.Blue}>-</span>
