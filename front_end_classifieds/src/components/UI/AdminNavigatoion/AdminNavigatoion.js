@@ -6,12 +6,12 @@ const AdminNavigatoion = props => {
   return (
     <div>
       <p>List Based</p>
-          <Link to="/admin/add_product">Add New Product</Link>
       <Nav vertical>
         <NavItem>
+          <Link to="/admin/add_product">Add New Product</Link>
         </NavItem>
         <NavItem>
-          <NavLink href="#">Link</NavLink>
+          <NavLink href="#">All Items</NavLink>
         </NavItem>
         <NavItem>
           <NavLink href="#">Another Link</NavLink>

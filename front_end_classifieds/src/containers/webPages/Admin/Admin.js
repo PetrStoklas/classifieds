@@ -222,7 +222,7 @@ class Admin extends Component {
   }  
   
   render() {
-    console.log(this.props.location.pathname);
+    
     let content = this.state.userLoggedIn
       ? <div>
           {/* <UserAdminSection/> */}
@@ -244,7 +244,7 @@ class Admin extends Component {
             submitform={this.submitForm}
           />
         </div>
-
+  let currentLoc  = this.props.location.pathname;
     return (
       <Router>
         <div>
@@ -256,8 +256,7 @@ class Admin extends Component {
               <AdminNavigatoion/>
               </Col>
               <Col md='8'>
-                {/* <Route exact path='/admin' component={Admin}></Route> */}
-                <Route exact path='/admin/add_product' component={() => content} ></Route>
+                <Route exact path={currentLoc + '/add_product'} component={() => content} ></Route>
               </Col>
             </Row>
           </Container>
