@@ -1,7 +1,20 @@
+.Image {
+    width: 100%!important;
+    /* margin:  auto!important; */
+}
+
+.Card {
+    
+    width: 550px!important;
+    /* max-width: 51%!important; */
+}
+
 .CardInfoSection {
     /* rounded corners and shifted up so it overlaps the picture */
     border-radius: 15px;
     overflow: hidden;
+
+    /* width: 50%!important; */
 
     position: relative;
     top: -15px;
@@ -21,9 +34,20 @@
 .Blue {
     color:  #B5D1DD;
 }
-@media only screen and (max-width: 330px) {
+@media only screen and (max-width: 390px) {
     .Blue {
         /* display: none; */
+    }
+    .Card {
+        min-width: 90%!important;
+        width: 95%!important;
+        /* margin: auto!important; */
+    }  
+}
+
+@media only screen and (max-width: 570px) { 
+    .Card {
+        width: 90%!important;
     }
 }
 

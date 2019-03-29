@@ -33,7 +33,7 @@ class CardsContainer extends Component {
 
     return (
       <div>
-        <div className="d-flex flex-wrap  justify-content-between">
+        <div className="d-flex flex-wrap  justify-content-around">
           {allCards}
         </div>
       </div>

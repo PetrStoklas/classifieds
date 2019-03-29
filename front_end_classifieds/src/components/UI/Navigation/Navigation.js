@@ -46,7 +46,7 @@ class Navigation extends React.Component {
                   <Link to="/admin">Admin</Link>
                 {/* </NavLink> */}
               </NavItem>
-              <UncontrolledDropdown nav inNavbar>
+              {/* <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options
                 </DropdownToggle>
@@ -62,7 +62,7 @@ class Navigation extends React.Component {
                     Reset
                   </DropdownItem>
                 </DropdownMenu>
-              </UncontrolledDropdown>
+              </UncontrolledDropdown> */}
             </Nav>
           </Collapse>
         </Navbar>

@@ -24,18 +24,18 @@ const VerticalCard = props => {
   // console.log('propsss',props);
   if (props) {
     card = (
-      <Card className="w-100 mx-1 my-3 border-0">
+      <Card className={classes.Card + " mx-auto my-3 border-0"}>
         <div className={classes.RoundCorners}>
 
-          {/* <img
-            className="w-100"
+          <img
+            className={classes.Image}
             src={props['images']
             ? "http://127.0.0.1:8000/uploads/products/" + props['images'][0]['filename']
             : ''}
             alt={props['images']
             ? props['images'][0]['original_filename']
             : 'empty'}
-          /> */}
+          />
 
         </div>
         <Container className={classes.CardInfoSection}>
