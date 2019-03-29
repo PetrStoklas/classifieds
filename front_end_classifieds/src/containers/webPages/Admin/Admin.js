@@ -26,25 +26,7 @@ class Admin extends Component {
       email: null,
       password: null
     },
-    newProduct: {
-      title: null,
-      description: null,
-      price: null,
-      category_id: null,
-      uploadedFiles: null, //image file
-      mileage: null,
-      cubic_capacity: null,
-      door_count: null,
-      year: null,
-      cylinder: null,
-      registered: null,
-      power: null,
-      emission_class: null,
-      color: null,
-      interior: null,
-      gearbox: null,
-      fuel: null
-    },
+    
     categories: [],
     subCategories: []
   }
@@ -117,28 +99,28 @@ class Admin extends Component {
     e.preventDefault();
     // redo with ternary operator
 
-    if (this.state.userLoggedIn) { //if user is logged in -> we are creating new product
-      if (e.target.id === 'original_filename') { // if image -> using e.target.files insead of e.target.value
+    // if (this.state.userLoggedIn) { //if user is logged in -> we are creating new product
+    //   if (e.target.id === 'original_filename') { // if image -> using e.target.files insead of e.target.value
 
-        // console.log('image upload touched'); console.log(e.target.files);
-        this.setState({
-          newProduct: {
-            ...this.state.newProduct,
-            uploadedFiles: e.target.files
-          }
-        });
+    //     // console.log('image upload touched'); console.log(e.target.files);
+    //     this.setState({
+    //       newProduct: {
+    //         ...this.state.newProduct,
+    //         uploadedFiles: e.target.files
+    //       }
+    //     });
 
-      } else {
-        this.setState({
-          newProduct: {
-            ...this.state.newProduct,
-            [e.target.id]: e.target.value
-          }
-        })
-        console.log(e.target.id, '=', e.target.value);
-      }
+    //   } else {
+    //     this.setState({
+    //       newProduct: {
+    //         ...this.state.newProduct,
+    //         [e.target.id]: e.target.value
+    //       }
+    //     })
+    //     console.log(e.target.id, '=', e.target.value);
+    //   }
 
-    } else {
+    // } else {
       // console.log('user se logging in')
       this.setState({
         userLogInInfo: {
@@ -147,7 +129,7 @@ class Admin extends Component {
         }
       });
 
-    }
+    // }
     this.checkForLoggUsr();
   }
 

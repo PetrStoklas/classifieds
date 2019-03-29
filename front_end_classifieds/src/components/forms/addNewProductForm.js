@@ -5,6 +5,7 @@ import Input from '../form/input';
 import addNewProductConfig from '../../config_files/addNewProductConfig';
 import CategoriesNav from '../categoriesNav/categoriesNav';
 import fetchCategories from '../../axios_routes/categories_axios';
+import fetchProduct from '../../axios_routes/products_axios';
 import {
     // BrowserRouter as Router,
     // Route
@@ -16,6 +17,25 @@ class AddNewProductForm extends Component {
     state = {
         categories: [],
         subCategories: [],
+        newProduct: {
+          title: null,
+          description: null,
+          price: null,
+          category_id: null,
+          uploadedFiles: null, //image file
+          mileage: null,
+          cubic_capacity: null,
+          door_count: null,
+          year: null,
+          cylinder: null,
+          registered: null,
+          power: null,
+          emission_class: null,
+          color: null,
+          interior: null,
+          gearbox: null,
+          fuel: null
+        },
       }
 
     getChildren = e => {
@@ -38,11 +58,76 @@ class AddNewProductForm extends Component {
           .catch(err => console.log(err));
     }
 
+    getInputFormValue = e => {
+      e.preventDefault();
+
+      if (e.target.id === 'original_filename') { // if image -> using e.target.files insead of e.target.value
+        this.setState({
+          newProduct: {
+            ...this.state.newProduct,
+            uploadedFiles: e.target.files
+          }
+        });
+
+      } else {
+        this.setState({
+          newProduct: {
+            ...this.state.newProduct,
+            [e.target.id]: e.target.value
+          }
+        })
+        console.log(e.target.id, '=', e.target.value);
+      }
+    }
+
+    submitProductForm = e => { // NEW PRODUCT FORM SUBMIT
+      e.preventDefault();
+  
+      let fd = new FormData();
+      fd.append('image', this.state.newProduct.uploadedFiles[0]);
+      fd.append('title', this.state.newProduct.title);
+      fd.append('price', this.state.newProduct.price);
+      fd.append('description', this.state.newProduct.description);
+      fd.append('category_id', this.state.newProduct.category_id);
+      fd.append('mileage', this.state.newProduct.mileage);
+      fd.append('cubic_capacity', this.state.newProduct.cubic_capacity);
+      fd.append('door_count', this.state.newProduct.door_count);
+      fd.append('year', this.state.newProduct.year);
+      fd.append('cylinder', this.state.newProduct.cylinder);
+      fd.append('registered', this.state.newProduct.registered);
+      fd.append('power', this.state.newProduct.power);
+      fd.append('emission_class', this.state.newProduct.emission_class);
+      fd.append('color', this.state.newProduct.color);
+      fd.append('interior', this.state.newProduct.interior);
+      fd.append('gearbox', this.state.newProduct.gearbox);
+      fd.append('fuel', this.state.newProduct.fuel);
+  
+      // fd.append('category_id', 1); // needs to be dynamic
+  
+      fetchProduct
+        .post('/', fd, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err)
+          alert('failed to upload your product')
+        });
+    }
+
+    sayHi() {
+      console.log('HI');
+    }
+
     render() {
         // console.log(addNewProductConfig);
         // console.log('Add new product form ------');
         // console.log('addNewProd props------',this.props);
-        
+        console.log('form renders');
         let formContent = null;
         formContent = addNewProductConfig.map(config =>
             
@@ -63,7 +148,7 @@ class AddNewProductForm extends Component {
             
             <div>
                 <h3>addNewProductForm</h3>
-                <Form onChange={this.props.getinputvalues} onSubmit={this.props.submitform}>
+                <Form onChange={this.getInputFormValue} onSubmit={this.submitProductForm}>
                     {formContent}
                     
                     <CategoriesNav 
