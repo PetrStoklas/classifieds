@@ -263,4 +263,5 @@ const mapStateToProps = state => {
   return {loggedInStatus: state.userLoggedIn}
 }
 
+
 export default connect(mapStateToProps, null)(Admin);
