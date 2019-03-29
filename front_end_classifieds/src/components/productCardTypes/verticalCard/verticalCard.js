@@ -21,7 +21,7 @@ const VerticalCard = props => {
   let shareIcon = <ShareIcon className={classes.Icon}/>
 
 
-  console.log('propsss',props);
+  // console.log('propsss',props);
   if (props) {
     card = (
       <Card className="w-100 mx-1 my-3 border-0">

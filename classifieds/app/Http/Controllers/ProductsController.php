@@ -144,7 +144,7 @@ class ProductsController extends Controller
 
     public function get_products_by_seller_id($id)
     {
-        return Product::where('seller_id', $id);
+        return Product::where('seller_id', $id)->get();
     }
 
 
