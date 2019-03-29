@@ -1,18 +1,37 @@
 import React from 'react';
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import {Table} from 'reactstrap';
 
-class AdminProductsTable extends React.Component {
+export default class SellerProductTable extends React.Component {
   render() {
+    console.log(this.props);
+
+    let tr = null;
+    if (this.props.data) {
+      tr = this
+        .props
+        .data
+        .map(res => 
+        <tr key={res.id}>
+          <th scope="row">1</th>
+          <td>{res.title}</td>
+          <td>{res.price}</td>
+          <td>{res.updated_at}</td>
+        </tr>)
+    }
     return (
-      <ListGroup flush>
-        <ListGroupItem disabled tag="a" href="#">Cras justo odio</ListGroupItem>
-        <ListGroupItem tag="a" href="#">Dapibus ac facilisis in</ListGroupItem>
-        <ListGroupItem tag="a" href="#">Morbi leo risus</ListGroupItem>
-        <ListGroupItem tag="a" href="#">Porta ac consectetur ac</ListGroupItem>
-        <ListGroupItem tag="a" href="#">Vestibulum at eros</ListGroupItem>
-      </ListGroup>
+      <Table hover>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Created</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tr}
+        </tbody>
+      </Table>
     );
   }
 }
-
-export default AdminProductsTable

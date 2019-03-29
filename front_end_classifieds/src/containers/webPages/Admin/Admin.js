@@ -249,7 +249,7 @@ class Admin extends Component {
                 <Route
                   exact
                   path={currentLocUrl + '/allProductsList'}
-                  component={() => <AdminProductList/>}></Route>
+                  component={AdminProductList}></Route>
               </Col>
             </Row>
           </Container>

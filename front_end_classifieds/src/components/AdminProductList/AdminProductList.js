@@ -1,13 +1,12 @@
 import React, {Component} from 'react'
-import AdminProductsTable from '../UI/AdminProductsTable/AdminProductsTable';
 import fetchSellerProducts from '../../axios_routes/seller_products';
+import AdminProductsTable from '../UI/AdminProductsTable/AdminProductsTable';
 
 class AdminProductList extends Component {
 
   state = {
-    sellerProducts: null
+    sellerProducts: ''
   }
-
 
   componentDidMount() {
     fetchSellerProducts('/1').then(res => {
@@ -17,8 +16,16 @@ class AdminProductList extends Component {
   }
 
   render() {
+    
+    
+          
 
-    return (<AdminProductsTable/>);
+    return (
+      // 
+      <div>
+        <AdminProductsTable data={this.state.sellerProducts}/>
+      </div>
+      );
 
   }
 }
