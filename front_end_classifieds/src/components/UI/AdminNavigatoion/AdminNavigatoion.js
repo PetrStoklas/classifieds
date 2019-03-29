@@ -7,17 +7,11 @@ const AdminNavigatoion = props => {
     <div>
       <p>List Based</p>
       <Nav vertical>
-        <NavItem>
+        <NavItem className='mt-3'>
           <Link to="/admin/add_product">Add New Product</Link>
         </NavItem>
-        <NavItem>
-          <NavLink href="#">All Items</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#">Another Link</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink disabled href="#">Disabled Link</NavLink>
+        <NavItem className='mt-3'>
+          <Link to="/admin/allProductsList">Selling List</Link>
         </NavItem>
       </Nav>
       <hr/>
