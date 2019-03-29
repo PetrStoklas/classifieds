@@ -7,6 +7,7 @@ import {
 import Admin from './containers/webPages/Admin/Admin';
 import RegistrationPage from './containers/webPages/Admin/Registration';
 import SingleProductView from './containers/webPages/SingleProductView/SingleProductView';
+import AddNewProductForm from './components/forms/addNewProductForm';
 
 class App extends Component {
   render() {
@@ -18,7 +19,8 @@ class App extends Component {
             <Route exact path='/admin' component={Admin}></Route>
             <Route exact path='/admin/login' component={Admin}></Route>
             <Route exact path='/admin/register' component={RegistrationPage}></Route>
-            <Route path={'/product/:product_id'} exact component={SingleProductView}/>  
+            <Route path={'/product/:product_id'} exact component={SingleProductView}/> 
+            <Route exact path='/admin/add_product' component={AddNewProductForm} />  
           </div>
         </div>
       </BrowserRouter>
