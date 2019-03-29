@@ -21,7 +21,7 @@ const Categories_nav = props => {
   const passIdToHomeOrAdmin = (e) => {
     
     if(props.context === 'admin'){      
-      props.catId(e.target.value)
+      // props.catId(e.target.value)
     }
     else if(props.context === 'home'){
       props.categoryId(e.target.value);

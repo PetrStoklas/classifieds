@@ -101,11 +101,13 @@ class AddNewProductForm extends Component {
       fd.append('interior', this.state.newProduct.interior);
       fd.append('gearbox', this.state.newProduct.gearbox);
       fd.append('fuel', this.state.newProduct.fuel);
+
+      // console.log('fd',fd);
+      // console.log('newProduct',this.state.newProduct);
   
-      // fd.append('category_id', 1); // needs to be dynamic
   
       fetchProduct
-        .post('/', fd, {
+        .post('/', fd, { // when send this.state.newProduct -> somehow does not match the columns
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -119,15 +121,8 @@ class AddNewProductForm extends Component {
         });
     }
 
-    sayHi() {
-      console.log('HI');
-    }
-
     render() {
-        // console.log(addNewProductConfig);
-        // console.log('Add new product form ------');
-        // console.log('addNewProd props------',this.props);
-        console.log('form renders');
+      
         let formContent = null;
         formContent = addNewProductConfig.map(config =>
             
@@ -144,8 +139,7 @@ class AddNewProductForm extends Component {
             />
         )
         
-        return (
-            
+        return (   
             <div>
                 <h3>addNewProductForm</h3>
                 <Form onChange={this.getInputFormValue} onSubmit={this.submitProductForm}>
@@ -157,8 +151,6 @@ class AddNewProductForm extends Component {
                       subCats={this.props.subCats}
                       context={this.props.context}
                       catId={this.props.catId}
-                      // category_id={this.props.category_id}
-                      // getAllProducts={this.getProductsWithCategory}
                     />
 
                     <Button type="submit" id="submitUpload">Upload new product</Button>
