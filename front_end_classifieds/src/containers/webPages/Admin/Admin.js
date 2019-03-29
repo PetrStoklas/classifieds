@@ -26,7 +26,25 @@ class Admin extends Component {
       email: null,
       password: null
     },
-    
+    newProduct: {
+      title: null,
+      description: null,
+      price: null,
+      category_id: null,
+      uploadedFiles: null, //image file
+      mileage: null,
+      cubic_capacity: null,
+      door_count: null,
+      year: null,
+      cylinder: null,
+      registered: null,
+      power: null,
+      emission_class: null,
+      color: null,
+      interior: null,
+      gearbox: null,
+      fuel: null
+    },
     categories: [],
     subCategories: []
   }
@@ -97,7 +115,31 @@ class Admin extends Component {
 
   getInputFormValue = e => {
     e.preventDefault();
-    
+    // redo with ternary operator
+
+    if (this.state.userLoggedIn) { //if user is logged in -> we are creating new product
+      if (e.target.id === 'original_filename') { // if image -> using e.target.files insead of e.target.value
+
+        // console.log('image upload touched'); console.log(e.target.files);
+        this.setState({
+          newProduct: {
+            ...this.state.newProduct,
+            uploadedFiles: e.target.files
+          }
+        });
+
+      } else {
+        this.setState({
+          newProduct: {
+            ...this.state.newProduct,
+            [e.target.id]: e.target.value
+          }
+        })
+        console.log(e.target.id, '=', e.target.value);
+      }
+
+    } else {
+      // console.log('user se logging in')
       this.setState({
         userLogInInfo: {
           ...this.state.userLogInInfo,
@@ -105,6 +147,7 @@ class Admin extends Component {
         }
       });
 
+    }
     this.checkForLoggUsr();
   }
 
@@ -126,6 +169,50 @@ class Admin extends Component {
       });
   }
 
+  submitProductForm = e => { // NEW PRODUCT FORM SUBMIT
+    e.preventDefault();
+
+    let fd = new FormData();
+    fd.append('image', this.state.newProduct.uploadedFiles[0]);
+    fd.append('title', this.state.newProduct.title);
+    fd.append('price', this.state.newProduct.price);
+    fd.append('description', this.state.newProduct.description);
+    fd.append('category_id', this.state.newProduct.category_id);
+    fd.append('mileage', this.state.newProduct.mileage);
+    fd.append('cubic_capacity', this.state.newProduct.cubic_capacity);
+    fd.append('door_count', this.state.newProduct.door_count);
+    fd.append('year', this.state.newProduct.year);
+    fd.append('cylinder', this.state.newProduct.cylinder);
+    fd.append('registered', this.state.newProduct.registered);
+    fd.append('power', this.state.newProduct.power);
+    fd.append('emission_class', this.state.newProduct.emission_class);
+    fd.append('color', this.state.newProduct.color);
+    fd.append('interior', this.state.newProduct.interior);
+    fd.append('gearbox', this.state.newProduct.gearbox);
+    fd.append('fuel', this.state.newProduct.fuel);
+
+    // fd.append('category_id', 1); // needs to be dynamic
+
+    fetchProduct
+      .post('/', fd, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err)
+        alert('failed to upload your product')
+      });
+  }
+
+  sayId(id) {
+    console.log('id from Admin.js', id)
+    // return e.target.value
+  }
+
   render() {
 
     let content = this.state.userLoggedIn
@@ -136,7 +223,7 @@ class Admin extends Component {
             submitform={this.submitProductForm}
             categories={this.state.categories}
             subCats={this.state.subCategories}
-            // catId={this.sayId}
+            catId={this.sayId}
             context={'admin'}/>
         </div>
 
@@ -145,8 +232,7 @@ class Admin extends Component {
           getinputvalues={this.getInputFormValue}
           submitform={this.submitForm}/>
       </div>
-    let currentLocUrl = this.props.location.pathname;
-
+    let currentLocUrl = '/admin'; //this.props.location.pathname;
     return (
       <div>
         <Navigation/>
@@ -158,11 +244,12 @@ class Admin extends Component {
                 <AdminNavigatoion/>
               </Col>
               <Col md='8'>
+                {/* {content} */}
                 <Route exact path={currentLocUrl + '/add_product'} component={() => content}></Route>
                 <Route
                   exact
                   path={currentLocUrl + '/allProductsList'}
-                  component={() => <AdminProductList/>}></Route>
+                  component={AdminProductList}></Route>
               </Col>
             </Row>
           </Container>
@@ -175,5 +262,6 @@ class Admin extends Component {
 const mapStateToProps = state => {
   return {loggedInStatus: state.userLoggedIn}
 }
+
 
 export default connect(mapStateToProps, null)(Admin);
