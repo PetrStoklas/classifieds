@@ -16,7 +16,7 @@ class AddNewProductForm extends Component {
     state = {
         categories: [],
         subCategories: [],
-    }
+      }
 
     getChildren = e => {
         this.setState({active_category: e.target.textContent, subCategories: []})
