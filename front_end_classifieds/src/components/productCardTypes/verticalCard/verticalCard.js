@@ -13,33 +13,28 @@ import {
 
 const VerticalCard = props => {
 
+  const getClickedProductId = e => {
+    console.log('clicked');
+  }
+
   let card = ''
   let shareIcon = <ShareIcon className={classes.Icon}/>
 
+  console.log('props', props);
   if (props) {
-    console.log(props);
-    let img = '';
-    if (props.images) {
-
-      // console.log(props.images, typeof props.images);
-      props.images.map(res => {
-        img = <img
-          className="w-100"
-          src={'http://127.0.0.1:8000/uploads/products/' + res.filename}
-          alt={props['images']
-          ? props['images'][0]['original_filename']
-          : 'empty'}/>
-      })
-    }
-    // img = <img className="w-100" src={'http://127.0.0.1:8000/uploads/products/' +
-    // res.filename} alt={props['images'] ? props['images'][0]['original_filename']
-    // : 'empty'}/>
-
     card = (
-      <Card className="w-100 mx-1 my-3 border-0">
+      <Card className={classes.Card + " mx-auto my-3 border-0"}>
         <div className={classes.RoundCorners}>
 
-          {img}
+          <img
+            className={classes.Image}
+            src={(props['images'].length > 0)
+            ? "http://www.api.testweb.life/uploads/products/" + props['images'][0]['filename']
+            : ''}
+            alt={(props['images'].length > 0)
+            ? props['images'][0]['original_filename']
+            : 'empty'}
+          />
 
         </div>
         <Container className={classes.CardInfoSection}>
@@ -48,15 +43,15 @@ const VerticalCard = props => {
           <Row className="pb-4 d-flex flex-row justify-content-between">
             <Col className="col d-flex flex-column justify-content-between mx-1 my-0">
               <Row className="mx-1 mb-2 d-flex flex-row justify-content-center">
-                <span className={classes.Title}>{props.name}</span>
+                <span className={classes.Title}>{props.productData.title}</span>
               </Row>
               <Row className="mx-1 d-flex flex-row justify-content-between">
-                <span className={classes.Text}>120000km</span>
-                <span className={classes.Text}>gasoline</span>
+                <span className={classes.Text}>{props.productData.mileage}km</span>
+                <span className={classes.Text}>{props.productData.fuel}</span>
               </Row>
               <Row className="mx-1 d-flex flex-row justify-content-between">
-                <span className={classes.Text}>2.8L Injektion</span>
-                <span className={classes.Text}>manual</span>
+                <span className={classes.Text}>{props.productData.cubic_capacity}</span>
+                <span className={classes.Text}>{props.productData.gearbox}l</span>
               </Row>
             </Col>
 
@@ -64,13 +59,16 @@ const VerticalCard = props => {
 
             <Col className="col-4 d-flex flex-column justify-content-between mx-1">
               <Row className="mr-2 mb-2 d-flex flex-row justify-content-end">
-                <Link
-                  to={{
-                  pathname: "/product",
-                  search: props.id
-                }}>
-                  {shareIcon}
-                </Link>
+                <div className={props.productData.id}>
+
+                  <Link
+                    id={props.productData.id}
+                    to={{
+                    pathname: `/product/${props.productData.id}`
+                  }}>
+                    {shareIcon}
+                  </Link>
+                </div>
               </Row>
               <Row className="empty mx-1 d-flex flex-row justify-content-between">
                 <span className={classes.Blue}>-</span>
@@ -78,7 +76,7 @@ const VerticalCard = props => {
               <Row className="mx-2 d-flex flex-row justify-content-between">
                 <span className={classes.Text}>Prague, cz</span>
                 <div>
-                  <span className={classes.Price}>{props.price}</span>
+                  <span className={classes.Price}>{props.productData.price}</span>
                   <span className={classes.Text}>czk</span>
                 </div>
               </Row>

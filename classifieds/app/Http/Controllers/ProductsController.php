@@ -67,13 +67,27 @@ class ProductsController extends Controller
         $product->price = $request->price;
         $product->category_id = $request->category_id;
         $product->seller_id = 1;
+        //engine info
+        $product->gearbox = $request->gearbox;
+        $product->fuel = $request->fuel;
+        $product->cubic_capacity = $request->cubic_capacity;
+        $product->cylinder = $request->cylinder;
+        $product->power = $request->power;
+        $product->mileage = $request->mileage;
+        $product->emission_class = $request->emission_class;
+        // general info
+        $product->color = $request->color;        
+        $product->interior = $request->interior;
+        $product->door_count = $request->door_count;
+        $product->registered = $request->registered;
+        $product->year = $request->year;
         // dd($product);
         $product->save();
 
         $image = $request->file('image');
         $extension = $image->getClientOriginalExtension(); // NEEDS PARAMETERS???
         Storage::disk('public')->put($image->getFilename().'.'.$extension,  File::get($image));
-        
+
 
 
 
@@ -110,8 +124,27 @@ class ProductsController extends Controller
 
         $categories = Category::all();     
         
-        // return view('products_show', compact('products', 'categories'));
         return $data_to_return;
+    }
+
+    
+    public function single_product_view ($id)
+    {
+        $product = Product::where('id', $id)->get();
+        $data_to_return = [];
+        foreach($product as $product)
+        {
+            // here I am attaching images to its product -> sending them to frontend as "$data_to_return"
+            $images = Image::where('product_id', $product->id)->get();    
+            array_push($data_to_return, ['product' => $product, 'images' => $images]);
+        }
+        
+        return $data_to_return;
+    }
+
+    public function get_products_by_seller_id($id)
+    {
+        return Product::where('seller_id', $id)->get();
     }
 
 
@@ -123,7 +156,15 @@ class ProductsController extends Controller
 
         $leaveIDs = $this->getChildrenIDs($category, []);
 
-        return Product::whereIn('category_id', $leaveIDs)->get();
+        $data_to_return = [];
+        $products = Product::whereIn('category_id', $leaveIDs)->get();
+        foreach($products as $product)
+        {
+            // here I am attaching images to its product -> sending them to frontend as "$data_to_return"
+            $images = Image::where('product_id', $product->id)->get();    
+            array_push($data_to_return, ['product' => $product, 'images' => $images]); 
+        }
+        return $data_to_return;
     }
 
 

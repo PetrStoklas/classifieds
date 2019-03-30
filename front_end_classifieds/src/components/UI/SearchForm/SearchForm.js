@@ -17,17 +17,20 @@ class SearchForm extends Component {
   state = {
     optionsList: [],
     subSubcategories: [],
-    productId: null
+    productId: null // ??
   }
 
   componentDidMount() {
     this.setState({optionsList: this.props.options});
+    // console.log(this.props.context);
   }
 
   getSubCategoriesHandler = (e) => {
     categories
       .get('/' + e.target.value)
-      .then(res => this.setState({subSubcategories: res.data}))
+      .then(res => this.setState({
+        ...this.state,
+        subSubcategories: res.data}))
       .catch(err => console.log(err));
 
     this.setState({productId: e.target.value});
@@ -45,8 +48,8 @@ class SearchForm extends Component {
 
   render() {
 
-    // console.log('searchForm options----', this.props.categories);
-    // console.log('subCatetgories',this.state.subSubcategories);
+    // console.log('form renders------', this.state);
+    
     if (this.state.productId) {
       // console.log(this.state.productId);
     }
@@ -83,6 +86,7 @@ class SearchForm extends Component {
                 type="select"
                 name="select"
                 id="select_brand">
+                <option>choose</option>
                 {categories}
               </Input>
             </FormGroup>
@@ -94,8 +98,9 @@ class SearchForm extends Component {
                 type="select" 
                 name="select" 
                 id="category_id"
-                // onChange={this.props.categoryId}
+                onChange={this.props.categoryId}
               >
+                <option>choose</option>
                 {subCategories}
               </Input>
             </FormGroup>

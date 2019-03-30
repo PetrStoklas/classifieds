@@ -4,17 +4,19 @@ import {connect} from 'react-redux';
 import fetchProduct from '../../../axios_routes/products_axios';
 import fetchLogin from '../../../axios_routes/auth_routes';
 import getJwt from '../../../utilites/jwt';
-// import UserAdminSection from '../../../components/user_admin_section/user_admin_section';
 import {
   // Form, Button,
-  Container
+  Container,
+  Row,
+  Col
 } from 'reactstrap';
 import LoginForm from '../../../components/Register/RegisterForm';
-// import axios from 'axios';
+import {BrowserRouter as Router, Route, Link, withRouter} from "react-router-dom";
 import AddNewProductForm from '../../../components/forms/addNewProductForm';
 import Navigation from '../../../components/UI/Navigation/Navigation';
+import AdminNavigatoion from '../../../components/UI/AdminNavigatoion/AdminNavigatoion'
 import fetchCategories from '../../../axios_routes/categories_axios';
-
+import AdminProductList from '../../../components/AdminProductList/AdminProductList';
 
 class Admin extends Component {
 
@@ -30,9 +32,21 @@ class Admin extends Component {
       price: null,
       category_id: null,
       uploadedFiles: null, //image file
+      mileage: null,
+      cubic_capacity: null,
+      door_count: null,
+      year: null,
+      cylinder: null,
+      registered: null,
+      power: null,
+      emission_class: null,
+      color: null,
+      interior: null,
+      gearbox: null,
+      fuel: null
     },
     categories: [],
-    subCategories: [],
+    subCategories: []
   }
 
   componentDidMount() {
@@ -46,23 +60,23 @@ class Admin extends Component {
     }
 
     fetchCategories
-    .get()
-    .then(categories => {
-      categories
-        .data
-        .map(res => {
-          if (!res.parent_id) {
-            return (this.setState({
-              categories: [
-                ...this.state.categories,
-                res
-              ]
-            }))
-          }
-          return null;
-        });
-    })
-    .catch(err => console.log(err));
+      .get()
+      .then(categories => {
+        categories
+          .data
+          .map(res => {
+            if (!res.parent_id) {
+              return (this.setState({
+                categories: [
+                  ...this.state.categories,
+                  res
+                ]
+              }))
+            }
+            return null;
+          });
+      })
+      .catch(err => console.log(err));
 
   }
 
@@ -93,32 +107,24 @@ class Admin extends Component {
       : this.setState({userLoggedIn: true});
   }
 
-
   // // here we get category_id from 'SearchForm.js' when creating new product
-  // setNewProductCategoryId = (e) => {
-  //   // console.log('setting category_id state', e.target.value);
-  //   this.setState({
-  //     newProduct: {
-  //       ...this.state.newProduct,
-  //       category_id: e.target.value,
-  //     }
-  //   })
-  //   // console.log('state set---', this.state.newProduct);
-  // }
+  // setNewProductCategoryId = (e) => {   // console.log('setting category_id
+  // state', e.target.value);   this.setState({     newProduct: {
+  // ...this.state.newProduct,       category_id: e.target.value,     }   })   //
+  // console.log('state set---', this.state.newProduct); }
 
   getInputFormValue = e => {
     e.preventDefault();
     // redo with ternary operator
 
-    if (this.state.userLoggedIn) { //if user is logged in -> we are creating new product 
+    if (this.state.userLoggedIn) { //if user is logged in -> we are creating new product
       if (e.target.id === 'original_filename') { // if image -> using e.target.files insead of e.target.value
 
-        // console.log('image upload touched');
-        // console.log(e.target.files);
+        // console.log('image upload touched'); console.log(e.target.files);
         this.setState({
           newProduct: {
             ...this.state.newProduct,
-            uploadedFiles: e.target.files,
+            uploadedFiles: e.target.files
           }
         });
 
@@ -126,12 +132,12 @@ class Admin extends Component {
         this.setState({
           newProduct: {
             ...this.state.newProduct,
-            [e.target.id]: e.target.value, 
+            [e.target.id]: e.target.value
           }
         })
         console.log(e.target.id, '=', e.target.value);
       }
-      
+
     } else {
       // console.log('user se logging in')
       this.setState({
@@ -140,14 +146,14 @@ class Admin extends Component {
           [e.target.name]: e.target.value
         }
       });
-      
+
     }
     this.checkForLoggUsr();
   }
-  
+
   submitForm = e => { // USER LOGIN SUBMIT
     e.preventDefault();
-    
+
     fetchLogin
       .post('/login', {
       email: this.state.userLogInInfo.email,
@@ -165,22 +171,34 @@ class Admin extends Component {
 
   submitProductForm = e => { // NEW PRODUCT FORM SUBMIT
     e.preventDefault();
-   
-    let fd = new FormData();   
+
+    let fd = new FormData();
     fd.append('image', this.state.newProduct.uploadedFiles[0]);
     fd.append('title', this.state.newProduct.title);
     fd.append('price', this.state.newProduct.price);
     fd.append('description', this.state.newProduct.description);
     fd.append('category_id', this.state.newProduct.category_id);
+    fd.append('mileage', this.state.newProduct.mileage);
+    fd.append('cubic_capacity', this.state.newProduct.cubic_capacity);
+    fd.append('door_count', this.state.newProduct.door_count);
+    fd.append('year', this.state.newProduct.year);
+    fd.append('cylinder', this.state.newProduct.cylinder);
+    fd.append('registered', this.state.newProduct.registered);
+    fd.append('power', this.state.newProduct.power);
+    fd.append('emission_class', this.state.newProduct.emission_class);
+    fd.append('color', this.state.newProduct.color);
+    fd.append('interior', this.state.newProduct.interior);
+    fd.append('gearbox', this.state.newProduct.gearbox);
+    fd.append('fuel', this.state.newProduct.fuel);
 
-    // fd.append('category_id', 1); // needs to be dynamic 
+    // fd.append('category_id', 1); // needs to be dynamic
 
     fetchProduct
-      .post('/', fd,{
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }  
-      })
+      .post('/', fd, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
       .then(res => {
         console.log(res);
       })
@@ -189,38 +207,53 @@ class Admin extends Component {
         alert('failed to upload your product')
       });
   }
-  
+
+  sayId(id) {
+    console.log('id from Admin.js', id)
+    // return e.target.value
+  }
+
   render() {
 
-    // console.log('admin.js state----', this.state);
-    
     let content = this.state.userLoggedIn
       ? <div>
           {/* <UserAdminSection/> */}
           <AddNewProductForm
-            getinputvalues={this.getInputFormValue} 
-            submitform={this.submitProductForm}
-            categories={this.state.categories} 
-            subCats={this.state.subCategories}
-            // category_id={this.setNewProductCategoryId} // getting the category_id from 'SearchForm.js'
-            // category_id={}           
-          />
-        </div>
-
-      : <div> 
-          <LoginForm
             getinputvalues={this.getInputFormValue}
-            submitform={this.submitForm}
-          />
+            submitform={this.submitProductForm}
+            categories={this.state.categories}
+            subCats={this.state.subCategories}
+            catId={this.sayId}
+            context={'admin'}/>
         </div>
 
+      : <div>
+        <LoginForm
+          getinputvalues={this.getInputFormValue}
+          submitform={this.submitForm}/>
+      </div>
+    let currentLocUrl = '/admin'; //this.props.location.pathname;
     return (
       <div>
         <Navigation/>
         <div className="mt-5"></div>
-        <Container>
-          {content}
-        </Container>
+        <Router>
+          <Container>
+            <Row>
+              <Col md='4'>
+                {/* <AdminNavigatoion/> */}
+              </Col>
+              <Col md='8'>
+                {content}
+                {/* <Route exact path={currentLocUrl + '/add_product'} component={() => content}></Route>
+                <Route
+                  exact
+                  path={currentLocUrl + '/allProductsList'}
+                  component={AdminProductList}></Route> */}
+              </Col>
+            </Row>
+          </Container>
+        </Router>
       </div>
     );
   }
@@ -229,5 +262,6 @@ class Admin extends Component {
 const mapStateToProps = state => {
   return {loggedInStatus: state.userLoggedIn}
 }
+
 
 export default connect(mapStateToProps, null)(Admin);

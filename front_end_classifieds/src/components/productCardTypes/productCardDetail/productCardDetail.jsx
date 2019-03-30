@@ -2,100 +2,105 @@ import React from 'react';
 import {Container, Row, Col, Card, Button} from 'reactstrap';
 import ProductCarousel from '../../UI/ProductCarousel/ProductCarousel';
 import './productCardDetail.css';
+import {UncontrolledCarousel} from 'reactstrap';
 
 const card_detail = props => {
-
-    console.log(props);
-return (
-    <Col md="6" lg="4">
-    <Card body className="w-100 border-0">
+  console.log('singelview', props.images);
+  return (
+    <Col md="11" className="mx-auto" lg="7">
+      <Card body className="w-100 border-0">
         <Row className="product-image">
-        <div className="product-image">
-            {/* <ProductCarousel/> */}
-        </div>
+          <div className="product-image">
+            <UncontrolledCarousel items={props.images}/>; {/* <img
+            className="w-100"
+            src={props['images']
+            ? "http://127.0.0.1:8000/uploads/products/" + props['images'][0]['filename']
+            : ''}
+            alt={props['images']
+            ? props['images'][0]['original_filename']
+            : 'empty'}
+          /> */}
+          </div>
         </Row>
         <Row className="card_info_section">
-        <Container className="car_info rounded mt-2 mx-2 px-1">
+          <Container className="car_info rounded mt-2 mx-2 px-1">
             <hr/>
             <div className="title">
-            <h3>Dodge Challenger srt</h3>
+              <h3>{props.productData.title}</h3>
             </div>
 
-            <div className="info_wrap">
-            <Row className="row_info mx-auto mt-0">
+            <div className="info_wrap ">
+              <Row className="row_info mx-auto mt-0">
                 <Col className="car_info_col first" xs="4">
-                <h5 className="car_info_headline">mileage</h5>
-                <h4 className="car_info_value">120000km</h4>
+                  <h5 className="car_info_headline">mileage</h5>
+                  <h4 className="car_info_value">{props.productData.mileage}km</h4>
                 </Col>
                 <Col className="car_info_col middle first" xs="4">
-                <h5 className="car_info_headline">cubic capacity</h5>
-                <h4 className="car_info_value">120000km</h4>
+                  <h5 className="car_info_headline">cubic capacity</h5>
+                  <h4 className="car_info_value">{props.productData.cubic_capacity}ccm</h4>
                 </Col>
                 <Col className="car_info_col first" xs="4">
-                <h5 className="car_info_headline">door count</h5>
-                <h4 className="car_info_value">120000</h4>
+                  <h5 className="car_info_headline">door count</h5>
+                  <h4 className="car_info_value">{props.productData.door_count}</h4>
                 </Col>
-            </Row>
+              </Row>
 
-            <Row className="row_info mx-auto">
+              <Row className="row_info mx-auto">
                 <Col className="car_info_col" xs="4">
-                <h5 className="car_info_headline">year</h5>
-                <h4 className="car_info_value">120000km</h4>
+                  <h5 className="car_info_headline">year</h5>
+                  <h4 className="car_info_value">{props.productData.year}</h4>
                 </Col>
                 <Col className="car_info_col middle" xs="4">
-                <h5 className="car_info_headline">cylinders</h5>
-                <h4 className="car_info_value">120000km</h4>
+                  <h5 className="car_info_headline">cylinders</h5>
+                  <h4 className="car_info_value">{props.productData.cylinder}</h4>
                 </Col>
                 <Col className="car_info_col" xs="4">
-                <h5 className="car_info_headline">emission class</h5>
-                <h4 className="car_info_value">120000km</h4>
+                  <h5 className="car_info_headline">emission class</h5>
+                  <h4 className="car_info_value">{props.productData.emission_class}</h4>
                 </Col>
-            </Row>
+              </Row>
 
-            <Row className="row_info mx-auto">
+              <Row className="row_info mx-auto">
                 <Col className="car_info_col" xs="4">
-                <h5 className="car_info_headline">registered at</h5>
-                <h4 className="car_info_value">120000km</h4>
+                  <h5 className="car_info_headline">registered at</h5>
+                  <h4 className="car_info_value">{props.productData.registered}</h4>
                 </Col>
                 <Col className="car_info_col middle" xs="4">
-                <h5 className="car_info_headline">power</h5>
-                <h4 className="car_info_value">120000km</h4>
+                  <h5 className="car_info_headline">power</h5>
+                  <h4 className="car_info_value">{props.productData.power}hp</h4>
                 </Col>
                 <Col className="car_info_col" xs="4">
-                <h5 className="car_info_headline">color</h5>
-                <h4 className="car_info_value">120000km</h4>
+                  <h5 className="car_info_headline">color</h5>
+                  <h4 className="car_info_value">{props.productData.color}</h4>
                 </Col>
-            </Row>
+              </Row>
 
-            <Row className="row_info mx-auto">
+              <Row className="row_info mx-auto">
                 <Col className="car_info_col" xs="4">
-                <h5 className="car_info_headline">fuel</h5>
-                <h4 className="car_info_value">120000km</h4>
+                  <h5 className="car_info_headline">fuel</h5>
+                  <h4 className="car_info_value">{props.productData.fuel}</h4>
                 </Col>
                 <Col className="car_info_col middle" xs="4">
-                <h5 className="car_info_headline">gearbox</h5>
-                <h4 className="car_info_value">120000km</h4>
+                  <h5 className="car_info_headline">gearbox</h5>
+                  <h4 className="car_info_value">{props.productData.gearbox}</h4>
                 </Col>
                 <Col className="car_info_col" xs="4">
-                <h5 className="car_info_headline">interior</h5>
-                <h4 className="car_info_value">120000km</h4>
+                  <h5 className="car_info_headline">interior</h5>
+                  <h4 className="car_info_value">{props.productData.interior}</h4>
                 </Col>
-            </Row>
+              </Row>
             </div>
 
             <div className="custom_desc">
-            <p>Custom added AC, sport brakes Brembo, Recaro seats. The car was never
-                crashed. I am the third owner. Can provide you with all documentation and
-                paperworks of this car.
-            </p>
+              <p>{props.productData.description}
+              </p>
             </div>
-        </Container>
+          </Container>
         </Row>
-    </Card>
-    <Button className="buy-btn">Button</Button>
+      </Card>
+      {/* <Button className="buy-btn">Button</Button> */}
     </Col>
-)
+  )
 }
-
 
 export default card_detail

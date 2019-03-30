@@ -8,14 +8,27 @@ const Categories_nav = props => {
   let categories = '';
   let categoriesType = '';
 
+
+  // can be done as an ternary operator in <SearchForm props>
   if (props.categories) {
     categoriesType = props.categories;
-    // console.log('categoriesNav.js----',categoriesType);
+    
   } else if (props.subCats) {
     categoriesType = props.subCats
+  }
+  // ----------------------------------------------------------
 
+  const passIdToHomeOrAdmin = (e) => {
+    
+    if(props.context === 'admin'){      
+      // props.catId(e.target.value)
+    }
+    else if(props.context === 'home'){
+      props.categoryId(e.target.value);
+    }
   }
 
+  
   //   passing the id to the Home component
   const passingIdMiddleware = (value) => {
     props.getAllProducts(value);
@@ -30,11 +43,17 @@ const Categories_nav = props => {
     categories = <SearchForm
       getProducts={passingIdMiddleware}
       options={props.categories} 
-      productsId={props.productsId}
       categories={categoriesType}
-      // categoryId={props.category_id} // category_id of new product passed to 'addNewProductForm.js' -> 'Admin.js'
+      context={props.context}
+
+      productsId={props.productsId}
+      categoryId={passIdToHomeOrAdmin} 
+      // getCategoryIdForHome={passIdToHome}
+      // category_id of new product passed to 'addNewProductForm.js' -> 'Admin.js'
     />
   }
+
+  // console.log(props);
 
   return (
     <ListGroup flush>

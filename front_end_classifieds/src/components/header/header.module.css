@@ -1,3 +1,10 @@
 .Wrapper {
     background: cover / contain no-repeat url('https://images.pexels.com/photos/21014/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') #fff !important;
 }
+
+@media only screen and (max-width: 570px) {
+    .Header {
+        font-size: 350%!important;
+        text-align: center!important;
+    }
+}
