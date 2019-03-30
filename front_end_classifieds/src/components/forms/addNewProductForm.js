@@ -5,7 +5,7 @@ import Input from '../form/input';
 import addNewProductConfig from '../../config_files/addNewProductConfig';
 import CategoriesNav from '../categoriesNav/categoriesNav';
 import fetchCategories from '../../axios_routes/categories_axios';
-import fetchProduct from '../../axios_routes/products_axios';
+// import fetchProduct from '../../axios_routes/singleProduct_axios';
 import {
     // BrowserRouter as Router,
     // Route
