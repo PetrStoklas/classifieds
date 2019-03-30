@@ -20,8 +20,7 @@ const VerticalCard = props => {
   let card = ''
   let shareIcon = <ShareIcon className={classes.Icon}/>
 
-
-  // console.log('propsss',props);
+  console.log('props', props);
   if (props) {
     card = (
       <Card className={classes.Card + " mx-auto my-3 border-0"}>
@@ -29,10 +28,10 @@ const VerticalCard = props => {
 
           <img
             className={classes.Image}
-            src={props['images']
-            ? "http://127.0.0.1:8000/uploads/products/" + props['images'][0]['filename']
+            src={(props['images'].length > 0)
+            ? "http://www.api.testweb.life/uploads/products/" + props['images'][0]['filename']
             : ''}
-            alt={props['images']
+            alt={(props['images'].length > 0)
             ? props['images'][0]['original_filename']
             : 'empty'}
           />
@@ -60,15 +59,15 @@ const VerticalCard = props => {
 
             <Col className="col-4 d-flex flex-column justify-content-between mx-1">
               <Row className="mr-2 mb-2 d-flex flex-row justify-content-end">
-                <div className={props.productData.id} >
+                <div className={props.productData.id}>
 
-                <Link
-                  id={props.productData.id}
-                  to={{  
-                  pathname: `/product/${props.productData.id}`,
-                }}>
-                  {shareIcon}
-                </Link>
+                  <Link
+                    id={props.productData.id}
+                    to={{
+                    pathname: `/product/${props.productData.id}`
+                  }}>
+                    {shareIcon}
+                  </Link>
                 </div>
               </Row>
               <Row className="empty mx-1 d-flex flex-row justify-content-between">

@@ -16,7 +16,6 @@ class CardsContainer extends Component {
           let singleCard = '';
           let allProducts = Object.keys(res.product);
           allProducts.map(() => {
-            console.log(res.product['title'])
             singleCard = <Card
               productData = {res.product}
               images={res.images}

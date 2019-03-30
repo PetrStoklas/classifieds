@@ -241,15 +241,15 @@ class Admin extends Component {
           <Container>
             <Row>
               <Col md='4'>
-                <AdminNavigatoion/>
+                {/* <AdminNavigatoion/> */}
               </Col>
               <Col md='8'>
-                {/* {content} */}
-                <Route exact path={currentLocUrl + '/add_product'} component={() => content}></Route>
+                {content}
+                {/* <Route exact path={currentLocUrl + '/add_product'} component={() => content}></Route>
                 <Route
                   exact
                   path={currentLocUrl + '/allProductsList'}
-                  component={AdminProductList}></Route>
+                  component={AdminProductList}></Route> */}
               </Col>
             </Row>
           </Container>

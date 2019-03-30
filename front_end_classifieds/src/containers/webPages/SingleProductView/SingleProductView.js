@@ -12,7 +12,8 @@ class SingleProductView extends Component {
   }
 
   componentDidMount() {
-    fetchSingleProduct('/' + this.props.match.params.product_id).then(res => {
+    fetchSingleProduct.get('/' + this.props.match.params.product_id)
+    .then(res => {
       // console.log(res);
       console.log(res);
       let productData = res.data[0].product;
@@ -25,12 +26,13 @@ class SingleProductView extends Component {
     })
   }
 
+
   render() {
     let images = []
     if(this.state.productImages){
       this.state.productImages.map(res => {
         let items = new Object();
-        items.src = 'http://127.0.0.1:8000/uploads/products/' + res.filename;
+        items.src = 'http://www.api.testweb.life/uploads/products/' + res.filename;
         items.altTest = res.filename;
         // items.caption = 'caprion one';
         images.push(items);

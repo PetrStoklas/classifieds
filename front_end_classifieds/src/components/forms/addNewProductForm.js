@@ -10,6 +10,7 @@ import {
     // BrowserRouter as Router,
     // Route
   } from "react-router-dom";
+  import axios from 'axios';
 
 
 class AddNewProductForm extends Component {
@@ -106,8 +107,8 @@ class AddNewProductForm extends Component {
       // console.log('newProduct',this.state.newProduct);
   
   
-      fetchProduct
-        .post('/', fd, { // when send this.state.newProduct -> somehow does not match the columns
+      axios
+        .post('/http://www.api.testweb.life/api/create_new_product', fd, { // when send this.state.newProduct -> somehow does not match the columns
         headers: {
           'Content-Type': 'multipart/form-data'
         }
