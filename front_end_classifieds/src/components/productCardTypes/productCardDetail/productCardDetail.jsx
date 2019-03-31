@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, Row, Col, Card, Button} from 'reactstrap';
-import ProductCarousel from '../../UI/ProductCarousel/ProductCarousel';
+// import ProductCarousel from '../../UI/ProductCarousel/ProductCarousel';
 import './productCardDetail.css';
 import { UncontrolledCarousel } from 'reactstrap';
 

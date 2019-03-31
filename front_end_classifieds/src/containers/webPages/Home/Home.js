@@ -12,7 +12,7 @@ import {
 import Jumbotron from '../../../components/header/header';
 import AddsCardSection from '../../sections/AddsCardSection';
 import Navigation from '../../../components/UI/Navigation/Navigation';
-// import SingleProductView from '../SingleProductView/SingleProductView';
+import SingleProductView from '../SingleProductView/SingleProductView';
 
 class Home extends Component {
 
