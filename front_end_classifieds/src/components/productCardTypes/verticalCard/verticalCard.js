@@ -13,14 +13,10 @@ import {
 
 const VerticalCard = props => {
 
-  const getClickedProductId = e => {
-    console.log('clicked');
-  }
 
   let card = ''
   let shareIcon = <ShareIcon className={classes.Icon}/>
 
-  // console.log('props', props);
   if (props) {
     card = (
       <Card className={classes.Card + " mx-auto my-3 border-0"}>
