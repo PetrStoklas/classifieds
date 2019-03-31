@@ -11,7 +11,9 @@ import {
   Col
 } from 'reactstrap';
 import LoginForm from '../../../components/Register/RegisterForm';
-import {BrowserRouter as Router, Route, Link, withRouter} from "react-router-dom";
+import {BrowserRouter as Router, 
+  // Route, Link, withRouter
+} from "react-router-dom";
 import AddNewProductForm from '../../../components/forms/addNewProductForm';
 import Navigation from '../../../components/UI/Navigation/Navigation';
 import AdminNavigatoion from '../../../components/UI/AdminNavigatoion/AdminNavigatoion'
