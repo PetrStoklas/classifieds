@@ -78,23 +78,22 @@ class AddNewProductForm extends Component {
     fd.append('image', this.state.newProduct.uploadedFiles[0]);
     fd.append('title', this.state.newProduct.title);
     fd.append('category_id', this.state.newProduct.category_id);
-    // fd.append('id', '1');
-    // fd.append('price', this.state.newProduct.price);
-    // fd.append('description', this.state.newProduct.description);
-    // fd.append('mileage', this.state.newProduct.mileage);
-    // fd.append('cubic_capacity', this.state.newProduct.cubic_capacity);
-    // fd.append('door_count', this.state.newProduct.door_count);
-    // fd.append('year', this.state.newProduct.year);
-    // fd.append('cylinder', this.state.newProduct.cylinder);
-    // fd.append('registered', this.state.newProduct.registered);
-    // fd.append('power', this.state.newProduct.power);
-    // fd.append('emission_class', this.state.newProduct.emission_class);
-    // fd.append('color', this.state.newProduct.color);
-    // fd.append('interior', this.state.newProduct.interior);
-    // fd.append('gearbox', this.state.newProduct.gearbox);
-    // fd.append('fuel', this.state.newProduct.fuel);
-    // console.log('fd', fd);
-    // console.log('newProduct', this.state.newProduct);
+    fd.append('price', this.state.newProduct.price);
+    fd.append('description', this.state.newProduct.description);
+    fd.append('mileage', this.state.newProduct.mileage);
+    fd.append('cubic_capacity', this.state.newProduct.cubic_capacity);
+    fd.append('door_count', this.state.newProduct.door_count);
+    fd.append('year', this.state.newProduct.year);
+    fd.append('cylinder', this.state.newProduct.cylinder);
+    fd.append('registered', this.state.newProduct.registered);
+    fd.append('power', this.state.newProduct.power);
+    fd.append('emission_class', this.state.newProduct.emission_class);
+    fd.append('color', this.state.newProduct.color);
+    fd.append('interior', this.state.newProduct.interior);
+    fd.append('gearbox', this.state.newProduct.gearbox);
+    fd.append('fuel', this.state.newProduct.fuel);
+    console.log('fd', fd);
+    console.log('newProduct', this.state.newProduct);
 
     createProduct
       .post('/create_new_product', fd, {
@@ -111,6 +110,7 @@ class AddNewProductForm extends Component {
       });
   }
 
+  
   render() {
 
     console.log(this.state.newProduct);

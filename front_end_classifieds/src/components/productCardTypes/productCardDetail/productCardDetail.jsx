@@ -6,21 +6,15 @@ import { UncontrolledCarousel } from 'reactstrap';
 
 const card_detail = props => {
     console.log('singelview', props.images);
+    console.log('singelview', props);
 return (
     <Col md="11" className="mx-auto" lg="7">
     <Card body className="w-100 border-0">
         <Row className="product-image">
         <div className="product-image">
-            <UncontrolledCarousel items={props.images} />;
-            {/* <img
-            className="w-100"
-            src={props['images']
-            ? "http://127.0.0.1:8000/uploads/products/" + props['images'][0]['filename']
-            : ''}
-            alt={props['images']
-            ? props['images'][0]['original_filename']
-            : 'empty'}
-          /> */}
+
+        {/* Image Carousel */}
+            <UncontrolledCarousel items={props.images} />
         </div>
         </Row>
         <Row className="card_info_section">
