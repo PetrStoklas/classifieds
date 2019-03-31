@@ -95,6 +95,7 @@ class Home extends Component {
       .catch(err => console.log(err))
   }
 
+
   getProductsbyBrand = (id) => {
     fetchProducts
       .get('/bybrand/' + id)
@@ -126,7 +127,7 @@ class Home extends Component {
   }  
 
   render() {
-    // console.log('rendering Home.js')
+    // console.log(this.state.productsWithCategory, typeof this.state.productsWithCategory);
 
     let jumbotron = <Spinner/>
     if (this.state.categories.length > 0) {
