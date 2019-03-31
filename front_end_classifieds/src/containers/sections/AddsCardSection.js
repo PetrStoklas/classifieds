@@ -12,7 +12,8 @@ class CardsContainer extends Component {
         .props
         .cardsData
         .map(res => {
-          // console.log('res',res);
+          console.log('res',res.product, typeof res.product);
+          console.log('res',res, typeof res);
           let singleCard = '';
           let allProducts = Object.keys(res.product);
           allProducts.map(() => {

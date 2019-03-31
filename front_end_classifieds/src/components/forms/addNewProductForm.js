@@ -5,7 +5,7 @@ import Input from '../form/input';
 import addNewProductConfig from '../../config_files/addNewProductConfig';
 import CategoriesNav from '../categoriesNav/categoriesNav';
 import fetchCategories from '../../axios_routes/categories_axios';
-import fetchProduct from '../../axios_routes/products_axios';
+// import fetchProduct from '../../axios_routes/singleProduct_axios';
 import {
     // BrowserRouter as Router,
     // Route
@@ -20,22 +20,22 @@ class AddNewProductForm extends Component {
         subCategories: [],
         newProduct: {
           title: null,
-          description: null,
-          price: null,
-          category_id: null,
+          // description: null,
+          // price: null,
+          // category_id: null,
+          // mileage: null,
+          // cubic_capacity: null,
+          // door_count: null,
+          // year: null,
+          // cylinder: null,
+          // registered: null,
+          // power: null,
+          // emission_class: null,
+          // color: null,
+          // interior: null,
+          // gearbox: null,
+          // fuel: null,
           uploadedFiles: null, //image file
-          mileage: null,
-          cubic_capacity: null,
-          door_count: null,
-          year: null,
-          cylinder: null,
-          registered: null,
-          power: null,
-          emission_class: null,
-          color: null,
-          interior: null,
-          gearbox: null,
-          fuel: null
         },
       }
 
@@ -87,28 +87,29 @@ class AddNewProductForm extends Component {
       let fd = new FormData();
       fd.append('image', this.state.newProduct.uploadedFiles[0]);
       fd.append('title', this.state.newProduct.title);
-      fd.append('price', this.state.newProduct.price);
-      fd.append('description', this.state.newProduct.description);
       fd.append('category_id', this.state.newProduct.category_id);
-      fd.append('mileage', this.state.newProduct.mileage);
-      fd.append('cubic_capacity', this.state.newProduct.cubic_capacity);
-      fd.append('door_count', this.state.newProduct.door_count);
-      fd.append('year', this.state.newProduct.year);
-      fd.append('cylinder', this.state.newProduct.cylinder);
-      fd.append('registered', this.state.newProduct.registered);
-      fd.append('power', this.state.newProduct.power);
-      fd.append('emission_class', this.state.newProduct.emission_class);
-      fd.append('color', this.state.newProduct.color);
-      fd.append('interior', this.state.newProduct.interior);
-      fd.append('gearbox', this.state.newProduct.gearbox);
-      fd.append('fuel', this.state.newProduct.fuel);
+      fd.append('id', '1');
+      // fd.append('price', this.state.newProduct.price);
+      // fd.append('description', this.state.newProduct.description);
+      // fd.append('mileage', this.state.newProduct.mileage);
+      // fd.append('cubic_capacity', this.state.newProduct.cubic_capacity);
+      // fd.append('door_count', this.state.newProduct.door_count);
+      // fd.append('year', this.state.newProduct.year);
+      // fd.append('cylinder', this.state.newProduct.cylinder);
+      // fd.append('registered', this.state.newProduct.registered);
+      // fd.append('power', this.state.newProduct.power);
+      // fd.append('emission_class', this.state.newProduct.emission_class);
+      // fd.append('color', this.state.newProduct.color);
+      // fd.append('interior', this.state.newProduct.interior);
+      // fd.append('gearbox', this.state.newProduct.gearbox);
+      // fd.append('fuel', this.state.newProduct.fuel);
 
       // console.log('fd',fd);
       // console.log('newProduct',this.state.newProduct);
   
   
       axios
-        .post('/http://www.api.testweb.life/api/create_new_product', fd, { // when send this.state.newProduct -> somehow does not match the columns
+        .post('http://www.api.testweb.life/api/create_new_product', fd, { // when send this.state.newProduct -> somehow does not match the columns
         headers: {
           'Content-Type': 'multipart/form-data'
         }

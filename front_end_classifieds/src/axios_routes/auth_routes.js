@@ -1,7 +1,6 @@
-import axios from 'axios';
-
 const fetchLogin = axios.create({
-    baseURL: 'http://127.0.0.1:8000/api'
+import axios from 'axios';
+const proxyurl = "https://cors-anywhere.herokuapp.com/"; 
+    baseURL: proxyurl + 'http://www.api.testweb.life/api'
 });
-
 export default fetchLogin;

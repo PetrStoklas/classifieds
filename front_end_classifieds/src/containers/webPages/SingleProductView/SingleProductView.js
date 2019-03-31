@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Navigation from '../../../components/UI/Navigation/Navigation';
 import ProductCardDetail from '../../../components/productCardTypes/productCardDetail/productCardDetail';
 import {Container, Spinner} from 'reactstrap';
-import fetchSingleProduct from '../../../axios_routes/singleProduct_axios';
+import fetchSingleProduct from '../../../axios_routes/seller_products';
 
 class SingleProductView extends Component {
 
