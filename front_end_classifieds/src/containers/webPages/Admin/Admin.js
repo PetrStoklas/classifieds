@@ -11,10 +11,7 @@ import {
   Col
 } from 'reactstrap';
 import LoginForm from '../../../components/Register/RegisterForm';
-import {BrowserRouter as Router, 
-  Route, 
-  Link, withRouter
-} from "react-router-dom";
+import {BrowserRouter as Router, Route, Link, withRouter} from "react-router-dom";
 import AddNewProductForm from '../../../components/forms/addNewProductForm';
 import Navigation from '../../../components/UI/Navigation/Navigation';
 import AdminNavigatoion from '../../../components/UI/AdminNavigatoion/AdminNavigatoion'
@@ -30,25 +27,11 @@ class Admin extends Component {
       email: null,
       password: null
     },
-    newProduct: {
-      title: null,
-      description: null,
-      price: null,
-      category_id: null,
-      uploadedFiles: null, //image file
-      mileage: null,
-      cubic_capacity: null,
-      door_count: null,
-      year: null,
-      cylinder: null,
-      registered: null,
-      power: null,
-      emission_class: null,
-      color: null,
-      interior: null,
-      gearbox: null,
-      fuel: null
-    },
+    // newProduct: {   title: null,   description: null,   price: null, category_id:
+    // null,   uploadedFiles: null, //image file   mileage: null, cubic_capacity:
+    // null,   door_count: null,   year: null,   cylinder: null, registered: null,
+    // power: null,   emission_class: null,   color: null, interior: null, gearbox:
+    // null,   fuel: null },
     categories: [],
     subCategories: []
   }
@@ -63,46 +46,20 @@ class Admin extends Component {
       })
     }
 
-    fetchCategories
-      .get()
-      .then(categories => {
-        categories
-          .data
-          .map(res => {
-            if (!res.parent_id) {
-              return (this.setState({
-                categories: [
-                  ...this.state.categories,
-                  res
-                ]
-              }))
-            }
-            return null;
-          });
-      })
-      .catch(err => console.log(err));
+    // fetchCategories   .get()   .then(categories => {     categories       .data
+    // .map(res => {         if (!res.parent_id) {           return (this.setState({
+    //             categories: [ ...this.state.categories,      res             ]
+    //     }))   }         return null;       });   })  .catch(err =>
+    // console.log(err));
 
   }
 
-  getChildren = e => {
-    this.setState({active_category: e.target.textContent, subCategories: []})
-    let id = e.target.id
-    fetchCategories
-      .get('/' + id)
-      .then(subCategories => {
-        subCategories
-          .data
-          .map(res => {
-            return (this.setState({
-              subCategories: [
-                ...this.state.subCategories,
-                res
-              ]
-            }))
-          })
-      })
-      .catch(err => console.log(err));
-  }
+  // getChildren = e => {   this.setState({active_category: e.target.textContent,
+  // subCategories: []})   let id = e.target.id   fetchCategories     .get('/' +
+  // id)     .then(subCategories => {       subCategories         .data .map(res
+  // => {           return (this.setState({             subCategories: [
+  // ...this.state.subCategories,               res             ]       }))     })
+  //     })     .catch(err => console.log(err)); }
 
   checkForLoggUsr = () => {
     const jwt = getJwt();
@@ -111,45 +68,18 @@ class Admin extends Component {
       : this.setState({userLoggedIn: true});
   }
 
- 
-
-  getInputFormValue = e => {
-    e.preventDefault();
-    // redo with ternary operator
-
-    if (this.state.userLoggedIn) { //if user is logged in -> we are creating new product
-      if (e.target.id === 'original_filename') { // if image -> using e.target.files insead of e.target.value
-
-        // console.log('image upload touched'); console.log(e.target.files);
-        this.setState({
-          newProduct: {
-            ...this.state.newProduct,
-            uploadedFiles: e.target.files
-          }
-        });
-
-      } else {
-        this.setState({
-          newProduct: {
-            ...this.state.newProduct,
-            [e.target.id]: e.target.value
-          }
-        })
-        console.log(e.target.id, '=', e.target.value);
-      }
-
-    } else {
-      // console.log('user se logging in')
-      this.setState({
-        userLogInInfo: {
-          ...this.state.userLogInInfo,
-          [e.target.name]: e.target.value
-        }
-      });
-
-    }
-    this.checkForLoggUsr();
-  }
+  // getInputFormValue = e => {   e.preventDefault();   if
+  // (this.state.userLoggedIn) { //if user is logged in -> we are creating new
+  // product     if (e.target.id === 'original_filename') { // if image -> using
+  // e.target.files insead of e.target.value       // console.log('image upload
+  // touched'); console.log(e.target.files);       this.setState({ newProduct: {
+  //     ...this.state.newProduct,           uploadedFiles: e.target.files     }
+  //     });     } else {       this.setState({ newProduct: {
+  // ...this.state.newProduct,           [e.target.id]: e.target.value         }
+  // })       console.log(e.target.id, '=', e.target.value);     }   } else { //
+  // console.log('user se logging in')  this.setState({       userLogInInfo: {
+  //    ...this.state.userLogInInfo,        [e.target.name]: e.target.value    }
+  //   });   } this.checkForLoggUsr(); }
 
   submitForm = e => { // USER LOGIN SUBMIT
     e.preventDefault();
@@ -210,21 +140,14 @@ class Admin extends Component {
 
   sayId(id) {
     console.log('id from Admin.js', id)
-    // return e.target.value
   }
 
   render() {
 
     let content = this.state.userLoggedIn
       ? <div>
-          {/* <UserAdminSection/> */}
-          <AddNewProductForm
-            getinputvalues={this.getInputFormValue}
-            submitform={this.submitProductForm}
-            categories={this.state.categories}
-            subCats={this.state.subCategories}
-            catId={this.sayId}
-            context={'admin'}/>
+          
+
         </div>
 
       : <div>
@@ -235,26 +158,32 @@ class Admin extends Component {
     let currentLocUrl = '/admin'; //this.props.location.pathname;
     return (
       <div>
-        <Navigation/>
-        <div className="mt-5"></div>
-        <Router>
-          <Container>
-            <Row>
-              <Col md='4'>
-                {/* <AdminNavigatoion/> */}
-              </Col>
-              <Col md='8'>
-                {content}
-                {/* <Route exact path={currentLocUrl + '/add_product'} component={() => content}></Route>
-                <Route
-                  exact
-                  path={currentLocUrl + '/allProductsList'}
-                  component={AdminProductList}></Route> */}
-                  <Route path='/admin/register' component={RegistrationPage}></Route>
-              </Col>
-            </Row>
-          </Container>
-        </Router>
+        {/* {content} */}
+        <div>
+            <Navigation/>
+            <div className="mt-5"></div>
+            <Router>
+              <Container>
+                <Row>
+                  <Col md='4'>
+                    <AdminNavigatoion/>
+                  </Col>
+                  <Col md='8'>
+                    <Route
+                      exact
+                      path={currentLocUrl + '/add_product'}
+                      component={() => <AddNewProductForm/>}></Route>
+                    <Route
+                      exact
+                      path={currentLocUrl + '/allProductsList'}
+                      component={() => <AdminProductList/>}></Route>
+
+                    {/* <Route path='/admin/register' component={RegistrationPage}></Route> */}
+                  </Col>
+                </Row>
+              </Container>
+            </Router>
+          </div>
       </div>
     );
   }
@@ -263,6 +192,5 @@ class Admin extends Component {
 const mapStateToProps = state => {
   return {loggedInStatus: state.userLoggedIn}
 }
-
 
 export default connect(mapStateToProps, null)(Admin);

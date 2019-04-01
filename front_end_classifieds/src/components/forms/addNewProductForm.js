@@ -24,8 +24,31 @@ class AddNewProductForm extends Component {
       // mileage: null, cubic_capacity: null, door_count: null, year: null, cylinder:
       // null, registered: null, power: null, emission_class: null, color: null,
       // interior: null, gearbox: null, fuel: null,
-      image: null, //image file
+      // image: null, //image file
     }
+  }
+
+  componentDidMount() {
+
+    fetchCategories
+      .get()
+      .then(categories => {
+        categories
+          .data
+          .map(res => {
+            if (!res.parent_id) {
+              return (this.setState({
+                categories: [
+                  ...this.state.categories,
+                  res
+                ]
+              }))
+            }
+            return null;
+          });
+      })
+      .catch(err => console.log(err));
+
   }
 
   getChildren = e => {
@@ -110,10 +133,10 @@ class AddNewProductForm extends Component {
       });
   }
 
-  
   render() {
 
-    console.log(this.state.newProduct);
+
+    console.log(this.state);
 
     let formContent = null;
     formContent = addNewProductConfig.map(config => <Input
@@ -134,7 +157,7 @@ class AddNewProductForm extends Component {
           {formContent}
 
           <CategoriesNav
-            categories={this.props.categories}
+            categories={this.state.categories}
             getSubcategories={this.getChildren}
             subCats={this.props.subCats}
             context={this.props.context}

@@ -17,7 +17,6 @@ class App extends Component {
             <Route exact path='/' component={Home}></Route>
             <Route path='/admin' component={Admin}></Route>
             <Route path='/admin/login' component={Admin}></Route>
-            <Route path='/admin/add_product' component={Admin} />  
             <Route path={'/product/:product_id'} component={SingleProductView}/>             
             
           </div>
