@@ -12,13 +12,15 @@ import {
 } from 'reactstrap';
 import LoginForm from '../../../components/Register/RegisterForm';
 import {BrowserRouter as Router, 
-  // Route, Link, withRouter
+  Route, 
+  Link, withRouter
 } from "react-router-dom";
 import AddNewProductForm from '../../../components/forms/addNewProductForm';
 import Navigation from '../../../components/UI/Navigation/Navigation';
 import AdminNavigatoion from '../../../components/UI/AdminNavigatoion/AdminNavigatoion'
 import fetchCategories from '../../../axios_routes/categories_axios';
 import AdminProductList from '../../../components/AdminProductList/AdminProductList';
+import RegistrationPage from '../Admin/Registration';
 
 class Admin extends Component {
 
@@ -109,11 +111,7 @@ class Admin extends Component {
       : this.setState({userLoggedIn: true});
   }
 
-  // // here we get category_id from 'SearchForm.js' when creating new product
-  // setNewProductCategoryId = (e) => {   // console.log('setting category_id
-  // state', e.target.value);   this.setState({     newProduct: {
-  // ...this.state.newProduct,       category_id: e.target.value,     }   })   //
-  // console.log('state set---', this.state.newProduct); }
+ 
 
   getInputFormValue = e => {
     e.preventDefault();
@@ -252,6 +250,7 @@ class Admin extends Component {
                   exact
                   path={currentLocUrl + '/allProductsList'}
                   component={AdminProductList}></Route> */}
+                  <Route path='/admin/register' component={RegistrationPage}></Route>
               </Col>
             </Row>
           </Container>

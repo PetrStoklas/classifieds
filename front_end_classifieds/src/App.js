@@ -18,8 +18,8 @@ class App extends Component {
             <Route path='/admin' component={Admin}></Route>
             <Route path='/admin/login' component={Admin}></Route>
             <Route path='/admin/add_product' component={Admin} />  
-            <Route path='/admin/register' component={RegistrationPage}></Route>
             <Route path={'/product/:product_id'} component={SingleProductView}/>             
+            
           </div>
         </div>
       </BrowserRouter>
