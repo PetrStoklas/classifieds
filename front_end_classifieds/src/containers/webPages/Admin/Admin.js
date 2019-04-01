@@ -1,11 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
-// import {Spinner} from 'reactstrap';
-import fetchProduct from '../../../axios_routes/products_axios';
 import fetchLogin from '../../../axios_routes/auth_routes';
 import getJwt from '../../../utilites/jwt';
 import {
-  // Form, Button,
   Container,
   Row,
   Col
@@ -15,7 +12,6 @@ import {BrowserRouter as Router, Route, Link, withRouter} from "react-router-dom
 import AddNewProductForm from '../../../components/forms/addNewProductForm';
 import Navigation from '../../../components/UI/Navigation/Navigation';
 import AdminNavigatoion from '../../../components/UI/AdminNavigatoion/AdminNavigatoion'
-import fetchCategories from '../../../axios_routes/categories_axios';
 import AdminProductList from '../../../components/AdminProductList/AdminProductList';
 import RegistrationPage from '../Admin/Registration';
 
@@ -41,7 +37,6 @@ class Admin extends Component {
       })
     }
   }
-   
 
   checkForLoggUsr = () => {
     const jwt = getJwt();
@@ -50,8 +45,6 @@ class Admin extends Component {
       : this.setState({userLoggedIn: true});
   }
 
-  
-  
   submitForm = e => { // USER LOGIN SUBMIT
     e.preventDefault();
 
@@ -70,50 +63,45 @@ class Admin extends Component {
       });
   }
 
-
-
   render() {
 
     let content = this.state.userLoggedIn
-      ? <div>
-          
+      ? <div></div>
 
-        </div>
-
-      : <div>
-        <LoginForm
-          getinputvalues={this.getInputFormValue}
-          submitform={this.submitForm}/>
-      </div>
+      : <div></div>
     let currentLocUrl = '/admin'; //this.props.location.pathname;
     return (
       <div>
         {/* {content} */}
         <div>
-            <Navigation/>
-            <div className="mt-5"></div>
-            <Router>
-              <Container>
-                <Row>
-                  <Col md='4'>
-                    <AdminNavigatoion/>
-                  </Col>
-                  <Col md='8'>
-                    <Route
-                      exact
-                      path={currentLocUrl + '/add_product'}
-                      component={() => <AddNewProductForm/>}></Route>
-                    <Route
-                      exact
-                      path={currentLocUrl + '/allProductsList'}
-                      component={() => <AdminProductList/>}></Route>
+          <Navigation/>
+          <div className="mt-5"></div>
+          <Router>
+            <Container>
+              <Row>
+                <Col md='4'>
+                  {this.state.userLoggedIn
+                    ? <AdminNavigatoion/>
+                    : <LoginForm
+                      getinputvalues={this.getInputFormValue}
+                      submitform={this.submitForm}/>}
+                </Col>
+                <Col md='8'>
+                  <Route
+                    exact
+                    path={currentLocUrl + '/add_product'}
+                    component={() => <AddNewProductForm/>}></Route>
+                  <Route
+                    exact
+                    path={currentLocUrl + '/allProductsList'}
+                    component={() => <AdminProductList/>}></Route>
 
-                    {/* <Route path='/admin/register' component={RegistrationPage}></Route> */}
-                  </Col>
-                </Row>
-              </Container>
-            </Router>
-          </div>
+                  <Route path='/admin/register' component={RegistrationPage}></Route>
+                </Col>
+              </Row>
+            </Container>
+          </Router>
+        </div>
       </div>
     );
   }
