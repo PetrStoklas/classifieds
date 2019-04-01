@@ -25,8 +25,8 @@ class Admin extends Component {
 
   render() {
 
-    console.log(this.props);
-    let content = this.props.userLoggedIn
+    console.log(this.props.loggedInStatus);
+    let content = this.props.loggedInStatus
       ? <div></div>
 
       : <div></div>
@@ -41,7 +41,7 @@ class Admin extends Component {
             <Container>
               <Row>
                 <Col md='4'>
-                  {this.props.userLoggedIn
+                  {this.props.loggedInStatus
                     ? <AdminNavigatoion/>
                     : <LoginForm
                       getinputvalues={this.getInputFormValue}
@@ -70,7 +70,6 @@ class Admin extends Component {
 
 
 const mapStateToProps = state => {
-  const { loggedIn } = state
   return {loggedInStatus: state.userLoggedIn}
 }
 
