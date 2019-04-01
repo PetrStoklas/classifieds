@@ -18,15 +18,23 @@ import RegistrationPage from '../Admin/Registration';
 class Admin extends Component {
 
   
-
+state = {
+  loggedInStatus: false
+}
   
+componentDidMount(){
+  if(getJwt()){
+    this.setState({loggedInStatus: true});
+  }
+}
 
   
 
   render() {
 
-    console.log(this.props.loggedInStatus);
-    let content = this.props.loggedInStatus
+    // console.log(this.props.loggedInStatus);
+    console.log(this.state.loggedInStatus);
+    let content = this.state.loggedInStatus
       ? <div></div>
 
       : <div></div>
@@ -41,7 +49,7 @@ class Admin extends Component {
             <Container>
               <Row>
                 <Col md='4'>
-                  {this.props.loggedInStatus
+                  {this.state.loggedInStatus
                     ? <AdminNavigatoion/>
                     : <LoginForm
                       getinputvalues={this.getInputFormValue}

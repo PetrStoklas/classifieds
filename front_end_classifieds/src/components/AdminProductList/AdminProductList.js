@@ -8,6 +8,7 @@ class AdminProductList extends Component {
     sellerProducts: ''
   }
 
+  
   componentDidMount() {
     fetchSellerProducts('/1').then(res => {
       console.log(res)

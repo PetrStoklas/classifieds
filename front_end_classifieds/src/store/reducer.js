@@ -1,6 +1,5 @@
 import fetchLoginRegister from '../axios_routes/auth_routes';
 import {push} from 'react-router-redux'
-import jwtCheck from '../utilites/jwt';
 
 const initialState = {
   userLoggedIn: false,
@@ -63,13 +62,9 @@ const reducer = (state = initialState, action) => {
     })
       .then(res => {
         localStorage.setItem('login-jwt', res.data)
-        if(jwtCheck()){
-          return {
-            ...state,
-            userLoggedIn: true
-          }
-        }
+        push('/admin')
       })
+      .catch(err => console.log(err));
   }
 
   return state;
