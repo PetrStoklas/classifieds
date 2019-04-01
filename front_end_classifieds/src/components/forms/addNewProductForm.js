@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 // import axios from 'axios';
-import {Button, Form} from 'reactstrap';
+import {Button, Form, Spinner} from 'reactstrap';
 import Input from '../form/input';
 import addNewProductConfig from '../../config_files/addNewProductConfig';
 import CategoriesNav from '../categoriesNav/categoriesNav';
@@ -138,7 +138,8 @@ class AddNewProductForm extends Component {
 
     console.log(this.state);
 
-    let formContent = null;
+    let formContent = <Spinner />;
+
     formContent = addNewProductConfig.map(config => <Input
       key={config.label_for}
       generalType={config.generalType}
@@ -153,9 +154,11 @@ class AddNewProductForm extends Component {
     return (
       <div>
         <h3>addNewProductForm</h3>
-        <Form onChange={this.getInputFormValue} onSubmit={this.submitProductForm}>
+        <Form onChange={this.getInputFormValue} 
+              onSubmit={this.submitProductForm}>
           {formContent}
 
+          {/* Displaying product categories */}
           <CategoriesNav
             categories={this.state.categories}
             getSubcategories={this.getChildren}
