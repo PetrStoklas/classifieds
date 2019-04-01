@@ -17,55 +17,16 @@ import RegistrationPage from '../Admin/Registration';
 
 class Admin extends Component {
 
-  state = {
-    userLoggedIn: false,
-    userLogInInfo: {
-      email: null,
-      password: null
-    },
-    categories: [],
-    subCategories: []
-  }
+  
 
-  componentDidMount() {
+  
 
-    let token = getJwt();
-    if (token) {
-      this.setState({
-        ...this.state,
-        userLoggedIn: true
-      })
-    }
-  }
-
-  checkForLoggUsr = () => {
-    const jwt = getJwt();
-    !jwt
-      ? this.setState({userLoggedIn: false})
-      : this.setState({userLoggedIn: true});
-  }
-
-  submitForm = e => { // USER LOGIN SUBMIT
-    e.preventDefault();
-
-    fetchLogin
-      .post('/login', {
-      email: this.state.userLogInInfo.email,
-      password: this.state.userLogInInfo.password
-    })
-      .then(res => {
-        localStorage.setItem('login-jwt', res.data)
-        this.checkForLoggUsr();
-      })
-      .catch(err => {
-        console.log(err)
-        alert('please provide correct login details')
-      });
-  }
+  
 
   render() {
 
-    let content = this.state.userLoggedIn
+    console.log(this.props);
+    let content = this.props.userLoggedIn
       ? <div></div>
 
       : <div></div>
@@ -80,7 +41,7 @@ class Admin extends Component {
             <Container>
               <Row>
                 <Col md='4'>
-                  {this.state.userLoggedIn
+                  {this.props.userLoggedIn
                     ? <AdminNavigatoion/>
                     : <LoginForm
                       getinputvalues={this.getInputFormValue}
@@ -107,8 +68,12 @@ class Admin extends Component {
   }
 }
 
+
 const mapStateToProps = state => {
+  const { loggedIn } = state
   return {loggedInStatus: state.userLoggedIn}
 }
+
+
 
 export default connect(mapStateToProps, null)(Admin);
