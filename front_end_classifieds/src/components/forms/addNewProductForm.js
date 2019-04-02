@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 // import axios from 'axios';
-import {Button, Form} from 'reactstrap';
+import {Button, Form, Spinner} from 'reactstrap';
 import Input from '../form/input';
 import addNewProductConfig from '../../config_files/addNewProductConfig';
 import CategoriesNav from '../categoriesNav/categoriesNav';
@@ -19,13 +19,46 @@ class AddNewProductForm extends Component {
     subCategories: [],
     newProduct: {
       title: null,
-      // description: null, price: null,
+      description: null,
+      price: null,
       category_id: null,
-      // mileage: null, cubic_capacity: null, door_count: null, year: null, cylinder:
-      // null, registered: null, power: null, emission_class: null, color: null,
-      // interior: null, gearbox: null, fuel: null,
+      mileage: null,
+      cubic_capacity: null,
+      door_count: null,
+      year: null,
+      cylinder: null,
+      registered: null,
+      power: null,
+      emission_class: null,
+      color: null,
+      interior: null,
+      gearbox: null,
+      fuel: null,
       image: null, //image file
     }
+  }
+
+  componentDidMount() {
+
+    fetchCategories
+      .get()
+      .then(categories => {
+        categories
+          .data
+          .map(res => {
+            if (!res.parent_id) {
+              return (this.setState({
+                categories: [
+                  ...this.state.categories,
+                  res
+                ]
+              }))
+            }
+            return null;
+          });
+      })
+      .catch(err => console.log(err));
+
   }
 
   getChildren = e => {
@@ -110,12 +143,12 @@ class AddNewProductForm extends Component {
       });
   }
 
-  
   render() {
 
-    console.log(this.state.newProduct);
+    console.log(this.state);
 
-    let formContent = null;
+    let formContent = <Spinner/>;
+
     formContent = addNewProductConfig.map(config => <Input
       key={config.label_for}
       generalType={config.generalType}
@@ -133,8 +166,9 @@ class AddNewProductForm extends Component {
         <Form onChange={this.getInputFormValue} onSubmit={this.submitProductForm}>
           {formContent}
 
+          {/* Displaying product categories */}
           <CategoriesNav
-            categories={this.props.categories}
+            categories={this.state.categories}
             getSubcategories={this.getChildren}
             subCats={this.props.subCats}
             context={this.props.context}

@@ -4,9 +4,8 @@ import {Button, Spinner} from 'reactstrap';
 import getJWT from '../../../utilites/jwt';
 import FormComponent from '../../../components/form/input';
 import registrationFromSettings from '../../../config_files/registrationForm';
-// import fetchLogin from '../../../axios_routes/auth_routes';
 
-import { Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class RegistrationPage extends Component {
 
