@@ -19,12 +19,22 @@ class AddNewProductForm extends Component {
     subCategories: [],
     newProduct: {
       title: null,
-      // description: null, price: null,
+      description: null,
+      price: null,
       category_id: null,
-      // mileage: null, cubic_capacity: null, door_count: null, year: null, cylinder:
-      // null, registered: null, power: null, emission_class: null, color: null,
-      // interior: null, gearbox: null, fuel: null,
-      // image: null, //image file
+      mileage: null,
+      cubic_capacity: null,
+      door_count: null,
+      year: null,
+      cylinder: null,
+      registered: null,
+      power: null,
+      emission_class: null,
+      color: null,
+      interior: null,
+      gearbox: null,
+      fuel: null,
+      image: null, //image file
     }
   }
 
@@ -135,10 +145,9 @@ class AddNewProductForm extends Component {
 
   render() {
 
-
     console.log(this.state);
 
-    let formContent = <Spinner />;
+    let formContent = <Spinner/>;
 
     formContent = addNewProductConfig.map(config => <Input
       key={config.label_for}
@@ -154,8 +163,7 @@ class AddNewProductForm extends Component {
     return (
       <div>
         <h3>addNewProductForm</h3>
-        <Form onChange={this.getInputFormValue} 
-              onSubmit={this.submitProductForm}>
+        <Form onChange={this.getInputFormValue} onSubmit={this.submitProductForm}>
           {formContent}
 
           {/* Displaying product categories */}

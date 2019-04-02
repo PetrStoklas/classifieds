@@ -12,8 +12,7 @@ return (
     <Card body className="w-100 border-0">
         <Row className="product-image">
         <div className="product-image">
-
-        {/* Image Carousel */}
+                {/* Image Carousel */}
             <UncontrolledCarousel items={props.images} />
         </div>
         </Row>

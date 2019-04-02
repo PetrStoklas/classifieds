@@ -35,7 +35,7 @@ class SingleProductView extends Component {
         let items = new Object();
         items.src = 'http://www.api.testweb.life/uploads/products/' + res.filename;
         items.altTest = res.filename;
-        // items.caption = 'caprion one';
+        // items.caption = 'caption one';
         images.push(items);
         return items;
       })
