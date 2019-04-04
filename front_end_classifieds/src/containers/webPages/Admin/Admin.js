@@ -21,14 +21,8 @@ import RegistrationPage from '../Admin/Registration';
 class Admin extends Component {
 
 
-state = {
-  loggedInStatus: false
-}
-
 componentDidMount(){
-  if(getJwt()){
-    this.setState({loggedInStatus: true});
-  }
+  this.props.userLoggedInStatus();
 }
 
   
@@ -36,15 +30,13 @@ componentDidMount(){
   render() {
 
     console.log(this.props.loggedInStatus);
-    // console.log(this.state.loggedInStatus);
-    let content = this.state.loggedInStatus
+    let content = this.props.loggedInStatus
       ? <div></div>
 
       : <div></div>
     let currentLocUrl = '/admin'; //this.props.location.pathname;
     return (
       <div>
-        {/* {content} */}
         <div>
           <Navigation/>
           <div className="mt-5"></div>
@@ -52,7 +44,7 @@ componentDidMount(){
             <Container>
               <Row>
                 <Col md='4'>
-                  {this.state.loggedInStatus
+                  {this.props.loggedInStatus
                     ? <AdminNavigatoion/>
                     : <LoginForm
                       getinputvalues={this.getInputFormValue}
@@ -84,6 +76,12 @@ const mapStateToProps = state => {
   return {loggedInStatus: state.userLoggedIn}
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    userLoggedInStatus: (isLoggedIn) => dispatch({type: 'USERLOGGEDIN', payload: isLoggedIn}),
+  }
+}
 
 
-export default connect(mapStateToProps, null)(Admin);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Admin);

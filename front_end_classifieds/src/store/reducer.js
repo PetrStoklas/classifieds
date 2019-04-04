@@ -17,6 +17,14 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
 
+  if(action.type === 'USERLOGGEDIN'){
+    return {
+      ...state,
+      userLoggedIn: true,
+    }
+  }
+
+
   if (action.type === 'REGISTRATONCHANGED') {
     console.log(action.payload.target.value)
     let newState = {
@@ -27,6 +35,7 @@ const reducer = (state = initialState, action) => {
 
     return newState;
   }
+  // getting the values from the login form here
   if (action.type === 'LOGINCHAGED') {
     console.log(action.payload.target.value)
     let newState = {
@@ -37,7 +46,7 @@ const reducer = (state = initialState, action) => {
 
     return newState;
   }
-
+  // getting the values from the registration form here
   if (action.type === 'SUBMITREGISTRATIONFORM') {
     console.log(state)
     fetchLoginRegister
@@ -49,11 +58,11 @@ const reducer = (state = initialState, action) => {
     })
       .then(res => {
         localStorage.setItem('login-jwt', res.data)
+        push('/admin')
         return {
-          ...initialState,
+          ...state,
           userLoggedIn: true
         }
-
       })
   }
 

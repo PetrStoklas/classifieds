@@ -25,7 +25,8 @@ class RegistrationPage extends Component {
   }
 
   render() {
-
+    let token = getJWT();
+    console.log('token is' + token);
     // console.log(this.props.userInfoFromInputs);
     if (this.props.loggedInStatus) 
       return <Redirect to="/"/>
@@ -57,6 +58,7 @@ class RegistrationPage extends Component {
 const mapStateToProps = state => {
   return {loggedInStatus: state.userLoggedIn, userInfoFromInputs: state.userRegistrationInfo}
 }
+
 
 const mapDispatchToProps = dispatch => {
   return {
