@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import classes from './home.module.css';
+import classes from './Home.module.css';
 import fetchCategories from '../../../axios_routes/categories_axios';
 import fetchProducts from '../../../axios_routes/products_axios';
 import {
