@@ -4,7 +4,7 @@ import fetchProducts from '../../../axios_routes/products_axios';
 import {Container, Row, Col, Spinner, Form, Button
   // Button, Form
 } from 'reactstrap';
-import CategoriesNav from '../../../components/categoriesNav/categoriesNav';
+import CategoriesNav from '../../../components/categoriesDropDown/categoriesDropDown';
 import {
   // BrowserRouter as Router,
   Route

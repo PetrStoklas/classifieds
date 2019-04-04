@@ -34,12 +34,12 @@ const Categories_nav = props => {
     props.getAllProducts(value);
   }
 
-  if (window.innerWidth < 390) {
-    categories = categoriesType.map(res => <ListGroupItem key={res.id} onClick={props.getSubcategories}>
-      <Link to={"/" + res.name} id={res.id}>{res.name}
-      </Link>
-    </ListGroupItem>)
-  } else {
+  // if (window.innerWidth < 390) {
+  //   categories = categoriesType.map(res => <ListGroupItem key={res.id} onClick={props.getSubcategories}>
+  //     <Link to={"/" + res.name} id={res.id}>{res.name}
+  //     </Link>
+  //   </ListGroupItem>)
+  // } else {
     categories = <SearchForm
       getProducts={passingIdMiddleware}
       options={props.categories} 
@@ -51,7 +51,7 @@ const Categories_nav = props => {
       // getCategoryIdForHome={passIdToHome}
       // category_id of new product passed to 'addNewProductForm.js' -> 'Admin.js'
     />
-  }
+  // }
 
   // console.log(props);
 

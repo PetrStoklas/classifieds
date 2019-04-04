@@ -7,8 +7,6 @@ import BrandCard from '../brandCard/brandCard';
 
 const header = props => {
 
-  // console.log('header props jumbotrone', props)
-
   return (
     <div>
     <Jumbotron className={classes.Wrapper}>

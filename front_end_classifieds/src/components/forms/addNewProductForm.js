@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {Button, Form, Spinner} from 'reactstrap';
 import Input from '../form/input';
 import addNewProductConfig from '../../config_files/addNewProductConfig';
-import CategoriesNav from '../categoriesNav/categoriesNav';
+import CategoriesNav from '../categoriesDropDown/categoriesDropDown';
 import fetchCategories from '../../axios_routes/categories_axios';
 import createProduct from '../../axios_routes/create_product';
 

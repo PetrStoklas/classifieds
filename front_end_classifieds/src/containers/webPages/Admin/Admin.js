@@ -7,7 +7,7 @@ import {
   Row,
   Col
 } from 'reactstrap';
-import LoginForm from '../../../components/Register/RegisterForm';
+import LoginForm from '../../../components/Register/LoginForm';
 import {BrowserRouter as Router, Route, 
   // Link, 
   // withRouter
