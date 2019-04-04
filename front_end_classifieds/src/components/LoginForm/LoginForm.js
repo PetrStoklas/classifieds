@@ -28,7 +28,6 @@ class LoginFrom extends Component {
       this.props.userLoggedInStatus();
     }
   
-  
   }
 
   createRegisterForm = () => {
@@ -47,10 +46,9 @@ class LoginFrom extends Component {
   }
 
     render() {
-      
       return (
         <div>
-          { this.props.userLoggedIn ? <Redirect to="/"  /> : ''}
+          {/* { this.props.userLoggedIn ? <Redirect to="/"  /> : ''} */}
           {/* <Form> */}
             {this.createRegisterForm()}
             <Button id="login" onClick={this.props.loginFromSubmit}>

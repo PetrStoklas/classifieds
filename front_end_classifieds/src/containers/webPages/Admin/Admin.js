@@ -7,7 +7,7 @@ import {
   Row,
   Col
 } from 'reactstrap';
-import LoginForm from '../../../components/Register/LoginForm';
+import LoginForm from '../../../components/LoginForm/LoginForm';
 import {BrowserRouter as Router, Route, 
   // Link, 
   // withRouter
@@ -35,6 +35,7 @@ componentDidMount(){
   render() {
 
     console.log(this.props.loggedInStatus);
+    console.log(Boolean(getJwt()));
     let content = this.props.loggedInStatus
       ? <div></div>
 
@@ -78,7 +79,7 @@ componentDidMount(){
 
 
 const mapStateToProps = state => {
-  return {loggedInStatus: state.userLoggedIn}
+  return {loggedInStatus: state.login.userLoggedIn}
 }
 
 const mapDispatchToProps = dispatch => {

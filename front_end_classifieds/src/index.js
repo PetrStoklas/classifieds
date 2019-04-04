@@ -4,11 +4,17 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {createStore} from 'redux';
-import reducer from './store/reducer';
+import {createStore, combineReducers} from 'redux';
+import loginReducer from './store/reducers/login';
+import registerReducer from './store/reducers/register';
 import {Provider} from 'react-redux';
 
-const store = createStore(reducer)
+
+const rootReducer = combineReducers({
+  login: loginReducer,
+  register: registerReducer,
+});
+const store = createStore(rootReducer)
 
 ReactDOM.render(
   <Provider store={store}><App/></Provider>, document.getElementById('root'));
