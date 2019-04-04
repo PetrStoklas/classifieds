@@ -7,8 +7,11 @@ import {
   Row,
   Col
 } from 'reactstrap';
-import LoginForm from '../../../components/Register/RegisterForm';
-import {BrowserRouter as Router, Route, Link, withRouter} from "react-router-dom";
+import LoginForm from '../../../components/Register/LoginForm';
+import {BrowserRouter as Router, Route, 
+  // Link, 
+  // withRouter
+} from "react-router-dom";
 import AddNewProductForm from '../../../components/forms/addNewProductForm';
 import Navigation from '../../../components/UI/Navigation/Navigation';
 import AdminNavigatoion from '../../../components/UI/AdminNavigatoion/AdminNavigatoion'
@@ -17,11 +20,11 @@ import RegistrationPage from '../Admin/Registration';
 
 class Admin extends Component {
 
-  
+
 state = {
   loggedInStatus: false
 }
-  
+
 componentDidMount(){
   if(getJwt()){
     this.setState({loggedInStatus: true});
@@ -32,8 +35,8 @@ componentDidMount(){
 
   render() {
 
-    // console.log(this.props.loggedInStatus);
-    console.log(this.state.loggedInStatus);
+    console.log(this.props.loggedInStatus);
+    // console.log(this.state.loggedInStatus);
     let content = this.state.loggedInStatus
       ? <div></div>
 

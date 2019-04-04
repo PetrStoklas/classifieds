@@ -4,7 +4,7 @@ import fetchProducts from '../../../axios_routes/products_axios';
 import {Container, Row, Col, Spinner, Form, Button
   // Button, Form
 } from 'reactstrap';
-import CategoriesNav from '../../../components/categoriesNav/categoriesNav';
+import CategoriesNav from '../../../components/categoriesDropDown/categoriesDropDown';
 import {
   // BrowserRouter as Router,
   Route
@@ -28,7 +28,7 @@ class Home extends Component {
     productsWithCategory: []
   }
 
-  componentWillMount() {
+  componentDidMount() {
     fetchCategories
       .get()
       .then(categories => {
@@ -49,7 +49,6 @@ class Home extends Component {
       .catch(err => console.log(err));
     // Get All Products     
     
-    // HOW TO GET IMAGES TO THE PRODUCT ?   getting two arrays ($products AND $images)
     fetchProducts
       .get()
       .then(res => {
@@ -150,8 +149,8 @@ class Home extends Component {
                   <Route
                     path="/"
                     exact
-                    component={() => <CategoriesNav
-                    // categories aka 'brands' are loaded in 'componentWillMount()'
+                    component={() => 
+                    <CategoriesNav
                       categories={this.state.categories}
                       getSubcategories={this.getChildren}
                       getAllProducts={this.getProductsWithCategory}
@@ -161,8 +160,8 @@ class Home extends Component {
                       />
                   <Route
                     path={'/' + this.state.active_category}
-                    exact
-                    component = {() => <CategoriesNav
+                    component = {() => 
+                    <CategoriesNav
                       subCats={this.state.subCategories} 
                       productsId={this.state.productsId}
                       context={'home'}
