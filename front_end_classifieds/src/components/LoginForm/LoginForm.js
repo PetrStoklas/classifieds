@@ -11,6 +11,7 @@ import {
 import FormComponent from '../form/input';
 import {connect} from 'react-redux';
 import getJwt from '../../utilites/jwt';
+import * as actionTypes from '../../store/actions'
 
 class LoginFrom extends Component {
 
@@ -72,9 +73,9 @@ class LoginFrom extends Component {
 
   const mapDispatchToProps = dispatch => {
     return {
-      userLoggedInStatus: (isLoggedIn) => dispatch({type: 'USERLOGGEDIN', payload: isLoggedIn}),
-      formInputEvent: (event) => dispatch({type: 'LOGINCHAGED', payload: event}),
-      loginFromSubmit: () => dispatch({type: 'SUBMITLOGINFORM'})
+      userLoggedInStatus: (isLoggedIn) => dispatch({type: actionTypes.USERLOGGEDIN, payload: isLoggedIn}),
+      formInputEvent: (event) => dispatch({type: actionTypes.LOGINCHAGED, payload: event}),
+      loginFromSubmit: () => dispatch({type: actionTypes.SUBMITLOGINFORM})
     }
   }
 

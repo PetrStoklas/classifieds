@@ -1,5 +1,6 @@
 import fetchLoginRegister from '../axios_routes/auth_routes';
 import {push} from 'react-router-redux'
+import * as actionTypes from './actions';
 
 const initialState = {
   userLoggedIn: false,
@@ -17,7 +18,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
 
-  if(action.type === 'USERLOGGEDIN'){
+  if(action.type === actionTypes.USERLOGGEDIN){
     return {
       ...state,
       userLoggedIn: true,
@@ -25,7 +26,7 @@ const reducer = (state = initialState, action) => {
   }
 
 
-  if (action.type === 'REGISTRATONCHANGED') {
+  if (action.type === actionTypes.REGISTRATONCHANGED) {
     console.log(action.payload.target.value)
     let newState = {
       ...state
@@ -36,7 +37,7 @@ const reducer = (state = initialState, action) => {
     return newState;
   }
   // getting the values from the login form here
-  if (action.type === 'LOGINCHAGED') {
+  if (action.type === actionTypes.LOGINCHAGED) {
     console.log(action.payload.target.value)
     let newState = {
       ...state
@@ -47,7 +48,7 @@ const reducer = (state = initialState, action) => {
     return newState;
   }
   // getting the values from the registration form here
-  if (action.type === 'SUBMITREGISTRATIONFORM') {
+  if (action.type === actionTypes.SUBMITREGISTRATIONFORM) {
     console.log(state)
     fetchLoginRegister
       .post('/register', {
@@ -66,7 +67,7 @@ const reducer = (state = initialState, action) => {
       })
   }
 
-  if (action.type === 'SUBMITLOGINFORM') {
+  if (action.type === actionTypes.SUBMITLOGINFORM) {
     console.log('clicked')
     fetchLoginRegister
       .post('/login', {
@@ -84,7 +85,7 @@ const reducer = (state = initialState, action) => {
       .catch(err => console.log(err));
   }
 
-  
+
   return state;
 }
 
