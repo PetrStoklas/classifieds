@@ -11,6 +11,7 @@ import LoginForm from '../../../components/Register/LoginForm';
 import {BrowserRouter as Router, Route, 
   // Link, 
   // withRouter
+  Redirect
 } from "react-router-dom";
 import AddNewProductForm from '../../../components/forms/addNewProductForm';
 import Navigation from '../../../components/UI/Navigation/Navigation';
@@ -22,7 +23,10 @@ class Admin extends Component {
 
 
 componentDidMount(){
-  this.props.userLoggedInStatus();
+  if(getJwt()){
+    this.props.userLoggedInStatus();
+  }
+
 }
 
   

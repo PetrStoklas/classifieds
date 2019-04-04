@@ -1,19 +1,21 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import {Button, Spinner} from 'reactstrap';
-import getJWT from '../../../utilites/jwt';
+import getJwt from '../../../utilites/jwt';
 import FormComponent from '../../../components/form/input';
 import registrationFromSettings from '../../../config_files/registrationForm';
 
-import { Redirect } from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 class RegistrationPage extends Component {
 
   componentDidMount() {
-    let token = getJWT();
-    this
-      .props
-      .userLoggedInStatus(Boolean(token));
+    
+    if (getJwt()) {
+      this
+        .props
+        .userLoggedInStatus();
+    }
   }
 
   checkForLoggedInUser = () => {
@@ -25,11 +27,9 @@ class RegistrationPage extends Component {
   }
 
   render() {
-    let token = getJWT();
-    console.log('token is' + token);
-    // console.log(this.props.userInfoFromInputs);
+    
     if (this.props.loggedInStatus) 
-      return <Redirect to="/"/>
+      return 
 
     let registrationForm = <Spinner/>
     registrationForm = registrationFromSettings.map(formElements => <FormComponent
@@ -58,7 +58,6 @@ class RegistrationPage extends Component {
 const mapStateToProps = state => {
   return {loggedInStatus: state.userLoggedIn, userInfoFromInputs: state.userRegistrationInfo}
 }
-
 
 const mapDispatchToProps = dispatch => {
   return {

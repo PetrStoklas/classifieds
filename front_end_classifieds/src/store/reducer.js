@@ -84,6 +84,7 @@ const reducer = (state = initialState, action) => {
       .catch(err => console.log(err));
   }
 
+  
   return state;
 }
 

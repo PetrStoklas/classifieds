@@ -10,8 +10,25 @@ import {
 } from "react-router-dom";
 import FormComponent from '../form/input';
 import {connect} from 'react-redux';
+import getJwt from '../../utilites/jwt';
 
 class LoginFrom extends Component {
+
+  componentDidMount(){
+    if(getJwt()){
+      this.props.userLoggedInStatus();
+    }
+  
+  }
+
+  componentWillUpdate () {
+
+    if(getJwt()){
+      this.props.userLoggedInStatus();
+    }
+  
+  
+  }
 
   createRegisterForm = () => {
     let registrationForm = <Spinner/>
@@ -29,12 +46,10 @@ class LoginFrom extends Component {
   }
 
     render() {
-
-      console.log(this.props.loggedInStatus);
       
       return (
         <div>
-          
+          { this.props.userLoggedIn ? <Redirect to="/"  /> : ''}
           {/* <Form> */}
             {this.createRegisterForm()}
             <Button id="login" onClick={this.props.loginFromSubmit}>
