@@ -16,7 +16,7 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-  
+
   if (action.type === 'REGISTRATONCHANGED') {
     console.log(action.payload.target.value)
     let newState = {
@@ -49,7 +49,11 @@ const reducer = (state = initialState, action) => {
     })
       .then(res => {
         localStorage.setItem('login-jwt', res.data)
-        push('/')
+        return {
+          ...initialState,
+          userLoggedIn: true
+        }
+
       })
   }
 
@@ -63,6 +67,10 @@ const reducer = (state = initialState, action) => {
       .then(res => {
         localStorage.setItem('login-jwt', res.data)
         push('/admin')
+        return {
+          ...state,
+          userLoggedIn: true
+        }
       })
       .catch(err => console.log(err));
   }

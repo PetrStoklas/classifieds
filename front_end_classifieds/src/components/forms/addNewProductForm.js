@@ -145,7 +145,7 @@ class AddNewProductForm extends Component {
 
   render() {
 
-    console.log(this.state);
+    // console.log(this.state);
 
     let formContent = <Spinner/>;
 

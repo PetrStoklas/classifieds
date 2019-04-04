@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import loginForm from '../../config_files/login_form_config'
-import {Form, Button, Spinner} from 'reactstrap';
+import {
+  // Form, 
+  Button, Spinner} from 'reactstrap';
 import {
   // BrowserRouter as Router, Route,
+  Redirect,
   Link
 } from "react-router-dom";
 import FormComponent from '../form/input';
@@ -27,6 +30,8 @@ class LoginFrom extends Component {
 
     render() {
 
+      console.log(this.props.loggedInStatus);
+      
       return (
         <div>
           
@@ -44,6 +49,7 @@ class LoginFrom extends Component {
     }
 
   }
+
 
   const mapStateToProps = state => {
     return {loggedInStatus: state.userLoggedIn}
