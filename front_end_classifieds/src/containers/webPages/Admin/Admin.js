@@ -7,28 +7,27 @@ import {
   Row,
   Col
 } from 'reactstrap';
-import LoginForm from '../../../components/Register/LoginForm';
+import LoginForm from '../../../components/LoginForm/LoginForm';
 import {BrowserRouter as Router, Route, 
   // Link, 
   // withRouter
+  Redirect
 } from "react-router-dom";
 import AddNewProductForm from '../../../components/forms/addNewProductForm';
 import Navigation from '../../../components/UI/Navigation/Navigation';
 import AdminNavigatoion from '../../../components/UI/AdminNavigatoion/AdminNavigatoion'
 import AdminProductList from '../../../components/AdminProductList/AdminProductList';
 import RegistrationPage from '../Admin/Registration';
+import * as actionTypes from '../../../store/actions';
 
 class Admin extends Component {
 
 
-state = {
-  loggedInStatus: false
-}
-
 componentDidMount(){
   if(getJwt()){
-    this.setState({loggedInStatus: true});
+    this.props.userLoggedInStatus();
   }
+
 }
 
   
@@ -36,15 +35,14 @@ componentDidMount(){
   render() {
 
     console.log(this.props.loggedInStatus);
-    // console.log(this.state.loggedInStatus);
-    let content = this.state.loggedInStatus
+    console.log(Boolean(getJwt()));
+    let content = this.props.loggedInStatus
       ? <div></div>
 
       : <div></div>
     let currentLocUrl = '/admin'; //this.props.location.pathname;
     return (
       <div>
-        {/* {content} */}
         <div>
           <Navigation/>
           <div className="mt-5"></div>
@@ -52,7 +50,7 @@ componentDidMount(){
             <Container>
               <Row>
                 <Col md='4'>
-                  {this.state.loggedInStatus
+                  {this.props.loggedInStatus
                     ? <AdminNavigatoion/>
                     : <LoginForm
                       getinputvalues={this.getInputFormValue}
@@ -81,9 +79,15 @@ componentDidMount(){
 
 
 const mapStateToProps = state => {
-  return {loggedInStatus: state.userLoggedIn}
+  return {loggedInStatus: state.login.userLoggedIn}
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    userLoggedInStatus: (isLoggedIn) => dispatch({type: actionTypes.USERLOGGEDIN, payload: isLoggedIn}),
+  }
 }
 
 
 
-export default connect(mapStateToProps, null)(Admin);
+export default connect(mapStateToProps, mapDispatchToProps)(Admin);

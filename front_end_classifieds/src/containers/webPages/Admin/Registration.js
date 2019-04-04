@@ -1,19 +1,22 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import {Button, Spinner} from 'reactstrap';
-import getJWT from '../../../utilites/jwt';
+import getJwt from '../../../utilites/jwt';
 import FormComponent from '../../../components/form/input';
 import registrationFromSettings from '../../../config_files/registrationForm';
+import * as actionTypes from '../../../store/actions';
 
-import { Redirect } from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 class RegistrationPage extends Component {
 
   componentDidMount() {
-    let token = getJWT();
-    this
-      .props
-      .userLoggedInStatus(Boolean(token));
+    
+    if (getJwt()) {
+      this
+        .props
+        .userLoggedInStatus();
+    }
   }
 
   checkForLoggedInUser = () => {
@@ -25,10 +28,9 @@ class RegistrationPage extends Component {
   }
 
   render() {
-
-    // console.log(this.props.userInfoFromInputs);
+    
     if (this.props.loggedInStatus) 
-      return <Redirect to="/"/>
+      return 
 
     let registrationForm = <Spinner/>
     registrationForm = registrationFromSettings.map(formElements => <FormComponent
@@ -60,9 +62,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    userLoggedInStatus: (isLoggedIn) => dispatch({type: 'USERLOGGEDIN', payload: isLoggedIn}),
-    formInputEvent: (event) => dispatch({type: 'REGISTRATONCHANGED', payload: event}),
-    registrationFromSubmit: () => dispatch({type: 'SUBMITREGISTRATIONFORM'})
+    userLoggedInStatus: (isLoggedIn) => dispatch({type: actionTypes.USERLOGGEDIN, payload: isLoggedIn}),
+    formInputEvent: (event) => dispatch({type: actionTypes.REGISTRATONCHANGED, payload: event}),
+    registrationFromSubmit: () => dispatch({type: actionTypes.SUBMITREGISTRATIONFORM})
   }
 }
 
