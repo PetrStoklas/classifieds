@@ -1,7 +1,14 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import classes from './home.module.css';
 import fetchCategories from '../../../axios_routes/categories_axios';
 import fetchProducts from '../../../axios_routes/products_axios';
-import {Container, Row, Col, Spinner, Form, Button
+import {
+  Container,
+  Row,
+  Col,
+  Spinner,
+  Form,
+  Button
   // Button, Form
 } from 'reactstrap';
 import CategoriesNav from '../../../components/categoriesDropDown/categoriesDropDown';
@@ -9,7 +16,7 @@ import {
   // BrowserRouter as Router,
   Route
 } from "react-router-dom";
-import Jumbotron from '../../../components/header/header';
+import Jumbotron from '../../../components/categorisJumbotr/categorisJumbotr';
 import AddsCardSection from '../../sections/AddsCardSection';
 import Navigation from '../../../components/UI/Navigation/Navigation';
 import SingleProductView from '../SingleProductView/SingleProductView';
@@ -47,8 +54,8 @@ class Home extends Component {
           });
       })
       .catch(err => console.log(err));
-    // Get All Products     
-    
+    // Get All Products
+
     fetchProducts
       .get()
       .then(res => {
@@ -59,7 +66,7 @@ class Home extends Component {
       })
       .catch(err => console.log(err));
     fetchCategories.get()
-      // console.log('products and images',this.state.productsAll);
+    // console.log('products and images',this.state.productsAll);
   }
 
   getChildren = e => {
@@ -94,7 +101,6 @@ class Home extends Component {
       .catch(err => console.log(err))
   }
 
-
   getProductsbyBrand = (id) => {
     fetchProducts
       .get('/bybrand/' + id)
@@ -112,73 +118,50 @@ class Home extends Component {
 
   getProducts = e => {
     e.preventDefault();
-    console.log('getProducts',e.target);
+    console.log('getProducts', e.target);
     const id = this.state.productId;
     this
       .props
       .getProducts(id)
-      //what is this for? 
+    //what is this for?
   }
 
-  sayId(id){
-    console.log('id from Home.js',id)
+  sayId(id) {
+    console.log('id from Home.js', id)
     // return e.target.value
-  }  
+  }
 
   render() {
-    // console.log(this.state.productsWithCategory, typeof this.state.productsWithCategory);
+    // console.log(this.state.productsWithCategory, typeof
+    // this.state.productsWithCategory);
 
     let jumbotron = <Spinner/>
     if (this.state.categories.length > 0) {
-      jumbotron = <Jumbotron
-      // categories aka 'brands' are loaded in 'componentWillMount()'
-        categories={this.state.categories}
-        getCategoryId=
-        {(id) => {this.getProductsbyBrand(id);}}
-      />
+      jumbotron = <Jumbotron // categories aka 'brands' are loaded in 'componentWillMount()'
+  categories={this.state.categories} getCategoryId= {(id) => {this.getProductsbyBrand(id);}}/>
     }
     return (
       <div>
-        <Navigation/> 
-        {/* props to jumbotron sent in render() above return */}
-        { jumbotron } 
+        <Navigation/>
         <Container>
-          <Form onSubmit={this.getProducts}>
-              <Row>
-                <Col md="6">
-                  <Route
-                    path="/"
-                    exact
-                    component={() => 
-                    <CategoriesNav
-                      categories={this.state.categories}
-                      getSubcategories={this.getChildren}
-                      getAllProducts={this.getProductsWithCategory}
-                      categoryId={this.getProductsWithCategory}
-                      context={'home'}
-                      />}
-                      />
-                  <Route
-                    path={'/' + this.state.active_category}
-                    component = {() => 
-                    <CategoriesNav
-                      subCats={this.state.subCategories} 
-                      productsId={this.state.productsId}
-                      context={'home'}
-                      // categoryId={this.sayId}
-                      /> }/>
-                  {/* <Route path="/product" exact component={SingleProductView}/> */}
-                </Col>
-              </Row>
-              {/* <Button>Search</Button> */}
-            </Form>
-            <Row>
-              <AddsCardSection
-                getClickedId={this.getClickedId}
-                cardsData={(this.state.productsWithCategory.length === 0)
-                ? this.state.productsAll
-                : this.state.productsWithCategory}/>
-            </Row>
+        <div className={classes.SearchBar}>
+          <CategoriesNav
+            categories={this.state.categories}
+            getSubcategories={this.getChildren}
+            getAllProducts={this.getProductsWithCategory}
+            categoryId={this.getProductsWithCategory}
+            context={'home'}/> {/* props to jumbotron sent in render() above return */}
+        </div>
+
+          {jumbotron}
+
+          <Row>
+            <AddsCardSection
+              getClickedId={this.getClickedId}
+              cardsData={(this.state.productsWithCategory.length === 0)
+              ? this.state.productsAll
+              : this.state.productsWithCategory}/>
+          </Row>
         </Container>
       </div>
     );
