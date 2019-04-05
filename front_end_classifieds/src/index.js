@@ -10,11 +10,15 @@ import registerReducer from './store/reducers/register';
 import {Provider} from 'react-redux';
 
 
+
 const rootReducer = combineReducers({
   login: loginReducer,
   register: registerReducer,
 });
-const store = createStore(rootReducer)
+
+const store = createStore(
+  rootReducer,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
   <Provider store={store}><App/></Provider>, document.getElementById('root'));
