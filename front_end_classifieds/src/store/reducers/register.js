@@ -1,6 +1,6 @@
 import fetchLoginRegister from '../../axios_routes/auth_routes';
 import {push} from 'react-router-redux'
-import * as actionTypes from '../actions';
+import * as actionTypes from '../actions/actions';
 
 const initialState = {
   userLoggedIn: false,

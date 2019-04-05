@@ -1,6 +1,6 @@
 import fetchLoginRegister from '../../axios_routes/auth_routes';
 import {push} from 'react-router-redux'
-import * as actionTypes from '../actions';
+import * as actionTypes from '../actions/actions';
 
 const initialState = {
   userLoggedIn: false,
@@ -22,12 +22,13 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.LOGINCHAGED:
 
-      console.log(action.payload.target.value)
+      // console.log(action.event.target.value)
+      console.log(action.event.target.value)
       let newState = {
         ...state
       }
 
-      newState.userLogInInfo[action.payload.target.name] = action.payload.target.value;
+      newState.userLogInInfo[action.event.target.name] = action.event.target.value;
 
       return newState;
 

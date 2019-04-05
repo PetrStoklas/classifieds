@@ -18,7 +18,7 @@ import Navigation from '../../../components/UI/Navigation/Navigation';
 import AdminNavigatoion from '../../../components/UI/AdminNavigatoion/AdminNavigatoion'
 import AdminProductList from '../../../components/AdminProductList/AdminProductList';
 import RegistrationPage from '../Admin/Registration';
-import * as actionTypes from '../../../store/actions';
+import * as actionTypes from '../../../store/actions/actions';
 
 class Admin extends Component {
 
