@@ -3,12 +3,20 @@
     margin: 10% 0;
     display: flex;
     align-items: flex-end;
+    background: center / cover no-repeat url('http://www.api.testweb.life/uploads/images/backdrops/bakcdrop-main-ready.jpg');
+    color: #fff;
 
     .Nested {
-      // height: 20em;
       width: 70%;
       margin: auto;
-      // background: red;
+
+      .form-group {
+        
+        label {
+          font-size: 1.4em!important;
+        }
+
+      }
     }
     .Bar {
       display: none;
