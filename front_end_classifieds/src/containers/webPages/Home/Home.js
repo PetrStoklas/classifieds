@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import classes from './home.module.css';
+import classes from './Home.module.scss';
 import fetchCategories from '../../../axios_routes/categories_axios';
 import fetchProducts from '../../../axios_routes/products_axios';
 import {
@@ -144,14 +144,17 @@ class Home extends Component {
       <div>
         <Navigation/>
         <Container>
-        <div className={classes.SearchBar}>
-          <CategoriesNav
-            categories={this.state.categories}
-            getSubcategories={this.getChildren}
-            getAllProducts={this.getProductsWithCategory}
-            categoryId={this.getProductsWithCategory}
-            context={'home'}/> {/* props to jumbotron sent in render() above return */}
-        </div>
+          <div className={classes.SearchBar}>
+            <div className={classes.Nested}>
+              <CategoriesNav
+                className={classes.Bar}
+                categories={this.state.categories}
+                getSubcategories={this.getChildren}
+                getAllProducts={this.getProductsWithCategory}
+                categoryId={this.getProductsWithCategory}
+                context={'home'}/> {/* props to jumbotron sent in render() above return */}
+            </div>
+          </div>
 
           {jumbotron}
 
