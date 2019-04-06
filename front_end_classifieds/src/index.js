@@ -4,11 +4,11 @@ import './index.scss';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import loginReducer from './store/reducers/login';
 import registerReducer from './store/reducers/register';
 import {Provider} from 'react-redux';
-
+import thunk from 'redux-thunk';
 
 
 const rootReducer = combineReducers({
@@ -16,8 +16,9 @@ const rootReducer = combineReducers({
   register: registerReducer,
 });
 
+
 const store = createStore(
-  rootReducer,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  rootReducer,  applyMiddleware(thunk)
 );
 
 ReactDOM.render(

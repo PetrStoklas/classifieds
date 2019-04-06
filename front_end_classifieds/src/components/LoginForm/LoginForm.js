@@ -73,7 +73,7 @@ class LoginFrom extends Component {
     return {
       userLoggedInStatus: (isLoggedIn) => dispatch({type: actionTypes.USERLOGGEDIN, payload: isLoggedIn}),
       formInputEvent: (event) => dispatch(actionTypes.userLoggedInChange(event)),
-      loginFromSubmit: () => dispatch({type: actionTypes.SUBMITLOGINFORM})
+      loginFromSubmit: () => dispatch(actionTypes.submitLoginForm())
     }
   }
 

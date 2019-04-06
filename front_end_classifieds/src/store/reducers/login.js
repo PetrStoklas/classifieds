@@ -1,5 +1,5 @@
 import fetchLoginRegister from '../../axios_routes/auth_routes';
-import {push} from 'react-router-redux'
+import { browserHistory} from 'react-router-redux'
 import * as actionTypes from '../actions/actions';
 
 const initialState = {
@@ -27,9 +27,7 @@ const reducer = (state = initialState, action) => {
       let newState = {
         ...state
       }
-
       newState.userLogInInfo[action.event.target.name] = action.event.target.value;
-
       return newState;
 
     case actionTypes.SUBMITLOGINFORM:
@@ -41,14 +39,18 @@ const reducer = (state = initialState, action) => {
         password: state.userLogInInfo.password
       })
         .then(res => {
+          console.log(browserHistory);
           localStorage.setItem('login-jwt', res.data)
-          push('/admin')
+          browserHistory.push('/admin');
           return {
             ...state,
             userLoggedIn: true
           }
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          console.log(browserHistory)
+          console.log(err)
+        });
 
     default:
       break;

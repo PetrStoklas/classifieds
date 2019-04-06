@@ -14,4 +14,22 @@ export const userLoggedInChange = event => {
   }
 }
 
+export const submitLoginForm = () => {
+  return {
+    type: SUBMITLOGINFORM
+  }
+}
+
+export const sendLoginForm = () => {
+  return dispatch => {
+    dispatch(submitLoginForm())
+  }
+}
+
+
+
+
+
+
+
 
