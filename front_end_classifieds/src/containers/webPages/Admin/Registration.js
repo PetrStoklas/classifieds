@@ -4,7 +4,7 @@ import {Button, Spinner} from 'reactstrap';
 import getJwt from '../../../utilites/jwt';
 import FormComponent from '../../../components/form/input';
 import registrationFromSettings from '../../../config_files/registrationForm';
-import * as actionTypes from '../../../store/actions';
+import * as actionTypes from '../../../store/actions/actions';
 
 import {Redirect} from "react-router-dom";
 
