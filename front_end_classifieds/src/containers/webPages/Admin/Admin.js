@@ -5,8 +5,10 @@ import getJwt from '../../../utilites/jwt';
 import {Container, Row, Col} from 'reactstrap';
 import LoginForm from '../../../components/LoginForm/LoginForm';
 import {
-  BrowserRouter as Router, Route,
-  // Link, withRouter
+  BrowserRouter as Router, 
+  Route,
+  // Link,
+  // withRouter
   Redirect
 } from "react-router-dom";
 import AddNewProductForm from '../../../components/forms/addNewProductForm';
@@ -18,9 +20,9 @@ import * as actionTypes from '../../../store/actions/actions';
 
 class Admin extends Component {
 
-  componentDidMount() {
+  componentWillUpdate() {
     if (getJwt()) {
-      // this.props.userLoggedInStatus();
+      this.props.loggedInStatus();
     }
 
   }
@@ -43,12 +45,7 @@ class Admin extends Component {
                 <Col md='4'>
                   {this.props.loggedInStatus || getJwt()
                     ? <AdminNavigatoion/>
-                    : <LoginForm
-                      getinputvalues={this.getInputFormValue}
-                      submitform={this.submitForm}/>}
-                  {/* {this.props.userLoggedIn || getJwt()
-                    ? <Redirect to="/admin"/>
-                    : 'i need to rerender'} */}
+                    : <Redirect to="/admin/login"/>}
                 </Col>
                 <Col md='8'>
                   <Route
@@ -59,10 +56,13 @@ class Admin extends Component {
                     exact
                     path={currentLocUrl + '/allProductsList'}
                     component={() => <AdminProductList/>}></Route>
-
-                  <Route path='/admin/register' component={RegistrationPage}></Route>
                 </Col>
               </Row>
+              <Route path='/admin/login' component={() => 
+                      <LoginForm
+                      getinputvalues={this.getInputFormValue}
+                      submitform={this.submitForm}/>}></Route>
+              <Route path={currentLocUrl + '/register'} component={RegistrationPage}></Route>
             </Container>
           </Router>
         </div>

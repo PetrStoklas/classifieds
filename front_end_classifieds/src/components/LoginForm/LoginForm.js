@@ -38,11 +38,14 @@ class LoginFrom extends Component {
 
   render() {
     // console.log(getJwt());
-    // console.log('rerender');
-    // console.log(this.props.loggedInStatus);
+    console.log('rerender');
+    console.log(this.props.loggedInStatus);
     console.log(this.props);
     return (
       <div>
+      {this.props.userLoggedIn || getJwt()
+                    ? <Redirect to="/admin"/>
+                    : 'i need to rerender'}
         {/* <Form> */}
         {this.createRegisterForm()}
         <Button id="login" onClick={this.props.loginFromSubmit}>
