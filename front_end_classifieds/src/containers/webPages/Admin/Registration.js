@@ -11,7 +11,7 @@ import {Redirect, Link} from "react-router-dom";
 class RegistrationPage extends Component {
 
   componentDidMount() {
-    
+
     if (getJwt()) {
       this
         .props
@@ -20,7 +20,7 @@ class RegistrationPage extends Component {
   }
 
   checkForLoggedInUser = () => {
-    if(!this.props.loggedInStatus){
+    if (!this.props.loggedInStatus) {
       console.log('no one is logged in');
     }
     this
@@ -31,10 +31,8 @@ class RegistrationPage extends Component {
 
   render() {
     console.log(this.props);
-    // if (this.props.loggedInStatus) 
-    //   return 
-    
-    
+    // if (this.props.loggedInStatus)   return
+
     let registrationForm = <Spinner/>
     registrationForm = registrationFromSettings.map(formElements => <FormComponent
       key={formElements.label_for}
@@ -45,17 +43,19 @@ class RegistrationPage extends Component {
       title={formElements.label_for}
       formdata={this.props.formInputEvent}/>);
 
-    let regForm = <div>
-      {registrationForm}
-      <Button onClick={this.checkForLoggedInUser} id="register">Register</Button>
-      <Button><Link to="/admin/login">Login</Link></Button>
-    </div>;
-
     return (
       <div>
-      {this.props.loggedInStatus ? <Redirect to="/admin"/> : ''}
+        {this.props.loggedInStatus
+          ? <Redirect to="/admin"/>
+          : ''}
         <h1>Registration Page</h1>
-        {regForm}
+        <div>
+          {registrationForm}
+          <Button onClick={this.checkForLoggedInUser}>Register</Button>
+          <Button>
+            <Link to="/admin/login">Login</Link>
+          </Button>
+        </div>
       </div>
     );
   }
