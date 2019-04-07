@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import loginForm from '../../config_files/login_form_config'
 import {
-  // Form, 
-  Button, Spinner} from 'reactstrap';
+  // Form,
+  Button,
+  Spinner
+} from 'reactstrap';
 import {
   // BrowserRouter as Router, Route,
   Redirect,
@@ -11,24 +13,13 @@ import {
 import FormComponent from '../form/input';
 import {connect} from 'react-redux';
 import getJwt from '../../utilites/jwt';
-import * as actionTypes from '../../store/actions/actions'
+import * as actionTypes from '../../store/actions/actions';
 
 class LoginFrom extends Component {
 
-  componentDidMount(){
-    if(getJwt()){
-      this.props.userLoggedInStatus();
-    }
-  
-  }
-
-  componentWillUpdate () {
-
-    if(getJwt()){
-      this.props.userLoggedInStatus();
-    }
-  
-  }
+  // componentDidMount(){   if(getJwt()){     this.props.userLoggedInStatus();   }
+  // } componentWillUpdate () {   if(getJwt()){
+  // this.props.userLoggedInStatus();   } }
 
   createRegisterForm = () => {
     let registrationForm = <Spinner/>
@@ -45,36 +36,41 @@ class LoginFrom extends Component {
     return registrationForm;
   }
 
-    render() {
-      return (
-        <div>
-          {/* { this.props.userLoggedIn ? <Redirect to="/"  /> : ''} */}
-          {/* <Form> */}
-            {this.createRegisterForm()}
-            <Button id="login" onClick={this.props.loginFromSubmit}>
-              Submit
-            </Button>
-            <Button id="register">
-              <Link to={'/admin/register'}>Register</Link>
-            </Button>
-          {/* </Form > */}
-        </div>
-      )
-    }
-
+  render() {
+    // console.log(getJwt());
+    // console.log('rerender');
+    // console.log(this.props.loggedInStatus);
+    console.log(this.props);
+    return (
+      <div>
+        {/* <Form> */}
+        {this.createRegisterForm()}
+        <Button id="login" onClick={this.props.loginFromSubmit}>
+          Submit
+        </Button>
+        <Button id="register">
+          <Link to={'/admin/register'}>Register</Link>
+        </Button>
+        {/* </Form > */}
+      </div>
+    )
   }
 
+}
 
-  const mapStateToProps = state => {
-    return {loggedInStatus: state.userLoggedIn}
+const mapStateToProps = state => {
+  return {
+    loggedInStatus: state.login.userLoggedIn
   }
+}
 
-  const mapDispatchToProps = dispatch => {
-    return {
-      userLoggedInStatus: (isLoggedIn) => dispatch({type: actionTypes.USERLOGGEDIN, payload: isLoggedIn}),
-      formInputEvent: (event) => dispatch(actionTypes.userLoggedInChange(event)),
-      loginFromSubmit: () => dispatch(actionTypes.submitLoginForm())
-    }
+const mapDispatchToProps = dispatch => {
+  return {
+    // userLoggedInStatus: () => dispatch(actionTypes.userLoggedIn()), payload:
+    // isLoggedIn
+    formInputEvent: (event) => dispatch(actionTypes.userLoggedInChange(event)),
+    loginFromSubmit: () => dispatch(actionTypes.submitLoginForm())
   }
+}
 
-  export default connect(mapStateToProps, mapDispatchToProps)(LoginFrom)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginFrom)

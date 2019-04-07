@@ -1,6 +1,6 @@
 import fetchLoginRegister from '../../axios_routes/auth_routes';
-import { browserHistory} from 'react-router-redux'
 import * as actionTypes from '../actions/actions';
+import { push } from 'react-router-redux'
 
 const initialState = {
   userLoggedIn: false,
@@ -14,11 +14,8 @@ const reducer = (state = initialState, action) => {
 
   switch (action.type) {
 
-    case actionTypes.USERLOGGEDIN:
-      return {
-        ...state,
-        userLoggedIn: true
-      }
+      // case actionTypes.USERLOGGEDIN:   return {     ...state,     userLoggedIn:
+      // true   }
 
     case actionTypes.LOGINCHAGED:
 
@@ -39,16 +36,18 @@ const reducer = (state = initialState, action) => {
         password: state.userLogInInfo.password
       })
         .then(res => {
-          console.log(browserHistory);
+          console.log('login passed')
           localStorage.setItem('login-jwt', res.data)
-          browserHistory.push('/admin');
-          return {
-            ...state,
-            userLoggedIn: true
-          }
+          // return {
+          //   // ...state,
+          //   userLoggedIn: !state.userLoggedIn
+          // }
+          let newState = {...state};
+          newState['userLoggedIn'] = true;
+          console.log(newState);
+          return newState;
         })
         .catch(err => {
-          console.log(browserHistory)
           console.log(err)
         });
 

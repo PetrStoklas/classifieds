@@ -6,6 +6,10 @@ export const SUBMITLOGINFORM = 'SUBMITLOGINFORM';
 export const REGISTRATONCHANGED = 'REGISTRATONCHANGED';
 export const SUBMITREGISTRATIONFORM = 'SUBMITREGISTRATIONFORM';
 
+export const userLoggedIn = () => {
+  return {type: USERLOGGEDIN}
+}
+
 
 export const userLoggedInChange = event => {
   return {

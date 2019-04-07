@@ -16,7 +16,7 @@ const header = props => {
         <BrandCard 
           categories={props}
           getChildrenId={(id) => { props.getCategoryId(id)}}
-        />
+         />
         <p className="lead">
         </p>
       </Jumbotron>
