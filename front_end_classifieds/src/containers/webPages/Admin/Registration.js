@@ -6,7 +6,7 @@ import FormComponent from '../../../components/form/input';
 import registrationFromSettings from '../../../config_files/registrationForm';
 import * as actionTypes from '../../../store/actions/actions';
 
-import {Redirect} from "react-router-dom";
+import {Redirect, Link} from "react-router-dom";
 
 class RegistrationPage extends Component {
 
@@ -45,6 +45,7 @@ class RegistrationPage extends Component {
     let regForm = <div>
       {registrationForm}
       <Button onClick={this.checkForLoggedInUser} id="register">Register</Button>
+      <Button><Link to="/admin/login">Login</Link></Button>
     </div>;
 
     return (

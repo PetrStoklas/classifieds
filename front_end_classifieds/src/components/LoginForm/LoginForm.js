@@ -38,7 +38,7 @@ class LoginFrom extends Component {
 
   render() {
     // console.log(getJwt());
-    console.log('rerender');
+    console.log('login form');
     console.log(this.props.loggedInStatus);
     console.log(this.props);
     if(this.props.loggedInStatus){

@@ -28,7 +28,7 @@ class Admin extends Component {
 
   render() {
 
-    console.log('render from admin')
+    console.log('admin updated')
     console.log(this.props.loggedInStatus);
     console.log(Boolean(getJwt()));
 
@@ -58,7 +58,7 @@ class Admin extends Component {
                 </Col>
               </Row>
               <Route
-                path='/admin/login'
+                path={currentLocUrl + '/login'}
                 component={() => <LoginForm
                 getinputvalues={this.getInputFormValue}
                 submitform={this.submitForm}/>}>
