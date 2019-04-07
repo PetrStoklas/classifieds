@@ -10,6 +10,19 @@ export const userLoggedIn = () => {
   return {type: USERLOGGEDIN}
 }
 
+export const registrationSubmit = event => {
+  return {
+    type: SUBMITREGISTRATIONFORM
+  }
+}
+
+export const registrationChanged = event => {
+  return {
+    type: REGISTRATONCHANGED,
+    event: event
+  }
+}
+
 
 export const userLoggedInChange = event => {
   return {

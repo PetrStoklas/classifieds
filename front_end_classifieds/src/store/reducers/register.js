@@ -23,11 +23,11 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.REGISTRATONCHANGED:
 
-      console.log(action.payload.target.value)
+      console.log(action.event.target.value)
       let newState = {
         ...state
       }
-
+      console.log(action.event.target.value);
       newState.userRegistrationInfo[action.payload.target.name] = action.payload.target.value;
 
       return newState;
@@ -48,7 +48,6 @@ const reducer = (state = initialState, action) => {
             ...initialState,
             userLoggedIn: true
           }
-
         })
 
       default:

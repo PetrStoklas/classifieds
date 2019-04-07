@@ -20,7 +20,9 @@ class RegistrationPage extends Component {
   }
 
   checkForLoggedInUser = () => {
-    console.log(this.props.loggedInStatus);
+    if(!this.props.loggedInStatus){
+      console.log('no one is logged in');
+    }
     this
       .props
       .registrationFromSubmit()
@@ -28,10 +30,11 @@ class RegistrationPage extends Component {
   }
 
   render() {
+    console.log(this.props);
+    // if (this.props.loggedInStatus) 
+    //   return 
     
-    if (this.props.loggedInStatus) 
-      return 
-
+    
     let registrationForm = <Spinner/>
     registrationForm = registrationFromSettings.map(formElements => <FormComponent
       key={formElements.label_for}
@@ -50,6 +53,7 @@ class RegistrationPage extends Component {
 
     return (
       <div>
+      {this.props.loggedInStatus ? <Redirect to="/admin"/> : ''}
         <h1>Registration Page</h1>
         {regForm}
       </div>
@@ -58,14 +62,14 @@ class RegistrationPage extends Component {
 }
 
 const mapStateToProps = state => {
-  return {loggedInStatus: state.userLoggedIn, userInfoFromInputs: state.userRegistrationInfo}
+  return {loggedInStatus: state.register.userLoggedIn}
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     userLoggedInStatus: (isLoggedIn) => dispatch({type: actionTypes.USERLOGGEDIN, payload: isLoggedIn}),
-    formInputEvent: (event) => dispatch({type: actionTypes.REGISTRATONCHANGED, payload: event}),
-    registrationFromSubmit: () => dispatch({type: actionTypes.SUBMITREGISTRATIONFORM})
+    formInputEvent: (event) => dispatch(actionTypes.registrationChanged(event)),
+    registrationFromSubmit: () => dispatch(actionTypes.registrationSubmit())
   }
 }
 
