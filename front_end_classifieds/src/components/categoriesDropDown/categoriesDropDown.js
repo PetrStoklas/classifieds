@@ -1,6 +1,8 @@
 import React from 'react';
-import {ListGroup, ListGroupItem} from 'reactstrap';
-import {Link} from "react-router-dom";
+import {ListGroup, 
+  // ListGroupItem
+} from 'reactstrap';
+// import {Link} from "react-router-dom";
 import SearchForm from '../UI/SearchForm/SearchForm';
 // import fetchCategories from '../../axios_routes/categories_axios';
 

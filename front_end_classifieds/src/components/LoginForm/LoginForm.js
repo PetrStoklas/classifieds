@@ -41,6 +41,10 @@ class LoginFrom extends Component {
     console.log('rerender');
     console.log(this.props.loggedInStatus);
     console.log(this.props);
+    if(this.props.loggedInStatus){
+      console.log('user logged in');
+    }
+
     return (
       <div>
       {this.props.userLoggedIn || getJwt()

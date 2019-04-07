@@ -14,9 +14,6 @@ const reducer = (state = initialState, action) => {
 
   switch (action.type) {
 
-      // case actionTypes.USERLOGGEDIN:   return {     ...state,     userLoggedIn:
-      // true   }
-
     case actionTypes.LOGINCHAGED:
 
       // console.log(action.event.target.value)
@@ -36,7 +33,7 @@ const reducer = (state = initialState, action) => {
         password: state.userLogInInfo.password
       })
         .then(res => {
-          console.log('login passed')
+          console.log('login success')
           localStorage.setItem('login-jwt', res.data)
           // return {
           //   // ...state,
@@ -45,6 +42,7 @@ const reducer = (state = initialState, action) => {
           let newState = {...state};
           newState['userLoggedIn'] = true;
           console.log(newState);
+          push('/');
           return newState;
         })
         .catch(err => {
