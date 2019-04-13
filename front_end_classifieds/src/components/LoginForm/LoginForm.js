@@ -17,9 +17,13 @@ import * as actionTypes from '../../store/actions/actions';
 
 class LoginFrom extends Component {
 
-  // componentDidMount(){   if(getJwt()){     this.props.userLoggedInStatus();   }
-  // } componentWillUpdate () {   if(getJwt()){
-  // this.props.userLoggedInStatus();   } }
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+    console.log('something');
+    if (nextProps.loggedInStatus) {
+      this.props.router.push('/');
+    }
+  }
 
   createRegisterForm = () => {
     let registrationForm = <Spinner/>
@@ -37,10 +41,8 @@ class LoginFrom extends Component {
   }
 
   render() {
-    // console.log(getJwt());
-    console.log('login form');
+    console.log('login form updated');
     console.log(this.props);
-    // console.log(this.props);
     if(this.props.loggedInStatus){
       console.log('user logged in');
     }
@@ -50,7 +52,6 @@ class LoginFrom extends Component {
       {this.props.userLoggedIn || getJwt()
                     ? <Redirect to="/admin"/>
                     : 'i need to rerender'}
-        {/* <Form> */}
         {this.createRegisterForm()}
         <Button id="login" onClick={this.props.loginFromSubmit}>
           Submit
@@ -58,7 +59,6 @@ class LoginFrom extends Component {
         <Button id="register">
           <Link to={'/admin/register'}>Register</Link>
         </Button>
-        {/* </Form > */}
       </div>
     )
   }

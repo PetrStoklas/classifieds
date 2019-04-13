@@ -1,6 +1,6 @@
 import fetchLoginRegister from '../../axios_routes/auth_routes';
 import * as actionTypes from '../actions/actions';
-import { push } from 'react-router-redux'
+
 
 const initialState = {
   userLoggedIn: false,
@@ -42,15 +42,17 @@ const reducer = (state = initialState, action) => {
           let newState = {...state};
           newState['userLoggedIn'] = true;
           console.log(newState);
-          push('/');
           return newState;
         })
         .catch(err => {
           console.log(err)
         });
 
+        // case actionTypes.redirect:
+      
+
     default:
-      break;
+      return state;
   }
 
   return state;

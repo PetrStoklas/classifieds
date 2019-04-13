@@ -27,7 +27,6 @@ class CardsContainer extends Component {
           })
           return singleCard;
         });
-        // console.log('addCard  end ---------')
     }
 
     return (

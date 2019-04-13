@@ -5,15 +5,17 @@ import * as serviceWorker from './serviceWorker';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
-import loginReducer from './store/reducers/login';
-import registerReducer from './store/reducers/register';
+import login from './store/reducers/login';
+import register from './store/reducers/register';
+import getProducts from './store/reducers/getAllProducts';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 
 
 const rootReducer = combineReducers({
-  login: loginReducer,
-  register: registerReducer,
+  login,
+  register,
+  getProducts,
 });
 
 

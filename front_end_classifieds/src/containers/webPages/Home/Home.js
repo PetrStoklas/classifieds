@@ -5,21 +5,14 @@ import fetchProducts from '../../../axios_routes/products_axios';
 import {
   Container,
   Row,
-  Col,
   Spinner,
-  Form,
-  Button
-  // Button, Form
 } from 'reactstrap';
 import CategoriesNav from '../../../components/categoriesDropDown/categoriesDropDown';
-import {
-  // BrowserRouter as Router,
-  Route
-} from "react-router-dom";
 import Jumbotron from '../../../components/categorisJumbotr/categorisJumbotr';
 import AddsCardSection from '../../sections/AddsCardSection';
 import Navigation from '../../../components/UI/Navigation/Navigation';
 import SingleProductView from '../SingleProductView/SingleProductView';
+import { connect } from 'react-redux';
 
 class Home extends Component {
 
@@ -132,8 +125,8 @@ class Home extends Component {
   }
 
   render() {
-    // console.log(this.state.productsWithCategory, typeof
-    // this.state.productsWithCategory);
+    
+    console.log(this.props);
 
     let jumbotron = <Spinner/>
     if (this.state.categories.length > 0) {
@@ -171,4 +164,9 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state => {
+  return {products: state.getProducts}
+}
+
+
+export default connect(mapStateToProps, null)(Home);

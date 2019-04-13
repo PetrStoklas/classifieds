@@ -9,8 +9,8 @@ const header = props => {
 
   return (
     <div>
-    <Jumbotron className={[classes.Wrapper, classes.VectorBackdrop]}>
-        <h1 className={classes.Header +" display-3"}>......</h1>
+    <Jumbotron className={`${classes.Wrapper}, ${classes.VectorBackdrop}`}>
+        <h1 className={`${classes.Header} display-3`}>......</h1>
         <p className="lead">Best Automotive Trading Platform in Ukraine</p>
         <hr className="my-2" />
         <BrandCard 
