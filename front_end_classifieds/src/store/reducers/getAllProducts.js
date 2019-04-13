@@ -6,7 +6,15 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-  return state;
+  let tempState = {...state}
+  if(action.type === actionTypes.GETALLRPODUCTS){
+    fetchAllProducts.get()
+    .then(res => {
+      console.log(res);
+      tempState.products =  res.data
+    })
+  }
+  return tempState;
 }
 
 export default reducer;

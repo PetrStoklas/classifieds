@@ -10,3 +10,7 @@ export {
   sendLoginForm
 } from './userRegister';
 
+export {
+  getAllProducts
+} from './getAllproducts';
+

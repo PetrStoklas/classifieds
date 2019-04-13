@@ -13,6 +13,7 @@ import AddsCardSection from '../../sections/AddsCardSection';
 import Navigation from '../../../components/UI/Navigation/Navigation';
 import SingleProductView from '../SingleProductView/SingleProductView';
 import { connect } from 'react-redux';
+import * as actionTypes from '../../../store/actions';
 
 class Home extends Component {
 
@@ -29,6 +30,9 @@ class Home extends Component {
   }
 
   componentDidMount() {
+
+    this.props.getAllProductsFromDB()
+
     fetchCategories
       .get()
       .then(categories => {
@@ -62,6 +66,7 @@ class Home extends Component {
     // console.log('products and images',this.state.productsAll);
   }
 
+  
   getChildren = e => {
     this.setState({active_category: e.target.textContent, subCategories: []})
     let id = e.target.id
@@ -126,7 +131,7 @@ class Home extends Component {
 
   render() {
     
-    console.log(this.props);
+    console.log(this.props.products);
 
     let jumbotron = <Spinner/>
     if (this.state.categories.length > 0) {
@@ -156,6 +161,7 @@ class Home extends Component {
               getClickedId={this.getClickedId}
               cardsData={(this.state.productsWithCategory.length === 0)
               ? this.state.productsAll
+              // ? this.props.products.product
               : this.state.productsWithCategory}/>
           </Row>
         </Container>
@@ -168,5 +174,11 @@ const mapStateToProps = state => {
   return {products: state.getProducts}
 }
 
+const mapDipatchToProps = dispatch => {
+  return {
+    getAllProductsFromDB: () => dispatch(actionTypes.getAllProducts())
+  }
+}
 
-export default connect(mapStateToProps, null)(Home);
+
+export default connect(mapStateToProps, mapDipatchToProps)(Home);

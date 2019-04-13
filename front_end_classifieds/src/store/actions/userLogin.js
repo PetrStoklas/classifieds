@@ -15,4 +15,3 @@ export const registrationChanged = event => {
 export const registrationSubmit = event => {
   return {type: actionTypes.SUBMITREGISTRATIONFORM}
 }
-
