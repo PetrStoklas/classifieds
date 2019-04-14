@@ -24,7 +24,6 @@ class Home extends Component {
     active_category: null,
     active_product_id: null,
     productsId: null,
-    productsAll: [],
     productsWithImages: [],
     productsWithCategory: []
   }
@@ -49,18 +48,7 @@ class Home extends Component {
           });
       })
       .catch(err => console.log(err));
-    // Get All Products
-
-    fetchProducts
-      .get()
-      .then(res => {
-        this.setState({
-          ...this.state.productsAll,
-          productsAll: res.data
-        })
-      })
-      .catch(err => console.log(err));
-    fetchCategories.get()
+    
   }
 
   getChildren = e => {
@@ -69,7 +57,6 @@ class Home extends Component {
     fetchCategories
       .get('/' + id)
       .then(subCategories => {
-        console.log('getChildren---', subCategories.data);
         subCategories
           .data
           .map(res => {
@@ -122,15 +109,14 @@ class Home extends Component {
 
   sayId(id) {
     console.log('id from Home.js', id)
-    // return e.target.value
   }
 
   render() {
     
-    // console.log(this.props.products);
-    console.log(this.props);
+    // console.log(this.props.products.products);
+    // console.log(this.state.productsAll)
 
-    let jumbotron = <Spinner/>
+    let jumbotron = <Spinner className="ml-5"/>
     if (this.state.categories.length > 0) {
       jumbotron = <Jumbotron // categories aka 'brands' are loaded in 'componentWillMount()'
   categories={this.state.categories} getCategoryId= {(id) => {this.getProductsbyBrand(id);}}/>
@@ -150,15 +136,16 @@ class Home extends Component {
                 context={'home'}/> {/* props to jumbotron sent in render() above return */}
             </div>
           </div>
-
-          {jumbotron}
+          <div className="d-flex justify-content-center">
+            {jumbotron}
+          </div>
 
           <Row>
             <AddsCardSection
               getClickedId={this.getClickedId}
               cardsData={(this.state.productsWithCategory.length === 0)
-              ? this.state.productsAll
-              // ? this.props.products
+              // ? this.state.productsAll
+              ? this.props.products.products
               : this.state.productsWithCategory}/>
           </Row>
         </Container>
