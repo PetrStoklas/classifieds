@@ -1,16 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
-import fetchLogin from '../../../axios_routes/auth_routes';
 import getJwt from '../../../utilites/jwt';
-import {
-  Container,
-  Row,
-  Col
-} from 'reactstrap';
+import {Container, Row, Col} from 'reactstrap';
 import LoginForm from '../../../components/LoginForm/LoginForm';
-import {BrowserRouter as Router, Route, 
-  // Link, 
-  // withRouter
+import {
+  BrowserRouter as Router, Route,
+  // Link, withRouter
   Redirect
 } from "react-router-dom";
 import AddNewProductForm from '../../../components/forms/addNewProductForm';
@@ -18,29 +13,24 @@ import Navigation from '../../../components/UI/Navigation/Navigation';
 import AdminNavigatoion from '../../../components/UI/AdminNavigatoion/AdminNavigatoion'
 import AdminProductList from '../../../components/AdminProductList/AdminProductList';
 import RegistrationPage from '../Admin/Registration';
-import * as actionTypes from '../../../store/actions/actions';
 
 class Admin extends Component {
 
+  componentWillUpdate() {
+    if (getJwt()) {
+      this
+        .props
+        .loggedInStatus();
+    }
 
-componentDidMount(){
-  if(getJwt()){
-    this.props.userLoggedInStatus();
   }
 
-}
-
-  
 
   render() {
 
-    console.log(this.props.loggedInStatus);
-    console.log(Boolean(getJwt()));
-    let content = this.props.loggedInStatus
-      ? <div></div>
 
-      : <div></div>
-    let currentLocUrl = '/admin'; //this.props.location.pathname;
+    let currentLocUrl = '/admin'; //this.props.location.pathname; -- throwing an error
+    
     return (
       <div>
         <div>
@@ -50,11 +40,9 @@ componentDidMount(){
             <Container>
               <Row>
                 <Col md='4'>
-                  {this.props.loggedInStatus
+                  {this.props.loggedInStatus || getJwt()
                     ? <AdminNavigatoion/>
-                    : <LoginForm
-                      getinputvalues={this.getInputFormValue}
-                      submitform={this.submitForm}/>}
+                    : <Redirect to="/admin/login"/>}
                 </Col>
                 <Col md='8'>
                   <Route
@@ -65,10 +53,16 @@ componentDidMount(){
                     exact
                     path={currentLocUrl + '/allProductsList'}
                     component={() => <AdminProductList/>}></Route>
-
-                  <Route path='/admin/register' component={RegistrationPage}></Route>
                 </Col>
               </Row>
+              <Route
+                path={currentLocUrl + '/login'}
+                component={() => 
+                <LoginForm
+                getinputvalues={this.getInputFormValue}
+                submitform={this.submitForm}/>}>
+              </Route>
+              <Route path={currentLocUrl + '/register'} component={RegistrationPage}></Route>
             </Container>
           </Router>
         </div>
@@ -77,17 +71,12 @@ componentDidMount(){
   }
 }
 
-
 const mapStateToProps = state => {
   return {loggedInStatus: state.login.userLoggedIn}
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    userLoggedInStatus: (isLoggedIn) => dispatch({type: actionTypes.USERLOGGEDIN, payload: isLoggedIn}),
-  }
-}
+// const mapDispatchToProps = dispatch => {   return {     userLoggedInStatus:
+// (isLoggedIn) => dispatch({type: actionTypes.USERLOGGEDIN, payload:
+// isLoggedIn}),   } }
 
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Admin);
+export default connect(mapStateToProps, null)(Admin);

@@ -1,6 +1,6 @@
 import fetchLoginRegister from '../../axios_routes/auth_routes';
-import {push} from 'react-router-redux'
 import * as actionTypes from '../actions/actions';
+import {push} from 'react-router-redux'
 
 const initialState = {
   userLoggedIn: false,
@@ -14,7 +14,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
 
-  switch (action.key) {
+  switch (action.type) {
     case actionTypes.USERLOGGEDIN:
       return {
         ...state,
@@ -22,19 +22,18 @@ const reducer = (state = initialState, action) => {
       }
 
     case actionTypes.REGISTRATONCHANGED:
-
-      console.log(action.payload.target.value)
+    
+      console.log(action.event.target.value)
       let newState = {
         ...state
       }
-
-      newState.userRegistrationInfo[action.payload.target.name] = action.payload.target.value;
+      console.log(action.event.target.value);
+      newState.userRegistrationInfo[action.event.target.name] = action.event.target.value;
 
       return newState;
 
     case actionTypes.SUBMITREGISTRATIONFORM:
 
-      console.log(state);
       fetchLoginRegister
         .post('/register', {
         name: state.userRegistrationInfo.name,
@@ -48,7 +47,6 @@ const reducer = (state = initialState, action) => {
             ...initialState,
             userLoggedIn: true
           }
-
         })
 
       default:

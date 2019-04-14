@@ -10,7 +10,7 @@ import createProduct from '../../axios_routes/create_product';
 import {
   // BrowserRouter as Router, Route
 } from "react-router-dom";
-import axios from 'axios';
+// import axios from 'axios';
 
 class AddNewProductForm extends Component {
 

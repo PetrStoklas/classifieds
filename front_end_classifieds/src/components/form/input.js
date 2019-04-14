@@ -66,9 +66,9 @@ const temp_form = props => {
   }
 
   return (
-    <>
-        {generateForm(props.type, props.label_for, props.input_name, props.input_id, props.input_placeholder, props.formdata,props.submitform)}
-    </>
+    <div>
+        {generateForm(props.type, props.label_for, props.input_name, props.input_id, props.input_placeholder, props.formdata, props.submitform)}
+    </div>
     
   );
 };

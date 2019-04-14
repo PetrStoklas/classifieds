@@ -5,21 +5,15 @@ import fetchProducts from '../../../axios_routes/products_axios';
 import {
   Container,
   Row,
-  Col,
   Spinner,
-  Form,
-  Button
-  // Button, Form
 } from 'reactstrap';
 import CategoriesNav from '../../../components/categoriesDropDown/categoriesDropDown';
-import {
-  // BrowserRouter as Router,
-  Route
-} from "react-router-dom";
 import Jumbotron from '../../../components/categorisJumbotr/categorisJumbotr';
 import AddsCardSection from '../../sections/AddsCardSection';
 import Navigation from '../../../components/UI/Navigation/Navigation';
 import SingleProductView from '../SingleProductView/SingleProductView';
+import { connect } from 'react-redux';
+import * as actionTypes from '../../../store/actions/getAllproducts'
 
 class Home extends Component {
 
@@ -30,12 +24,12 @@ class Home extends Component {
     active_category: null,
     active_product_id: null,
     productsId: null,
-    productsAll: [],
     productsWithImages: [],
     productsWithCategory: []
   }
 
   componentDidMount() {
+    this.props.getAllProducts();
     fetchCategories
       .get()
       .then(categories => {
@@ -54,19 +48,7 @@ class Home extends Component {
           });
       })
       .catch(err => console.log(err));
-    // Get All Products
-
-    fetchProducts
-      .get()
-      .then(res => {
-        this.setState({
-          ...this.state.productsAll,
-          productsAll: res.data
-        })
-      })
-      .catch(err => console.log(err));
-    fetchCategories.get()
-    // console.log('products and images',this.state.productsAll);
+    
   }
 
   getChildren = e => {
@@ -75,7 +57,6 @@ class Home extends Component {
     fetchCategories
       .get('/' + id)
       .then(subCategories => {
-        console.log('getChildren---', subCategories.data);
         subCategories
           .data
           .map(res => {
@@ -128,14 +109,14 @@ class Home extends Component {
 
   sayId(id) {
     console.log('id from Home.js', id)
-    // return e.target.value
   }
 
   render() {
-    // console.log(this.state.productsWithCategory, typeof
-    // this.state.productsWithCategory);
+    
+    // console.log(this.props.products.products);
+    // console.log(this.state.productsAll)
 
-    let jumbotron = <Spinner/>
+    let jumbotron = <Spinner className="ml-5"/>
     if (this.state.categories.length > 0) {
       jumbotron = <Jumbotron // categories aka 'brands' are loaded in 'componentWillMount()'
   categories={this.state.categories} getCategoryId= {(id) => {this.getProductsbyBrand(id);}}/>
@@ -155,14 +136,16 @@ class Home extends Component {
                 context={'home'}/> {/* props to jumbotron sent in render() above return */}
             </div>
           </div>
-
-          {jumbotron}
+          <div className="d-flex justify-content-center">
+            {jumbotron}
+          </div>
 
           <Row>
             <AddsCardSection
               getClickedId={this.getClickedId}
               cardsData={(this.state.productsWithCategory.length === 0)
-              ? this.state.productsAll
+              // ? this.state.productsAll
+              ? this.props.products.products
               : this.state.productsWithCategory}/>
           </Row>
         </Container>
@@ -171,4 +154,15 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state => {
+  return {products: state.getProducts}
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getAllProducts: () => dispatch(actionTypes.getAllProducts())
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
