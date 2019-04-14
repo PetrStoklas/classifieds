@@ -13,7 +13,7 @@ import AddsCardSection from '../../sections/AddsCardSection';
 import Navigation from '../../../components/UI/Navigation/Navigation';
 import SingleProductView from '../SingleProductView/SingleProductView';
 import { connect } from 'react-redux';
-import * as actionTypes from '../../../store/actions';
+import * as actionTypes from '../../../store/actions/getAllproducts'
 
 class Home extends Component {
 
@@ -30,9 +30,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-
-    this.props.getAllProductsFromDB()
-
+    this.props.getAllProducts();
     fetchCategories
       .get()
       .then(categories => {
@@ -63,10 +61,8 @@ class Home extends Component {
       })
       .catch(err => console.log(err));
     fetchCategories.get()
-    // console.log('products and images',this.state.productsAll);
   }
 
-  
   getChildren = e => {
     this.setState({active_category: e.target.textContent, subCategories: []})
     let id = e.target.id
@@ -131,7 +127,8 @@ class Home extends Component {
 
   render() {
     
-    console.log(this.props.products);
+    // console.log(this.props.products);
+    console.log(this.props);
 
     let jumbotron = <Spinner/>
     if (this.state.categories.length > 0) {
@@ -161,7 +158,7 @@ class Home extends Component {
               getClickedId={this.getClickedId}
               cardsData={(this.state.productsWithCategory.length === 0)
               ? this.state.productsAll
-              // ? this.props.products.product
+              // ? this.props.products
               : this.state.productsWithCategory}/>
           </Row>
         </Container>
@@ -174,11 +171,11 @@ const mapStateToProps = state => {
   return {products: state.getProducts}
 }
 
-const mapDipatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
-    getAllProductsFromDB: () => dispatch(actionTypes.getAllProducts())
+    getAllProducts: () => dispatch(actionTypes.getAllProducts())
   }
 }
 
 
-export default connect(mapStateToProps, mapDipatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
