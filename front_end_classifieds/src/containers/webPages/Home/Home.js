@@ -30,6 +30,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.props.getAllProducts();
+    
     fetchCategories
       .get()
       .then(categories => {
@@ -160,7 +161,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAllProducts: () => dispatch(actionTypes.getAllProducts())
+    getAllProducts: () => dispatch(actionTypes.getProducts())
   }
 }
 
