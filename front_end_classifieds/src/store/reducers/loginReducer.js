@@ -1,5 +1,5 @@
 import fetchLoginRegister from '../../axios_routes/auth_routes';
-import * as actionTypes from '../actions/actions';
+import * as actionTypes from '../actions/allProductAction';
 
 
 const initialState = {
@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.LOGINCHAGED:
 
-      // console.log(action.event.target.value)
+      console.log('login reducer action')
       console.log(action.event.target.value)
       let newState = {
         ...state

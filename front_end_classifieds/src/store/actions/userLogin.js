@@ -8,10 +8,11 @@ export const redirect = () => {
   return {type: actionTypes.REDIRECT}
 }
 
-export const registrationChanged = event => {
-  return {type: actionTypes.REGISTRATONCHANGED, event: event}
+export const loginChange = event => {
+  console.log('hello from aciton creator')
+  return {type: actionTypes.LOGINCHAGED, event: event}
 }
 
-export const registrationSubmit = event => {
-  return {type: actionTypes.SUBMITREGISTRATIONFORM}
+export const submintLoginForm = event => {
+  return {type: actionTypes.SUBMITLOGINFORM}
 }

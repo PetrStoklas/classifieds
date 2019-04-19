@@ -5,7 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
-import login from './store/reducers/login';
+import login from './store/reducers/loginReducer';
 import register from './store/reducers/register';
 import getProducts from './store/reducers/getAllProducts';
 import {Provider} from 'react-redux';

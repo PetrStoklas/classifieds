@@ -22,7 +22,7 @@ const reducer = (state = initialState, action) => {
       }
 
     case actionTypes.REGISTRATONCHANGED:
-    
+
       console.log(action.event.target.value)
       let newState = {
         ...state

@@ -1,7 +1,6 @@
 export {
-  userLoggedIn,
-  registrationChanged,
-  registrationSubmit,
+  loginChange,
+  submintLoginForm
 } from './userLogin';
 
 export {
