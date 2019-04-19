@@ -6,7 +6,7 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import login from './store/reducers/loginReducer';
-import register from './store/reducers/register';
+import register from './store/reducers/registerReducer';
 import getProducts from './store/reducers/getAllProducts';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';

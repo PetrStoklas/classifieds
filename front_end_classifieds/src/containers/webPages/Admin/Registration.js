@@ -4,7 +4,7 @@ import {Button, Spinner} from 'reactstrap';
 import getJwt from '../../../utilites/jwt';
 import FormComponent from '../../../components/form/input';
 import registrationFromSettings from '../../../config_files/registrationForm';
-import * as actionTypes from '../../../store/actions/actionTypes';
+import * as actionTypes from '../../../store/actions/';
 
 import {Redirect, Link} from "react-router-dom";
 
@@ -67,9 +67,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    userLoggedInStatus: (isLoggedIn) => dispatch({type: actionTypes.USERLOGGEDIN, payload: isLoggedIn}),
-    formInputEvent: (event) => dispatch(actionTypes.registrationChanged(event)),
-    registrationFromSubmit: () => dispatch(actionTypes.registrationSubmit())
+    formInputEvent: (event) => dispatch(actionTypes.registrationFormChanges(event)),
+    registrationFromSubmit: () => dispatch(actionTypes.submitLoginForm())
   }
 }
 

@@ -4,9 +4,8 @@ export {
 } from './userLogin';
 
 export {
-  userLoggedInChange,
-  submitLoginForm,
-  sendLoginForm
+  registrationFormChanges,
+  submitLoginForm
 } from './userRegister';
 
 export {

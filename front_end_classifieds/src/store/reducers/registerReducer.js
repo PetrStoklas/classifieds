@@ -1,6 +1,5 @@
 import fetchLoginRegister from '../../axios_routes/auth_routes';
-import * as actionTypes from '../actions/actions';
-import {push} from 'react-router-redux'
+import * as actionTypes from '../actions/allProductAction';
 
 const initialState = {
   userLoggedIn: false,
@@ -15,11 +14,6 @@ const initialState = {
 const reducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case actionTypes.USERLOGGEDIN:
-      return {
-        ...state,
-        userLoggedIn: true
-      }
 
     case actionTypes.REGISTRATONCHANGED:
 
