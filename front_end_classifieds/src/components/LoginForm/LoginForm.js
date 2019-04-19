@@ -13,17 +13,10 @@ import {
 import FormComponent from '../form/input';
 import {connect} from 'react-redux';
 import getJwt from '../../utilites/jwt';
-import * as actionTypes from '../../store/actions';
+import * as actionTypes from '../../store/actions/';
 
 class LoginFrom extends Component {
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
-    console.log('something');
-    if (nextProps.loggedInStatus) {
-      this.props.router.push('/');
-    }
-  }
 
   createRegisterForm = () => {
     let registrationForm = <Spinner/>
@@ -73,8 +66,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // userLoggedInStatus: () => dispatch(actionTypes.userLoggedIn()), payload:
-    // isLoggedIn
     formInputEvent: (event) => dispatch(actionTypes.loginChange(event)),
     loginFromSubmit: () => dispatch(actionTypes.submitLoginForm())
   }

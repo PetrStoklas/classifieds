@@ -57,10 +57,7 @@ class Admin extends Component {
               </Row>
               <Route
                 path={currentLocUrl + '/login'}
-                component={() => 
-                <LoginForm
-                getinputvalues={this.getInputFormValue}
-                submitform={this.submitForm}/>}>
+                component={LoginForm}>
               </Route>
               <Route path={currentLocUrl + '/register'} component={RegistrationPage}></Route>
             </Container>
